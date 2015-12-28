@@ -33,7 +33,7 @@
 }
 
 .recent-article1 {
-    background-image: url("/img/Staffagepl-4830_rt.jpg");
+    background-image: url("/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/Staffagepl-4830_rt.jpg");
     background-size: 1080px ;
 }
 
@@ -45,6 +45,10 @@
 .recent-article3 {
     background-image: url("/img/Staffagepl-4866_rt.jpg");
     background-size: 1080px ;
+}
+
+.center img {
+    margin: 0 auto 20px;
 }
 
 img.center {
@@ -88,4 +92,13 @@ hr.star-primary {
 hr.star-primary:after {
     color: #2c3e50;
     background-color: #fff;
+}
+
+/* yujiaokecheng */
+.entry-screenshot {
+    width: 160px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #f1f1f1;
 }
