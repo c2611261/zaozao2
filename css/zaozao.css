@@ -1,0 +1,91 @@
+.col-xs-12 {
+	border: 1px solid #222;
+	padding: 30px 30px 30px 30px;
+	}
+.col-lg-4 {
+	border: 1px solid #222;
+	}
+.col-xs-6 {
+	border: 1px solid #222;
+	}
+.col-lg-3 {
+	border: 1px solid #222;
+	}
+
+.yellow {
+	background-color: #FADA30;
+}
+
+.green {
+	background-color: #3EBAAB;
+}
+
+.light-brown {
+	background-color: #C2B49A;
+}
+
+.dark-brown {
+	background-color: #594A41;
+}
+
+.center {
+	text-align: center;
+}
+
+.recent-article1 {
+    background-image: url("/img/Staffagepl-4830_rt.jpg");
+    background-size: 1080px ;
+}
+
+.recent-article2 {
+    background-image: url("/img/2.jpg");
+    background-size: 1080px ;
+}
+
+.recent-article3 {
+    background-image: url("/img/Staffagepl-4866_rt.jpg");
+    background-size: 1080px ;
+}
+
+img.center {
+	text-align: center;
+}
+
+hr.star-light,
+hr.star-primary {
+    margin: 25px auto 30px;
+    padding: 0;
+    max-width: 250px;
+    border: 0;
+    border-top: solid 5px;
+    text-align: center;
+}
+
+hr.star-light:after,
+hr.star-primary:after {
+    content: "\f005";
+    display: inline-block;
+    position: relative;
+    top: -.8em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+hr.star-light {
+    border-color: #fff;
+}
+
+hr.star-light:after {
+    color: #fff;
+    background-color: #FADA30
+}
+
+hr.star-primary {
+    border-color: #2c3e50;
+}
+
+hr.star-primary:after {
+    color: #2c3e50;
+    background-color: #fff;
+}
