@@ -1,0 +1,13 @@
+---
+- hosts: zaozaoservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  tasks:
+  - name: test connection
+    ping: 
+    register: connection
+
+  - name: Install Nginx
+    brew: 
+    when: connection|success

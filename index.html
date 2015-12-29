@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="indexModule">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,9 +19,12 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!--<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">-->
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="public/js/domainNameUtil.js"></script>
+    <script type="text/javascript" src="public/js/index.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" ng-controller="IndexController">
 		<div class="row">
 			<div class="col-xs-12 yellow center">
 				<img class="img-responsive" src="img/1.png" alt="" width="200px" height="200px">
@@ -85,10 +88,9 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-lg-3 yellow"><a href="yujiakecheng_home.html"><img src="img/yujiaokecheng.png" alt="" width="128px" height="128px">育教课程</a></div>
-			<div class="col-xs-12 col-sm-6 col-lg-3 light-brown"><a href="qinziyujia_home.html"><img src="img/qinziyujia.png" alt=""width="128px" height="128px">亲子瑜伽</a></div>
-			<div class="col-xs-12 col-sm-6 col-lg-3 green"><a href="huibenyuedu_home.html"><img src="img/huibenyuedu.png" alt=""width="128px" height="128px">绘本阅读</a></div>
-			<div class="col-xs-12 col-sm-6 col-lg-3 dark-brown"><a href="fufeikecheng_home.html"><img src="img/fufeikecheng.png" alt=""width="128px" height="128px">付费课程</a></div>
+			<div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="courseTag in courseTags" ng-model="courseTag" ng-class="courseTag.backgroundCls">
+				<a href=""><img ng-src="{{courseTag.imageUrl}}" width="128px" height="128px"/>{{courseTag.name}}</a>
+			</div>
 		</div>
 	</div>
 </body>
