@@ -20,8 +20,11 @@
     <!--<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">-->
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="public/js/domainNameUtil.js"></script>
     <script type="text/javascript" src="public/js/index.js"></script>
+    <base href="/">
 </head>
 <body>
 	<div class="container" ng-controller="IndexController">
@@ -43,6 +46,19 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-lg-4 recent-article1">
+				<div class="col-xs-4">
+				</div>
+				<div class="col-xs-8">
+					<div class="col-xs-12">
+						<a href="article_detail.html">文章的标题应该非常的长</a>
+					</div>
+					<div class="col-xs-12">
+						<div class="col-xs-4"><a href="yujiakecheng_home.html"><i class="fa fa-tag"></i>  标签</a></div>
+						<div class="col-xs-8">12/25/2105</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="col-xs-12 col-lg-4 recent-article1">
 				<div class="col-xs-4">
 				</div>
 				<div class="col-xs-8">
@@ -80,7 +96,7 @@
 						<div class="col-xs-8">12/25/2105</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="row">
 			<div class="col-xs-12 center">
