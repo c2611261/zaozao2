@@ -8,14 +8,16 @@ controller('IndexController', ['$scope', '$http', '$location',
 		initTagBackground();
 		console.log('params=', $location.search().code);
 		if($location.search().code !== undefined){
-
+			$http.get($location.protocol()+"://"+$location.host()+":80"+"/education/zaozao/wechat/login")
+                       .success(function(e){
+                               console.log(e);
+                       });
 		}
 		$http.get(util.getBackendServiceUrl() + "/course_tags")
 			.success(function(e) {
 				console.log('get course tags:', e);
 				for (var i = 0; i < e.length; i++) {
-					$scope.courseTags[i].imageUrl =
-						util.getResourceUrl(e[i].imageUrl);
+					$scope.courseTags[i].imageUrl = (e[i].imageUrl);
 				}
 				console.log('resource url:', $scope.courseTags);
 			});
@@ -24,13 +26,21 @@ controller('IndexController', ['$scope', '$http', '$location',
 			console.log('get course ',e);
 			$scope.courses = e;
 			for(var i =0; i<$scope.courses.length;i++){
-				$scope.courses[i].imageUrl = util.getResourceUrl(e[i].titleImageUrl);
+				$scope.courses[i].imageUrl = e[i].titleImageUrl;
 				$scope.courses[i].tags = $scope.courses[i].tags.split(',');
-				
+
 			}
 		}).error(function(e){
 
 		});
+		$http.get(util.getBackendServiceUrl() + "/homeconfig")
+		.success(function(e){
+			console.log('home config ',e);
+			$scope.homeConfig = e;
+		}).error(function(e){
+
+		});
+
 		function initTagBackground() {
 			$scope.courseTags = new Array();
 			for(var i=0; i<4; i++){
