@@ -45,16 +45,16 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-lg-4 recent-article1">
+			<div class="col-xs-12 col-lg-4 recent-article1" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
 				<div class="col-xs-4">
 				</div>
 				<div class="col-xs-8">
 					<div class="col-xs-12">
-						<a href="article_detail.html">文章的标题应该非常的长</a>
+						<a href="article_detail.html">{{course.name}}</a>
 					</div>
 					<div class="col-xs-12">
-						<div class="col-xs-4"><a href="yujiakecheng_home.html"><i class="fa fa-tag"></i>  标签</a></div>
-						<div class="col-xs-8">12/25/2105</div>
+						<div class="col-xs-4" ng-repeat="tag in course.tags"><a href="yujiakecheng_home.html"><i class="fa fa-tag"></i>  {{tag}}</a></div>
+						<div class="col-xs-8">{{course.publishDate}}</div>
 					</div>
 				</div>
 			</div>
