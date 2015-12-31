@@ -94,6 +94,22 @@ hr.star-primary:after {
     background-color: #fff;
 }
 
+.fixed {
+    position: fixed;
+    bottom: 0;
+    margin-right: 0;
+}
+
+.nav-bar {
+    background-color: #212322;
+}
+
+.nav-bar a{
+    background-color: #212322;
+    color: #fff;
+}
+
+
 /* yujiaokecheng */
 .entry-screenshot {
     width: 160px;
