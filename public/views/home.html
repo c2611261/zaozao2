@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 yellow center">
+			<img class="img-responsive" ng-src="{{homeConfig[0].image}}" alt="" width="200px" height="200px">
+			<h1>欢迎来到早早</h1>
+			<hr class="star-light">
+		</hr>
+		<p></p>
+		<p></p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 center">
+		最新文章
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-lg-4 recent-article1" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
+		<div class="col-xs-4">
+		</div>
+		<div class="col-xs-8">
+			<div class="col-xs-12">
+				<a href="article_detail.html">{{course.name}}</a>
+			</div>
+			<div class="col-xs-12">
+				<div class="col-xs-4" ng-repeat="tag in course.tags"><a href="yujiakecheng_home.html"><i class="fa fa-tag"></i>{{tag}}</a></div>
+				<div class="col-xs-8">{{course.publishDate}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 center">
+		分类浏览
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="courseTag in courseTags" ng-model="courseTag" ng-class="courseTag.backgroundCls">
+		<a ui-sref="course_tags({courseTagId:courseTag.id})" ><img ng-src="{{courseTag.imageUrl}}" width="128px" height="128px"/>{{courseTag.name}}</a>
+	</div>
+</div>

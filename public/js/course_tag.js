@@ -1,18 +1,37 @@
 angular.module('courseTagModule', ['ngRoute', 'courseTagServiceModule']).
-config(['$locationProvider', function($locationProvider) {
-	//$locationProvider.html5Mode(true);
-}]).
-controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagService',
-	function($scope, $http, $location, courseTagSrv) {
-		console.log('course tag id ', $location.search().tagId);
-		$scope.tagId = $location.search().tagId;
+
+controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagService', '$stateParams',
+	function($scope, $http, $location, courseTagSrv, $stateParams) {
+		console.log('course tag id ', $stateParams.courseTagId);
+		$scope.tagId = $stateParams.courseTagId;
 		var util = new DomainNameUtil($location);
 
 		$scope.courseTag = courseTagSrv.getCourseTag($scope.tagId);
 		$http.get(util.getBackendServiceUrl() + '/course/proposal/query_by_date?tag_id=' + $scope.tagId)
 			.success(function(e) {
 				console.log('get course ', e);
-				$scope.courses = e;
+				$scope.courses = [];
+				for (var course in e) {
+					var c = e[course];
+					for (var i = 0; i < c.length; i++) {
+						if (c[i].tags !== undefined) {
+							var tags = c[i].tags.split(',');
+							c[i].tags = [];
+							for(var j=0; j<tags.length; j++){
+								c[i].tags[j] = {
+									id: courseTagSrv.getCourseTagId(tags[j]),
+									name: tags[j]
+								};
+							}
+						}
+					}
+					$scope.courses.push({
+						date: course,
+						course: c
+					});
+
+				}
+				console.log('couses:', $scope.courses);
 			}).error(function(e) {
 
 			});

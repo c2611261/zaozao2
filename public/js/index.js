@@ -1,4 +1,4 @@
-angular.module('indexModule', ['ngRoute','courseTagServiceModule', 'ui.router']).
+angular.module('indexModule', ['ngRoute','courseTagServiceModule', 'ui.router', 'courseTagModule']).
 config(['$locationProvider', function($locationProvider) {
 	//$locationProvider.html5Mode(true);
 }]).
@@ -44,9 +44,14 @@ controller('IndexController', ['$scope', '$http', '$location','CourseTagService'
 		});
 	};
 }).config(function($stateProvider, $urlRouterProvider){
-	$stateProvider.state('course_tags', {
-            url: '/course_tag',
+	$stateProvider.state('home', {
+            url: '/',
+            templateUrl: 'public/views/home.html',
+            controller: 'IndexController'
+        }).state('course_tags', {
+            url: '/course_tag?courseTagId',
             templateUrl: '/yujiaokecheng_home.html',
             controller: 'CourseTagController'
-        })
+        });
+	$urlRouterProvider.otherwise('/');
 });
