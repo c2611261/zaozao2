@@ -37,7 +37,6 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 
 			});
 		$scope.background = function(course){
-			console.log('background ',course.titleImageUrl);
 			return {'background-image': 'url('+course.titleImageUrl+')'};
 		}
 
