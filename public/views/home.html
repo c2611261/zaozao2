@@ -23,7 +23,7 @@
 				<a href="article_detail.html">{{course.name}}</a>
 			</div>
 			<div class="col-xs-12">
-				<div class="col-xs-4" ng-repeat="tag in course.tags"><a href="yujiakecheng_home.html"><i class="fa fa-tag"></i>{{tag}}</a></div>
+				<div class="col-xs-4" ng-repeat="tag in course.tags"><a ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>{{tag.name}}</a></div>
 				<div class="col-xs-8">{{course.publishDate}}</div>
 			</div>
 		</div>

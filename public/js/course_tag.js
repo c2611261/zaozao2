@@ -7,7 +7,7 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 		var util = new DomainNameUtil($location);
 
 		$scope.courseTag = courseTagSrv.getCourseTag($scope.tagId);
-		$http.get(util.getBackendServiceUrl() + '/course/proposal/query_by_date?tag_id=' + $scope.tagId)
+		$http.get(util.getBackendServiceUrl() + '/course/proposal/query_by_date?tag_id=' + $scope.tagId+'&number='+10)
 			.success(function(e) {
 				console.log('get course ', e);
 				$scope.courses = [];
@@ -24,6 +24,7 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 								};
 							}
 						}
+						c[i].backgroundImg='red';
 					}
 					$scope.courses.push({
 						date: course,
@@ -35,7 +36,10 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 			}).error(function(e) {
 
 			});
-
+		$scope.background = function(course){
+			console.log('background ',course.titleImageUrl);
+			return {'background-image': 'url('+course.titleImageUrl+')'};
+		}
 
 	}
 ]);

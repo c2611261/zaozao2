@@ -21,7 +21,14 @@ controller('IndexController', ['$scope', '$http', '$location','CourseTagService'
 				$scope.courses = e;
 				for (var i = 0; i < $scope.courses.length; i++) {
 					$scope.courses[i].imageUrl = e[i].titleImageUrl;
-					$scope.courses[i].tags = $scope.courses[i].tags.split(',');
+					var tags = $scope.courses[i].tags.split(',');
+					$scope.courses[i].tags = [];
+					for(var j=0; j<tags.length;j++){
+						$scope.courses[i].tags[j] = {
+							id: courseTagService.getCourseTagId(tags[j]),
+							name: tags[j]
+						};
+					}
 
 				}
 			}).error(function(e) {
