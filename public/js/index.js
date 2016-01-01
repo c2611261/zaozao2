@@ -1,8 +1,8 @@
-angular.module('indexModule', ['ngRoute','courseTagServiceModule', 'ui.router', 'courseTagModule']).
+angular.module('indexModule', ['ngRoute', 'courseTagServiceModule', 'ui.router', 'courseTagModule','courseListModule']).
 config(['$locationProvider', function($locationProvider) {
 	//$locationProvider.html5Mode(true);
 }]).
-controller('IndexController', ['$scope', '$http', '$location','CourseTagService',
+controller('IndexController', ['$scope', '$http', '$location', 'CourseTagService',
 	function($scope, $http, $location, courseTagService) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
@@ -12,7 +12,7 @@ controller('IndexController', ['$scope', '$http', '$location','CourseTagService'
 					console.log(e);
 				});
 		}
-		courseTagService.getCourseTags().then(function(e){
+		courseTagService.getCourseTags().then(function(e) {
 			$scope.courseTags = e;
 		});
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query")
@@ -23,13 +23,12 @@ controller('IndexController', ['$scope', '$http', '$location','CourseTagService'
 					$scope.courses[i].imageUrl = e[i].titleImageUrl;
 					var tags = $scope.courses[i].tags.split(',');
 					$scope.courses[i].tags = [];
-					for(var j=0; j<tags.length;j++){
+					for (var j = 0; j < tags.length; j++) {
 						$scope.courses[i].tags[j] = {
 							id: courseTagService.getCourseTagId(tags[j]),
 							name: tags[j]
 						};
 					}
-
 				}
 			}).error(function(e) {
 
@@ -41,7 +40,6 @@ controller('IndexController', ['$scope', '$http', '$location','CourseTagService'
 			}).error(function(e) {
 
 			});
-
 	}
 ]).directive('backImage', function() {
 	return function(scope, element, attrs) {
@@ -50,15 +48,19 @@ controller('IndexController', ['$scope', '$http', '$location','CourseTagService'
 			'background-image': 'url(' + url + ')'
 		});
 	};
-}).config(function($stateProvider, $urlRouterProvider){
+}).config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
-            url: '/',
-            templateUrl: 'public/views/home.html',
-            controller: 'IndexController'
-        }).state('course_tags', {
-            url: '/course_tag?courseTagId',
-            templateUrl: '/yujiaokecheng_home.html',
-            controller: 'CourseTagController'
-        });
+		url: '/',
+		templateUrl: 'public/views/home.html',
+		controller: 'IndexController'
+	}).state('course_tags', {
+		url: '/course_tag?courseTagId',
+		templateUrl: '/yujiaokecheng_home.html',
+		controller: 'CourseTagController'
+	}).state('course_list', {
+		url: '/course_list',
+		templateUrl: '/article_browse.html',
+		controller: 'CourseListController'
+	});
 	$urlRouterProvider.otherwise('/');
 });
