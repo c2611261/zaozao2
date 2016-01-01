@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="courseTagModule">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,16 +19,23 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!--<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">-->
+
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="public/js/domainNameUtil.js"></script>
+    <script type="text/javascript" src="public/js/course_tag_service.js"></script>
+    <script type="text/javascript" src="public/js/course_tag.js"></script>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
+	<div class="container" ng-controller="CourseTagController">
+		<div class="row" ng-model="courseTag">
 			<div class="col-xs-12 yellow center">
 				<img class="img-responsive" src="img/yujiaokecheng.png" alt="" width="200px" height="200px">
-				<h1>育教课程</h1>
+				<h1>{{courseTag.name}}</h1>
 				<hr class="star-light">
 				</hr>
-				<p>这里会有一些扯淡的介绍</p>
+				<p></p>
 			</div>
 		</div>
 		<div class="row">

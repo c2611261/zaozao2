@@ -1,62 +1,52 @@
-angular.module('indexModule', ['ngRoute']).
-config(['$locationProvider', function($locationProvider){
-	$locationProvider.html5Mode(true);
+angular.module('indexModule', ['ngRoute','courseTagServiceModule', 'ui.router']).
+config(['$locationProvider', function($locationProvider) {
+	//$locationProvider.html5Mode(true);
 }]).
-controller('IndexController', ['$scope', '$http', '$location',
-	function($scope, $http, $location) {
+controller('IndexController', ['$scope', '$http', '$location','CourseTagService',
+	function($scope, $http, $location, courseTagService) {
 		var util = new DomainNameUtil($location);
-		initTagBackground();
 		console.log('params=', $location.search().code);
-		if($location.search().code !== undefined){
-			$http.get($location.protocol()+"://"+$location.host()+":80"+"/education/zaozao/wechat/login")
-                       .success(function(e){
-                               console.log(e);
-                       });
+		if ($location.search().code !== undefined) {
+			$http.get($location.protocol() + "://" + $location.host() + ":80" + "/education/zaozao/wechat/login")
+				.success(function(e) {
+					console.log(e);
+				});
 		}
-		$http.get(util.getBackendServiceUrl() + "/course_tags")
-			.success(function(e) {
-				console.log('get course tags:', e);
-				for (var i = 0; i < e.length; i++) {
-					$scope.courseTags[i].imageUrl = (e[i].imageUrl);
-				}
-				console.log('resource url:', $scope.courseTags);
-			});
+		courseTagService.getCourseTags().then(function(e){
+			$scope.courseTags = e;
+		});
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query")
-		.success(function(e){	
-			console.log('get course ',e);
-			$scope.courses = e;
-			for(var i =0; i<$scope.courses.length;i++){
-				$scope.courses[i].imageUrl = e[i].titleImageUrl;
-				$scope.courses[i].tags = $scope.courses[i].tags.split(',');
+			.success(function(e) {
+				console.log('get course ', e);
+				$scope.courses = e;
+				for (var i = 0; i < $scope.courses.length; i++) {
+					$scope.courses[i].imageUrl = e[i].titleImageUrl;
+					$scope.courses[i].tags = $scope.courses[i].tags.split(',');
 
-			}
-		}).error(function(e){
+				}
+			}).error(function(e) {
 
-		});
+			});
 		$http.get(util.getBackendServiceUrl() + "/homeconfig")
-		.success(function(e){
-			console.log('home config ',e);
-			$scope.homeConfig = e;
-		}).error(function(e){
+			.success(function(e) {
+				console.log('home config ', e);
+				$scope.homeConfig = e;
+			}).error(function(e) {
 
-		});
+			});
 
-		function initTagBackground() {
-			$scope.courseTags = new Array();
-			for(var i=0; i<4; i++){
-				$scope.courseTags[i] = {};
-			}
-			$scope.courseTags[0].backgroundCls = 'yellow';
-			$scope.courseTags[1].backgroundCls = 'light-brown';
-			$scope.courseTags[2].backgroundCls = 'green';
-			$scope.courseTags[3].backgroundCls = 'dark-brown';
-		}
 	}
-]).directive('backImage',function(){
-	return function(scope, element, attrs){
-        var url = attrs.backImage;
-        element.css({
-            'background-image': 'url(' + url +')'
-        });
-    };
+]).directive('backImage', function() {
+	return function(scope, element, attrs) {
+		var url = attrs.backImage;
+		element.css({
+			'background-image': 'url(' + url + ')'
+		});
+	};
+}).config(function($stateProvider, $urlRouterProvider){
+	$stateProvider.state('course_tags', {
+            url: '/course_tag',
+            templateUrl: '/yujiaokecheng_home.html',
+            controller: 'CourseTagController'
+        })
 });
