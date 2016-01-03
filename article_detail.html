@@ -1,10 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="indexModule">
 <head>
-	<meta charset="UTF-8">
-	<title>article detail</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>zaozao</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/zaozao.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">-->
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="public/js/domainNameUtil.js"></script>
+    <script type="text/javascript" src="public/js/course_tag_service.js"></script>
+    <script type="text/javascript" src="public/js/course_tag.js"></script>
+    <script type="text/javascript" src="public/js/article_browser.js"></script>
+    <script type="text/javascript" src="public/js/index.js"></script>
+    <base href="/">
 </head>
 <body>
-	
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+		<div class="embed-responsive embed-responsive-16by9">
+  			<iframe class="embed-responsive-item" src="..."></iframe>
+		</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-lg-8">
+			<div class="col-xs-12">
+				<h2 class="center">文章标题
+				</h2>
+			</div>
+			<div class="col-xs-6 center">
+				<a href="yujiaokecheng_home.html"><i class="fa fa-tag"></i>育教课程</a>
+			</div>
+			<div class="col-xs-6 center">
+				<p>发布时间</p>
+			</div>
+			<div class="col-xs-12">
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit 
+				</p>
+				Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Souvlaki ignitus carborundum e pluribus unum. Defacto lingo est igpay atinlay. Marquee selectus non provisio incongruous feline nolo contendre. Gratuitous octopus niacin, sodium glutimate. Quote meon an estimate et non interruptus stadium. Sic tempus fugit esperanto hiccup estrogen. Glorious baklava ex librus hup hey ad infinitum. Non sequitur condominium facile et geranium incognito. Epsum factorial non deposit quid pro quo hic escorol. Marquee selectus non provisio incongruous feline nolo contendre Olypian quarrels et gorilla congolium sic ad nauseum. Souvlaki ignitus carborundum e pluribus unum.
+				<p>
+				</p>
+			</div>
+			<div class="col-xs-6 center">
+				<a href="#"><i class="fa fa-heart-o"></i>收藏</a>
+			</div>
+			<div class="col-xs-6 center">
+				<a href="#"><i class="fa fa-share-alt"></i>分享</a>
+			</div>
+		</div>
+		<div class="col-xs-12 col-lg-4">
+			<div class="col-xs-12">
+				<h4>相关文章</h4>
+			</div>
+			<div class="col-xs-12 center">
+				<div class="col-xs-12"><h5>文章标题</h5>
+				</div>
+				<div class="col-xs-6">
+					<a href="yujiaokecheng_home.html"><i class="fa fa-tag"></i>育教课程</a>
+				</div>
+				<div class="col-xs-6">
+					<p>发布时间</p>
+				</div>				
+			</div>
+			<div class="col-xs-12 center">
+				<div class="col-xs-12"><h5>文章标题</h5>
+				</div>
+				<div class="col-xs-6">
+					<a href="yujiaokecheng_home.html"><i class="fa fa-tag"></i>育教课程</a>
+				</div>
+				<div class="col-xs-6">
+					<p>发布时间</p>
+				</div>				
+			</div>
+			<div class="col-xs-12 center">
+				<div class="col-xs-12"><h5>文章标题</h5>
+				</div>
+				<div class="col-xs-6">
+					<a href="yujiaokecheng_home.html"><i class="fa fa-tag"></i>育教课程</a>
+				</div>
+				<div class="col-xs-6">
+					<p>发布时间</p>
+				</div>				
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row nav-bar fixed">
+    	<div class="col-xs-4 center"><a href="index.html">首页</a></div>
+    	<div class="col-xs-4 center"><a ui-sref="course_list">所有文章</a></div>
+    	<div class="col-xs-4 center"><a href="profile_home.html">我的</a></div>
+	</div>
+</div>
+
 </body>
 </html>
