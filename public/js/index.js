@@ -1,13 +1,13 @@
 angular.module('indexModule', ['ngRoute', 'courseTagServiceModule', 'ui.router', 'courseTagModule','courseListModule']).
 config(['$locationProvider', function($locationProvider) {
-	//$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(true);
 }]).
 controller('IndexController', ['$scope', '$http', '$location', 'CourseTagService',
 	function($scope, $http, $location, courseTagService) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
 		if ($location.search().code !== undefined) {
-			$http.get($location.protocol() + "://" + $location.host() + ":80" + "/education/zaozao/wechat/login")
+			$http.get(util.getBackendServiceUrl()  + "/wechat/login?code="+$location.search().code)
 				.success(function(e) {
 					console.log(e);
 				});
