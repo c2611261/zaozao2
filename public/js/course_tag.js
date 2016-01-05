@@ -8,38 +8,22 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 		$scope.tagId = $stateParams.courseTagId;
 		var util = new DomainNameUtil($location);
 
-		courseTagSrv.getCourseTags().then(function(e) {
-			$scope.courseTag = courseTagSrv.getCourseTag($scope.tagId);
-			$http.get(util.getBackendServiceUrl() + '/course/proposal/query_by_date?tag_id=' + $scope.tagId + '&number=' + 10)
-				.success(function(e) {
-					console.log('get course ', e);
-					$scope.courses = [];
-					for (var course in e) {
-						var c = e[course];
-						for (var i = 0; i < c.length; i++) {
-							if (c[i].tags !== undefined) {
-								var tags = c[i].tags.split(',');
-								c[i].tags = [];
-								for (var j = 0; j < tags.length; j++) {
-									c[i].tags[j] = {
-										id: courseTagSrv.getCourseTagId(tags[j]),
-										name: tags[j]
-									};
-								}
-							}
-							c[i].backgroundImg = 'red';
-						}
-						$scope.courses.push({
-							date: course,
-							course: c
-						});
+		$http.get(util.getBackendServiceUrl() + '/course/proposal/query_by_date?tag_id=' + $scope.tagId + '&number=' + 10)
+			.success(function(e) {
+				console.log('get course ', e);
+				$scope.courses = [];
+				for (var course in e) {
+					var c = e[course];
+					$scope.courses.push({
+						date: course,
+						course: c
+					});
 
-					}
-					console.log('couses:', $scope.courses);
-				}).error(function(e) {
+				}
+				console.log('couses:', $scope.courses);
+			}).error(function(e) {
 
-				});
-		});
+			});
 
 		$scope.background = function(course) {
 			return {
