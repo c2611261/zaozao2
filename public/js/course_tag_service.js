@@ -4,16 +4,21 @@ login.service('CourseTagService', function($rootScope, $q, $http, $location, $ht
 	this.courseTags = new Array();
 	var util = new DomainNameUtil($location);
 	var that = this;
+
 	this.getCourseTags = function() {
 		var deferred = $q.defer();
 		var promise = deferred.promise;
+		if(this.courseTags.length > 0){
+			deferred.resolve(this.courseTags);
+			return promise;
+		}
 		$http.get(util.getBackendServiceUrl() + "/course_tags")
 			.success(function(e) {
 				console.log('get course tags:', e);
 				for (var i = 0; i < e.length; i++) {
 					that.courseTags[i] = {};
 					that.courseTags[i].imageUrl = (e[i].imageUrl);
-					that.courseTags[i].url = 'yujiaokecheng_home.html#?tagId=' + e[i].id;
+					that.courseTags[i].url = 'public/views/course_category.html#?tagId=' + e[i].id;
 					that.courseTags[i].id = e[i].id.toString();
 					that.courseTags[i].name = e[i].name;
 					console.log('locaiton:', $location.path());
@@ -26,6 +31,7 @@ login.service('CourseTagService', function($rootScope, $q, $http, $location, $ht
 			});
 		return promise;
 	}
+
 
 	this.getCourseTag = function(id){
 		for(var i=0; i< this.courseTags.length;i++){

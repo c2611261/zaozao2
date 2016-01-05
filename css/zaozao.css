@@ -120,6 +120,9 @@ hr.star-primary:after {
     border: 1px solid #f1f1f1;
 }
 
+#article_content img{
+    width: 100%;
+}
 /* article_detial */
 .overplay {
     position: fixed;
