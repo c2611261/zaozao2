@@ -151,13 +151,14 @@ body { font-family: sans-serif; }
 
 .gallery {
   background: #EEE;
+  margin-bottom:6%;
 }
 
 .gallery-cell {
-  width: 66%;
+  width: 40%;
   height: 200px;
   margin-right: 10px;
-  background: #8C8;
+  background: #3EBAAB;
   counter-increment: gallery-cell;
 }
 

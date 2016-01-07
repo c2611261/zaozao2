@@ -1,16 +1,20 @@
+a {
+    color: #FEDB00;
+}
+
 .col-xs-12 {
-	border: 1px solid #222;
+	/*border: 1px solid #222;*/
 	padding: 30px 30px 30px 30px;
 	}
 .col-lg-4 {
-	border: 1px solid #222;
-	}
+    /*border: 1px solid #222;*/	
+}
 .col-xs-6 {
-	border: 1px solid #222;
-	}
+    /*border: 1px solid #222;*/	
+}
 .col-lg-3 {
-	border: 1px solid #222;
-	}
+    /*border: 1px solid #222;*/	
+}
 
 .yellow {
 	background-color: #FADA30;
@@ -110,6 +114,36 @@ hr.star-primary:after {
     color: #fff;
 }
 
+.icon-calendar {
+    padding-top: 5%;
+    color: #fff;
+}
+
+.icon-book-open {
+    padding-top: 5%;
+    color: #fff;
+}
+
+.icon-users-outline {
+    padding-top: 5%;
+    color: #fff;
+}
+
+.icon-usd {
+    padding-top: 5%;
+    color: #fff;
+}
+
+.navbar-fixed-bottom {
+    background-color: #333;
+    padding: 10px 0 0 0;
+}
+
+.carousel-zaozao {
+    width: 100%;
+    height: auto;
+    margin-right: 5%;
+}
 
 /* yujiaokecheng */
 .entry-screenshot {

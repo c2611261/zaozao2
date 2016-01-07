@@ -18,6 +18,7 @@
 
   <!--3rd party css carousel-->
   <link rel="stylesheet" href="../../css/3rd_party/flickity.css" media="screen">
+  <link href="https://file.myfontastic.com/aJBBfoKnFaS59VAX4ULrS9/icons.css" rel="stylesheet">
 
   <!-- Custom Fonts -->
   <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -34,17 +35,7 @@
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../3rd_party/flickity.pkgd.min.js"></script>
     <base href="/">
-    <style>
-    .carousel-inner > .item > img,
-    .carousel-inner > .item > a > img {
-      width: 100%;
-      margin: auto;
-    }
 
-    .container {
-      padding: 0;
-    }
-    </style>
   </head>
   <body>
 
@@ -52,16 +43,16 @@
 
       <div class="gallery js-flickity"
       data-flickity-options='{ "wrapAround": true }'>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
+        <img class="carousel-zaozao" src="img/1-01.png" alt="">
+        <img class="carousel-zaozao" src="img/1-02.png" alt="">
+        <img class="carousel-zaozao" src="img/1-03.png" alt="">
+        <img class="carousel-zaozao" src="img/1-04.png" alt="">
+        <img class="carousel-zaozao" src="img/1-05.png" alt="">
       </div>
 
      <div class="row">
        <div class="col-xs-12 center">
-        最新文章
+        <h3>最新文章</h3>
       </div>
     </div>
     <div class="row">
@@ -75,17 +66,16 @@
     
 <div class="row">
 	<div class="col-xs-12 center">
-		分类浏览
+		<h3>分类浏览</h3>
 	</div>
 </div>
 
 <div class="row gallery js-flickity"
   data-flickity-options='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
-  <div class="gallery-cell"></div>
-  <div class="gallery-cell"></div>
-  <div class="gallery-cell"></div>
-  <div class="gallery-cell"></div>
-  <div class="gallery-cell"></div>
+  <div class="gallery-cell icon-calendar center">育教课程</div>
+  <div class="gallery-cell icon-book-open center">绘本阅读</div>
+  <div class="gallery-cell icon-users-outline center">亲子瑜伽</div>
+  <div class="gallery-cell icon-usd center">收费课程</div>
 </div>
 </div>
 
