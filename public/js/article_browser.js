@@ -15,6 +15,10 @@ controller('CourseListController', ['$scope', '$http', '$location',
 			$scope.currentPageIdx = 0;
 		}
 
+		$scope.pullToRefresh = function(){
+			refresh();
+		}
+
 		$scope.background = function(course) {
 			return {
 				'background-image': 'url(' + course.titleImageUrl + ')'
