@@ -30,6 +30,5 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 				'background-image': 'url(' + course.titleImageUrl + ')'
 			};
 		}
-
 	}
 ]);
