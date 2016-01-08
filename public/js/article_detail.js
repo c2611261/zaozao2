@@ -1,7 +1,7 @@
 var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule']);
 angularjs.controller('ArticleDetailController', ['$scope',
-	'$http', '$stateParams', '$state', '$location','CourseTagService',
-	function($scope, $http, $stateParams, $state, $location, courseTagSrv) {
+	'$http', '$stateParams', '$state', '$location','CourseTagService','$sce',
+	function($scope, $http, $stateParams, $state, $location, courseTagSrv,$sce) {
 		if ($stateParams.courseId === undefined) {
 			$state.go('home');
 		}
@@ -11,6 +11,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		success(function(e) {
 			console.log('get course ', e);
 			$scope.course = e;
+			$scope.course.videoUrl = $sce.trustAsResourceUrl($scope.course.videoUrl);
 			document.getElementById('article_content').innerHTML = $scope.course.content;
 
 		}).error(function(e) {
