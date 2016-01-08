@@ -1,5 +1,6 @@
-<div  infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" pull-to-refresh="pullToRefresh()">
-	<div ng-repeat="course in courses">
+<div  infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
+<ul pull-to-refresh="pullToRefresh()">
+	<div ng-repeat="course in courses" >
 		<div class="row">
 			<div class="col-xs-12">
 				{{course.date}}
@@ -37,4 +38,5 @@
 	<div style='clear: both;'></div>
 	</div>
 		<div ng-show='loadBusy'>Loading data...</div>
+</ul>
 </div>
