@@ -4,7 +4,8 @@ a {
 
 .col-xs-12 {
 	/*border: 1px solid #222;*/
-	padding: 30px 30px 30px 30px;
+	/* padding: 30px 30px 30px 30px; */
+    padding: 0;
 	}
 .col-lg-4 {
     /*border: 1px solid #222;*/	
@@ -22,6 +23,7 @@ a {
 
 .green {
 	background-color: #3EBAAB;
+    padding: 20px 0 50px 0;
 }
 
 .light-brown {
@@ -30,26 +32,17 @@ a {
 
 .dark-brown {
 	background-color: #594A41;
+    padding: 20px 0 50px 0;
 }
 
 .center {
 	text-align: center;
 }
 
-.recent-article1 {
- /*   background-image: url("/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/Staffagepl-4830_rt.jpg");*/
- 
-    background-size: 1080px ;
-}
-
-.recent-article2 {
-    background-image: url("/img/2.jpg");
-    background-size: 1080px ;
-}
-
-.recent-article3 {
-    background-image: url("/img/Staffagepl-4866_rt.jpg");
-    background-size: 1080px ;
+.recent-article {
+    background-image: url("img/1-01.png");
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .center img {
@@ -87,7 +80,7 @@ hr.star-light {
 
 hr.star-light:after {
     color: #fff;
-    background-color: #FADA30
+    background-color: #3EBAAB
 }
 
 hr.star-primary {
@@ -145,6 +138,32 @@ hr.star-primary:after {
     margin-right: 5%;
 }
 
+.catalog {
+    padding-top: 5%;
+    border-radius: 5px;
+}
+
+.mask {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    margin: 0;    
+}
+
+.mask h4 {
+    padding: 5% 2% 0 2%;
+    margin: 0;
+}
+
+.mask p {
+    padding: 5% 2% 5% 2%;
+    margin: 0;
+}
+
+.white {
+    color: #fff;
+    margin: 0;
+}
+
 /* yujiaokecheng */
 .entry-screenshot {
     width: 160px;
@@ -173,4 +192,23 @@ hr.star-primary:after {
     right: 5%;
     position: absolute;
     width: 50%;
+}
+/* article_browse */
+.browse-bottom {
+    margin-bottom: 20%;
+}
+
+.browse-date {
+    margin: 10px 90% 10px 0;
+    background-color: #FADA30;
+    border-radius: 20px;
+}
+
+.browse-date p {
+    margin: 10% 0 10% 0;
+}
+
+/* liked */
+.banner-bottom {
+    margin-bottom: 5px;
 }
