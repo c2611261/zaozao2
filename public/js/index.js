@@ -1,15 +1,21 @@
 angular.module('indexModule', ['ngRoute', 'courseTagServiceModule',
 	'ui.router', 'courseTagModule', 'courseListModule', 'articleDetailModule',
-	'angular-gestures'
+	'angular-gestures', 'ngAnimate'
 ]).
 config(function($locationProvider, hammerDefaultOptsProvider) {
 	$locationProvider.html5Mode(true);
 	hammerDefaultOptsProvider.set({
-        recognizers: [[Hammer.Tap, {time: 250}],
-        				[Hammer.Swipe, {time: 250}]]
-    });
+		recognizers: [
+			[Hammer.Tap, {
+				time: 250
+			}],
+			[Hammer.Swipe, {
+				time: 250
+			}]
+		]
+	});
 }).
-controller('IndexController', ['$scope', '$http', '$location', 
+controller('IndexController', ['$scope', '$http', '$location',
 	'CourseTagService',
 	function($scope, $http, $location, courseTagService) {
 		var util = new DomainNameUtil($location);
@@ -24,13 +30,12 @@ controller('IndexController', ['$scope', '$http', '$location',
 		courseTagService.getCourseTags().then(function(e) {
 			$scope.courseTags = e;
 		});
-		$http.get(util.getBackendServiceUrl() + "/course/proposal/query")
+		$http.get(util.getBackendServiceUrl() + "/course/proposal/query?number=3")
 			.success(function(e) {
 				console.log('get course ', e);
 				$scope.courses = e;
 				for (var i = 0; i < $scope.courses.length; i++) {
 					$scope.courses[i].imageUrl = e[i].titleImageUrl;
-
 				}
 			}).error(function(e) {
 
@@ -39,26 +44,38 @@ controller('IndexController', ['$scope', '$http', '$location',
 			.success(function(e) {
 				console.log('home config ', e);
 				$scope.homeConfig = e;
+				for (var i = 0; i < $scope.homeConfig.length; i++) {
+					$scope.homeConfig[i].index = i;
+					if (i === 0) {
+						$scope.homeConfig[i].active = true;
+					} else {
+						$scope.homeConfig[i].active = false;
+					}
+				}
 			}).error(function(e) {
 
 			});
-		$scope.swipeLeft = function(e){
-			console.log('swipe left ',e);
+		$scope.swipeLeft = function(e) {
+			console.log('swipe left ');
+			$("#myCarousel").carousel('next');
+
+		};
+		$scope.swipeRight = function() {
+			console.log('swipe right');
+			$("#myCarousel").carousel('prev');
 		}
-		$scope.swipeRight = function(e){
-			console.log('right');
-		}
-		$scope.swipeDown = function(e){
+		$scope.swipeDown = function(e) {
 			console.log('down');
 		}
-		$scope.swipeUp = function(e){
+		$scope.swipeUp = function(e) {
 			console.log('up');
 		}
-		
+
 	}
 ]).directive('backImage', function() {
 	return function(scope, element, attrs) {
 		var url = attrs.backImage;
+		console.log('background image ', url);
 		element.css({
 			'background-image': 'url(' + url + ')'
 		});
@@ -66,7 +83,7 @@ controller('IndexController', ['$scope', '$http', '$location',
 }).config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
 		url: '/',
-		templateUrl: 'public/views/home.html',
+		templateUrl: 'public/views/home_2.html',
 		controller: 'IndexController'
 	}).state('course_tags', {
 		url: '/course_tag?courseTagId',

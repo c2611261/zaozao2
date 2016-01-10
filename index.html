@@ -11,6 +11,7 @@
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/zaozao.css" rel="stylesheet">
@@ -18,8 +19,12 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="bower_components/angular-pull-to-refresh/dist/angular-pull-to-refresh.min.css" rel="stylesheet" type="text/css">
+    <link href="css/3rd_party/flickity.css" rel="stylesheet"  media="screen">
+
     <!--<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">-->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
@@ -28,6 +33,10 @@
     <script type="text/javascript" src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-pull-to-refresh/dist/angular-pull-to-refresh.js"></script>
     <script type="text/javascript" src="bower_components/angular-pull-to-refresh/dist/angular-pull-to-refresh.tpl.js"></script>
+    <script type="text/javascript" src="bower_components/flickity/dist/flickity.pkgd.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-flickity/dist/angular-flickity.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-carousel-swipe/carousel-swipe.js"></script>
     <script type="text/javascript" src="public/js/domainNameUtil.js"></script>
     <script type="text/javascript" src="public/js/course_tag_service.js"></script>
     <script type="text/javascript" src="public/js/course_tag.js"></script>
@@ -37,13 +46,21 @@
     <base href="/">
 </head>
 <body>
-
+    <!-- <div ng-controller='HomePageController' >
+        <div class="gallery js-flickity" ng-show='showSlickity' ng-model='showSlickity'
+          data-flickity-options='{ "wrapAround": true }'>
+            <img class="carousel-zaozao" src="img/1-01.png" alt="">
+            <img class="carousel-zaozao" src="img/1-02.png" alt="">
+            <img class="carousel-zaozao" src="img/1-03.png" alt="">
+            <img class="carousel-zaozao" src="img/1-04.png" alt="">
+            <img class="carousel-zaozao" src="img/1-05.png" alt="">
+        </div>
+    </div>  -->
 	<div ui-view></div>
-
-<div class="row nav-bar fixed">
-    <div class="col-xs-4 center"><a href="index.html">首页</a></div>
-    <div class="col-xs-4 center"><a ui-sref="course_list">所有文章</a></div>
-    <div class="col-xs-4 center"><a href="profile_home.html">我的</a></div>
+<div class="container navbar-header navbar-fixed-bottom">
+  <div class="col-xs-4 center"><a href="index.html"><p><i class="fa fa-home fa-2x"></i></p><p>首页</p></a></div>
+  <div class="col-xs-4 center"><a ui-sref="course_list"><p><i class="fa fa-list-ul fa-2x"></i></p><p>所有文章</p></a></div>
+  <div class="col-xs-4 center"><a href="profile_home.html"><p><i class="fa fa-user fa-2x"></i></p><p>我</p></a></div>
 </div>
 </body>
 </html>
