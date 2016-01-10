@@ -1,5 +1,24 @@
-a {
+a.light{
+    color: #fff;
+}
+
+a.light:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+a.light:active {
     color: #FEDB00;
+    text-decoration: none;
+}
+
+a.dark {
+    color: #3EBAAB;
+}
+
+a.dark:hover {
+    color: #3EBAAB;
+    text-decoration: none;
 }
 
 .col-xs-12 {
@@ -211,4 +230,9 @@ hr.star-primary:after {
 /* liked */
 .banner-bottom {
     margin-bottom: 5px;
+}
+
+/* article-detail */
+.article-body {
+    padding: 0 8% 0 8%;
 }
