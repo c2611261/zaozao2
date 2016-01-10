@@ -111,38 +111,12 @@ hr.star-primary:after {
     background-color: #fff;
 }
 
-.fixed {
-    position: fixed;
-    bottom: 0;
-    margin-right: 0;
-}
-
 .nav-bar {
     background-color: #212322;
 }
 
 .nav-bar a{
     background-color: #212322;
-    color: #fff;
-}
-
-.icon-calendar {
-    padding-top: 5%;
-    color: #fff;
-}
-
-.icon-book-open {
-    padding-top: 5%;
-    color: #fff;
-}
-
-.icon-users-outline {
-    padding-top: 5%;
-    color: #fff;
-}
-
-.icon-usd {
-    padding-top: 5%;
     color: #fff;
 }
 
@@ -169,12 +143,12 @@ hr.star-primary:after {
 }
 
 .mask h4 {
-    padding: 5% 2% 0 2%;
+    padding: 10% 2% 0 2%;
     margin: 0;
 }
 
 .mask p {
-    padding: 5% 2% 5% 2%;
+    padding: 5% 2% 10% 2%;
     margin: 0;
 }
 
@@ -218,7 +192,7 @@ hr.star-primary:after {
 }
 
 .browse-date {
-    margin: 10px 90% 10px 0;
+    margin: 10px 85% 10px 0;
     background-color: #FADA30;
     border-radius: 20px;
 }
@@ -235,4 +209,18 @@ hr.star-primary:after {
 /* article-detail */
 .article-body {
     padding: 0 8% 0 8%;
+}
+
+.green-btn {
+    background-color: #3EBAAB;
+    padding: 10px 0 10px 0;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* article-detail */
+hr.transparent {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #212322, rgba(0, 0, 0, 0));
 }
