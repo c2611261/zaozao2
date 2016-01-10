@@ -70,7 +70,6 @@ controller('IndexController', ['$scope', '$http', '$location',
 		$scope.swipeUp = function(e) {
 			console.log('up');
 		}
-
 	}
 ]).directive('backImage', function() {
 	return function(scope, element, attrs) {
@@ -83,7 +82,7 @@ controller('IndexController', ['$scope', '$http', '$location',
 }).config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
 		url: '/',
-		templateUrl: 'public/views/home_2.html',
+		templateUrl: 'public/views/home.html',
 		controller: 'IndexController'
 	}).state('course_tags', {
 		url: '/course_tag?courseTagId',

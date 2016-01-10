@@ -12,15 +12,25 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 			.success(function(e) {
 				console.log('get course ', e);
 				$scope.courses = [];
+				var tags = null;
 				for (var course in e) {
 					var c = e[course];
 					$scope.courses.push({
 						date: course,
 						course: c
 					});
-
+					tags = c[0].tags;
+				}
+				if(tags !== null){
+					for(var i=0; i<tags.length; i++){
+						if(tags[i].id.toString() === $scope.tagId){
+							$scope.courseTag = tags[i];
+							break;
+						}
+					}
 				}
 				console.log('couses:', $scope.courses);
+				console.log('course tag:', $scope.courseTag);
 			}).error(function(e) {
 
 			});
