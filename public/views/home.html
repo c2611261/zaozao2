@@ -1,41 +1,51 @@
-<div class="container" hm-swipe-left="swipeLeft()" hm-swipe-right="swipeRight()"
- hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()">
-	<div class="row">
-		<div class="col-xs-12 yellow center">
-			<img class="img-responsive" ng-src="{{homeConfig[0].image}}" alt="" width="200px" height="200px">
-			<h1>欢迎来到早早</h1>
-			<hr class="star-light">
-		</hr>
-		<p></p>
-		<p></p>
-	</div>
+<div id="myCarousel" class="carousel slide"  data-ride="carousel" hm-swipe-left="swipeLeft()" hm-swipe-right="swipeRight()"
+hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()">
+
+    <ol class="carousel-indicators">
+        <li ng-repeat='config in homeConfig' data-target="#myCarousel" data-slide-to="{{config.index}}" ng-model="config" ng-class="config.active?'active':''" style="background-color: grey;"></li>
+     
+     </ol> 
+    <div class="carousel-inner">
+      <div class="item" ng-repeat="config in homeConfig" ng-model="config" ng-class='config.active?"active":""'>
+        <img class="img-responsive" style="vertical-align:middle;display:table; text-align:center" ng-src="{{config.image}}" alt="" width="100%" />
+      </div>
+    </div>
 </div>
+
+<div class="row">
+ <div class="col-xs-12 center">
+  <h3>最新文章</h3>
+</div>
+</div>
+<div class="row">
+  <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
+    <div class="mask white">
+      <a href="#" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a>
+      <p><i ng-repeat="tag in course.tags" class="fa fa-tag"><a ui-sref="course_tags({courseTagId:tag.id})">&nbsp;{{tag.name}}</a></i></p>
+    </div>
+  </div>
+</div>
+
 <div class="row">
 	<div class="col-xs-12 center">
-		最新文章
+		<h3>分类浏览</h3>
 	</div>
 </div>
+
 <div class="row">
-	<div class="col-xs-12 col-lg-4 recent-article1" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
-		<div class="col-xs-4">
-		</div>
-		<div class="col-xs-8">
-			<div class="col-xs-12">
-				<a href="#" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a>
-			</div>
-			<div class="col-xs-12">
-				<div class="col-xs-4" ng-repeat="tag in course.tags"><a ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>{{tag.name}}</a></div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-12 center">
-		分类浏览
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="courseTag in courseTags" ng-model="courseTag" ng-class="courseTag.backgroundCls">
-		<a ui-sref="course_tags({courseTagId:courseTag.id})" ><img ng-src="{{courseTag.imageUrl}}" width="128px" height="128px"/>{{courseTag.name}}</a>
+	<div class="category_scroll" style="width:100%;overflow:scroll;display:block;background-color:#3EBAAB">
+		<ul style="white-space:nowrap;overflow:scroll">
+			<li ng-repeat="courseTag in courseTags" ng-model="courseTag" style="display:inline-block;width:30%;overflow:hidden">
+				<a ui-sref='course_tags({courseTagId:courseTag.id})' >
+					<span class="fa-stack fa-3x">
+				    <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+				    <i class="fa fa-cube fa-stack-1x" style="color: #3EBAAB"></i>
+				</a>
+				  </span>
+				  <p>
+				  	<a ui-sref='course_tags({courseTagId:courseTag.id})' class="white">{{courseTag.name}}</a>
+				  </p>
+			</li>
+		</ul>
 	</div>
 </div>
