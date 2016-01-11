@@ -8,7 +8,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		$scope.showShare = false;
 		$scope.shareImg = "img/share_400_400_2.png";
 		$scope.courseUrl = $location.absUrl();
-		console.log('location=', $location.absUrl());
+		console.log('location=', $location);
 		var util = new DomainNameUtil($location);
 		$http.get(util.getBackendServiceUrl() +
 			'/course/proposal/' + $stateParams.courseId).
@@ -44,7 +44,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		}
 
 		function configJSAPI() {
-			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi')
+			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url='+$scope.courseUrl)
 				.success(function(e) {
 					console.log(e);
 					var signature = e;
@@ -54,7 +54,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 						timestamp: e.timestamp,
 						nonceStr: e.noncestr,
 						signature: e.signature,
-						jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
+						jsApiList: ['checkJsApi','onMenuShareTimeline', 'onMenuShareAppMessage']
 					});
 					wx.ready(function() {
 						console.log('wx ready');
