@@ -19,8 +19,8 @@
 <div class="row">
   <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
     <div class="mask white">
-      <a href="#" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a>
-      <p><i ng-repeat="tag in course.tags" class="fa fa-tag"><a ui-sref="course_tags({courseTagId:tag.id})">&nbsp;{{tag.name}}</a></i></p>
+    	<h4><a class="light" ui-sref='article_detail({courseId:course.id})' href="...">{{course.name}}</a></h4>
+          <p><a class="light" href="..." ng-repeat="tag in course.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}</a></p>
     </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row" style="height:200px">
 	<div class="category_scroll" style="width:100%;overflow:scroll;display:block;background-color:#3EBAAB">
 		<ul style="white-space:nowrap;overflow:scroll">
 			<li ng-repeat="courseTag in courseTags" ng-model="courseTag" style="display:inline-block;width:30%;overflow:hidden">
