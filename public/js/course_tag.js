@@ -34,8 +34,9 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 				.success(function(e) {
 					console.log('get course ', e);
 					var num = Object.getOwnPropertyNames(e).length;
+					var lastCourse = null;
 					if (num > 0) {
-						
+
 						var tags = null;
 						for (var course in e) {
 							var c = e[course];
@@ -44,6 +45,7 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 								course: c
 							});
 							tags = c[0].tags;
+							lastCourse = c;
 						}
 						if (tags !== null) {
 							for (var i = 0; i < tags.length; i++) {
@@ -55,9 +57,17 @@ controller('CourseTagController', ['$scope', '$http', '$location', 'CourseTagSer
 						}
 						$scope.loadBusy = false;
 						$scope.currentPageIdx++;
-					}else{
+						for (var i = 0; i < $scope.courses.length; i++) {
+							var l = $scope.courses[i].course.length;
+							$scope.courses[i].course[l - 1].bottom = "";
+						}
+						if (lastCourse !== null && lastCourse.length > 0) {
+							lastCourse[lastCourse.length - 1].bottom = "browse-bottom";
+						}
+					} else {
 						$scope.loadBusy = true;
 					}
+
 					console.log('couses:', $scope.courses);
 					console.log('course tag:', $scope.courseTag);
 				}).error(function(e) {

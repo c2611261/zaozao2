@@ -1,10 +1,10 @@
-<div  infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
+<div class="container" infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
 <ul pull-to-refresh="pullToRefresh()"  style="padding-left:0px">
-	<div ng-repeat="course in courses" >
+	<div ng-repeat="course in courses" ng-model="course" >
 		<div class="row browse-date center">
 	      <p>{{course.date}}</p>
 	    </div>
-		<div class="row" ng-style="background(c)" ng-repeat="c in course.course">
+		<div class="row" ng-class="c.bottom" ng-style="background(c)" ng-repeat="c in course.course" ng-model="c">
 			<div class="col-xs-12 recent-article center">
 		        <div class="mask white">
 		          <h4><a class="light" ui-sref='article_detail({courseId:c.id})'>{{c.name}}</a></h4>
@@ -14,6 +14,6 @@
 		</div>
 	<div style='clear: both;'></div>
 	</div>
-		<div ng-show='loadBusy'>Loading data...</div>
+	<div ng-show='loadBusy && !stopLoading'>Loading data...</div>
 </ul>
 </div>

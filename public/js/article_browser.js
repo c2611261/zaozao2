@@ -13,6 +13,7 @@ controller('CourseListController', ['$scope', '$http', '$location',
 			$scope.courses = [];
 			$scope.loadBusy = false;
 			$scope.currentPageIdx = 0;
+			$scope.stopLoading= false;
 		}
 
 		$scope.pullToRefresh = function(){
@@ -43,17 +44,26 @@ controller('CourseListController', ['$scope', '$http', '$location',
 					console.log('get course ', e);
 					var num = Object.getOwnPropertyNames(e).length;
 					if (num > 0) {
+						var lastCourse = null;
 						for (var course in e) {
 							var c = e[course];
 							$scope.courses.push({
 								date: course,
 								course: c
 							});
+							lastCourse = c;
+						}
+						for(var i=0; i<$scope.courses.length;i++){
+							$scope.courses[i].course[$scope.courses[i].course.length-1].bottom="";
+						}
+						if(lastCourse !== null && lastCourse.length>0){
+							lastCourse[lastCourse.length-1].bottom="browse-bottom";
 						}
 						$scope.currentPageIdx++;
 						$scope.loadBusy = false;
 					} else {
 						$scope.loadBusy = true;
+						$scope.stopLoading= true;
 					}
 				});
 		}

@@ -14,8 +14,8 @@
 		<div class="row browse-date center">
 			<p>{{course.date}} </p>
 		</div>
-		<div class="row" ng-repeat="c in course.course" ng-model="course" ng-style="background(c)" >
-			<div class="col-xs-12 recent-article center">
+		<div class="row" ng-class="c.bottom" ng-repeat="c in course.course" ng-model="c" ng-style="background(c)" >
+			<div class="col-xs-12 recent-article center" >
 				<div class="mask white">
 					<h4><a class="light" ui-sref='article_detail({courseId:c.id})'>{{c.name}}</a></h4>
           			<p><a class="light" ng-repeat="tag in c.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}</a></p>
