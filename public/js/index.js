@@ -22,9 +22,10 @@ controller('IndexController', ['$scope', '$http', '$location',
 		console.log('params=', $location.search().code);
 		if ($location.search().code !== undefined) {
 			$http.get(util.getBackendServiceUrl() +
-					"/wechat/login?code=" + $location.search().code)
+					"/wechat/login?code=" + $location.search().code+"&state="+$location.search().state)
 				.success(function(e) {
 					console.log(e);
+
 				});
 		}
 		courseTagService.getCourseTags().then(function(e) {
