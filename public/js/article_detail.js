@@ -1,7 +1,7 @@
-var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule']);
+var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule', 'ngCookies']);
 angularjs.controller('ArticleDetailController', ['$scope',
-	'$http', '$stateParams', '$state', '$location', 'CourseTagService', '$sce',
-	function($scope, $http, $stateParams, $state, $location, courseTagSrv, $sce) {
+	'$http', '$stateParams', '$state', '$location', 'CourseTagService', '$sce', '$cookies',
+	function($scope, $http, $stateParams, $state, $location, courseTagSrv, $sce, $cookies) {
 		if ($stateParams.courseId === undefined) {
 			$state.go('home');
 		}
@@ -11,7 +11,11 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		console.log('location=', $location);
 		var util = new DomainNameUtil($location);
 		$http.get(util.getBackendServiceUrl() +
-			'/course/proposal/' + $stateParams.courseId).
+			'/course/proposal/' + $stateParams.courseId, {
+				headers: {
+					'access_token': $cookies.get('access_token')
+				}
+			}).
 		success(function(e) {
 			console.log('get course ', e);
 			$scope.course = e;
@@ -44,7 +48,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		}
 
 		function configJSAPI() {
-			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url='+$scope.courseUrl)
+			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl)
 				.success(function(e) {
 					console.log(e);
 					var signature = e;
@@ -54,7 +58,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 						timestamp: e.timestamp,
 						nonceStr: e.noncestr,
 						signature: e.signature,
-						jsApiList: ['checkJsApi','onMenuShareTimeline', 'onMenuShareAppMessage']
+						jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage']
 					});
 					wx.ready(function() {
 						console.log('wx ready');
@@ -90,7 +94,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 							console.log('cancel share');
 						},
 						fail: function(res) {
-							
+
 						}
 					});
 				}).error(function(e) {

@@ -1,6 +1,6 @@
 angular.module('indexModule', ['ngRoute', 'courseTagServiceModule',
 	'ui.router', 'courseTagModule', 'courseListModule', 'articleDetailModule',
-	'angular-gestures', 'ngAnimate'
+	'angular-gestures', 'ngAnimate', 'ngCookies'
 ]).
 config(function($locationProvider, hammerDefaultOptsProvider) {
 	$locationProvider.html5Mode(true);
@@ -16,16 +16,20 @@ config(function($locationProvider, hammerDefaultOptsProvider) {
 	});
 }).
 controller('IndexController', ['$scope', '$http', '$location',
-	'CourseTagService',
-	function($scope, $http, $location, courseTagService) {
+	'CourseTagService', '$cookies',
+	function($scope, $http, $location, courseTagService, $cookies) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
 		if ($location.search().code !== undefined) {
 			$http.get(util.getBackendServiceUrl() +
-					"/wechat/login?code=" + $location.search().code+"&state="+$location.search().state)
+					"/wechat/login?code=" + $location.search().code + "&state=" + $location.search().state)
 				.success(function(e) {
-					console.log(e);
-
+					console.log('get token:', e);
+					if (e !== '') {
+						$cookies.put('access_token', e);
+					}
+				}).error(function(e) {
+					console.error(e);
 				});
 		}
 		courseTagService.getCourseTags().then(function(e) {
