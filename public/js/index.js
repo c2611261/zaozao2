@@ -29,7 +29,7 @@ controller('IndexController', ['$scope', '$http', '$location',
 						$cookies.put('access_token', e);
 					}
 				}).error(function(e) {
-					console.error(e);
+					console.log(e);
 				});
 		}
 		courseTagService.getCourseTags().then(function(e) {

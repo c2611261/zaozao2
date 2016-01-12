@@ -10,6 +10,9 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		$scope.courseUrl = $location.absUrl();
 		console.log('location=', $location);
 		var util = new DomainNameUtil($location);
+		$scope.originUrl = location.href;
+		//alert(location.href);
+		//alert($scope.courseUrl);
 		$http.get(util.getBackendServiceUrl() +
 			'/course/proposal/' + $stateParams.courseId, {
 				headers: {
@@ -48,7 +51,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		}
 
 		function configJSAPI() {
-			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl)
+			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.originUrl)
 				.success(function(e) {
 					console.log(e);
 					var signature = e;
