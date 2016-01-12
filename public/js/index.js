@@ -6,9 +6,6 @@ config(function($locationProvider, hammerDefaultOptsProvider) {
 	$locationProvider.html5Mode(true);
 	hammerDefaultOptsProvider.set({
 		recognizers: [
-			[Hammer.Tap, {
-				time: 250
-			}],
 			[Hammer.Swipe, {
 				time: 250
 			}]
@@ -20,7 +17,8 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 	function($rootScope, $scope, $http, $location, courseTagService, $cookies) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
-		$rootScope.title='早早';
+		$rootScope.title = '早早';
+
 		if ($location.search().code !== undefined) {
 			$http.get(util.getBackendServiceUrl() +
 					"/wechat/login?code=" + $location.search().code + "&state=" + $location.search().state)
@@ -35,10 +33,10 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		}
 		courseTagService.getCourseTags().then(function(e) {
 			$scope.courseTags = e;
-			$scope.courseTags[0].ngClass='fa-cube';
-			$scope.courseTags[1].ngClass='fa-columns';
-			$scope.courseTags[2].ngClass='fa-eraser';
-			$scope.courseTags[3].ngClass='fa-jpy';
+			$scope.courseTags[0].ngClass = 'fa-cube';
+			$scope.courseTags[1].ngClass = 'fa-columns';
+			$scope.courseTags[2].ngClass = 'fa-eraser';
+			$scope.courseTags[3].ngClass = 'fa-jpy';
 		});
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query?number=3")
 			.success(function(e) {
@@ -65,21 +63,26 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 			}).error(function(e) {
 
 			});
-		$scope.swipeLeft = function(e) {
-			console.log('swipe left ');
-			$("#myCarousel").carousel('next');
+		$('#myCarousel').carousel({
+			interval: 3000
+		});
+		// $scope.swipeLeft = function(e) {
+		// 	console.log('swipe left ');
+		// 	//$("#myCarousel").carousel('next');
 
-		};
-		$scope.swipeRight = function() {
-			console.log('swipe right');
-			$("#myCarousel").carousel('prev');
-		}
-		$scope.swipeDown = function(e) {
-			console.log('down');
-		}
-		$scope.swipeUp = function(e) {
-			console.log('up');
-		}
+		// };
+		// $scope.swipeRight = function() {
+		// 	console.log('swipe right');
+		// 	//$("#myCarousel").carousel('prev');
+
+		// }
+
+		// $('#myCarousel').on('slide.bs.carousel', function() {
+
+		// });
+		// $('#myCarousel').on('slid.bs.carousel', function() {
+
+		// });
 	}
 ]).directive('backImage', function() {
 	return function(scope, element, attrs) {

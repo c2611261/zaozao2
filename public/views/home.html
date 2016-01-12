@@ -1,5 +1,5 @@
 
-<div id="myCarousel" class="carousel slide"  data-ride="carousel" hm-swipe-left="swipeLeft()" hm-swipe-right="swipeRight()" hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()" style="margin-right:-20px">
+<div id="myCarousel" class="carousel slide"  data-ride="carousel" hm-swipe-left="swipeLeft()" hm-swipe-right="swipeRight()" style="margin-right:-20px;margin-left:-20px;">
 
     <ol class="carousel-indicators">
         <li ng-repeat='config in homeConfig' data-target="#myCarousel" data-slide-to="{{config.index}}" ng-model="config" ng-class="config.active?'active':''" style="background-color: grey;"></li>
@@ -14,21 +14,21 @@
 
 <div class="row">
  <div class="col-xs-12 center">
-  <h3>最新文章</h3>
+  <h4>早早TV</h4>
 </div>
 </div>
 <div class="row home_news">
   <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
     <div class="mask white">
-    	<h4><a class="light" ui-sref='article_detail({courseId:course.id})' href="...">{{course.name}}</a></h4>
-          <p><a class="light" href="..." ng-repeat="tag in course.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}</a></p>
+    	<p><a class="light" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a></p>
+          <h4 class="small"><a class="light yellow" ng-repeat="tag in course.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a></h4>
     </div>
   </div>
 </div>
 
 <div class="row">
 	<div class="col-xs-12 center">
-		<h3>分类浏览</h3>
+		<h4>分类浏览</h4>
 	</div>
 </div>
 

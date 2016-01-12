@@ -263,13 +263,6 @@ hr.transparent {
 .cover-green {
     background-color: #3EBAAB;
 }
-/* home category */
-.gallery{
-    background: #fff;
-    margin-bottom: 6%;
-    height: 200px;
-}
-
 .avatar {
     position: relative;
     z-index: 2;
@@ -290,6 +283,15 @@ hr.transparent {
     padding: 30px 100px 30px 100px;
     border-radius: 10px;
 }
+/* home category */
+.gallery{
+    background: #fff;
+    margin-bottom: 6%;
+    height: 200px;
+    white-space:nowrap;
+    overflow: scroll;
+}
+
 .gallery-cell{
     white-space:nowrap;
     width: 40%;
