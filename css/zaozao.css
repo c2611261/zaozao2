@@ -258,9 +258,15 @@ hr.transparent {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #212322, rgba(0, 0, 0, 0));
 }
 
+
 /* user-profile */
 .cover-green {
     background-color: #3EBAAB;
+}
+/* home category */
+.gallery{
+    background: #fff;
+    margin-bottom: 6%;
     height: 200px;
 }
 
@@ -283,4 +289,12 @@ hr.transparent {
     margin-bottom: 20%;
     padding: 30px 100px 30px 100px;
     border-radius: 10px;
+}
+.gallery-cell{
+    white-space:nowrap;
+    width: 40%;
+    height: 200px;
+    margin-right: 20px;
+    background-color: #3EBAAB;
+    display: inline-block;
 }
