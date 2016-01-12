@@ -1,5 +1,6 @@
-<div id="myCarousel" class="carousel slide"  data-ride="carousel" hm-swipe-left="swipeLeft()" hm-swipe-right="swipeRight()"
-hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()">
+
+<div id="myCarousel" class="carousel slide"  data-ride="carousel" hm-swipe-left="swipeLeft()" hm-swipe-right="swipeRight()" hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()" style="margin-right:-20px">
+
     <ol class="carousel-indicators">
         <li ng-repeat='config in homeConfig' data-target="#myCarousel" data-slide-to="{{config.index}}" ng-model="config" ng-class="config.active?'active':''" style="background-color: grey;"></li>
      
@@ -16,11 +17,11 @@ hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()">
   <h3>最新文章</h3>
 </div>
 </div>
-<div class="row">
+<div class="row home_news">
   <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
     <div class="mask white">
-      <a href="#" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a>
-      <p><i ng-repeat="tag in course.tags" class="fa fa-tag"><a ui-sref="course_tags({courseTagId:tag.id})">&nbsp;{{tag.name}}</a></i></p>
+    	<h4><a class="light" ui-sref='article_detail({courseId:course.id})' href="...">{{course.name}}</a></h4>
+          <p><a class="light" href="..." ng-repeat="tag in course.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}</a></p>
     </div>
   </div>
 </div>
@@ -31,9 +32,20 @@ hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()">
 	</div>
 </div>
 
-<div class="row">
-	<div class="category_scroll" style="width:100%;overflow:scroll;display:block;background-color:#3EBAAB">
-		<ul style="white-space:nowrap;overflow:scroll">
+<div class="row gallery">
+	<div class="row gallery-cell catalog center" ng-repeat="courseTag in courseTags" ng-model="courseTag">
+
+	    <a ui-sref='course_tags({courseTagId:courseTag.id})' >
+			<span class="fa-stack fa-3x">
+		      <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+		      <i class="fa fa-stack-1x" ng-class="courseTag.ngClass" style="color: #3EBAAB"></i>
+		    </span>
+		    <p class="white">
+			    	{{courseTag.name}}
+		    </p>
+		</a>
+	<!-- style="width:100%;overflow:scroll;display:block;background-color:#3EBAAB"> -->
+		<!-- <ul style="white-space:nowrap;overflow:scroll">
 			<li ng-repeat="courseTag in courseTags" ng-model="courseTag" style="display:inline-block;width:30%;overflow:hidden">
 				<a ui-sref='course_tags({courseTagId:courseTag.id})' >
 					<span class="fa-stack fa-3x">
@@ -45,6 +57,6 @@ hm-swipe-up="swipeUp()" hm-swipe-down="swipeDown()">
 				  	<a ui-sref='course_tags({courseTagId:courseTag.id})' class="white">{{courseTag.name}}</a>
 				  </p>
 			</li>
-		</ul>
+		</ul> -->
 	</div>
 </div>
