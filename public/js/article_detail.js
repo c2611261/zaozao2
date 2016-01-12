@@ -11,8 +11,6 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		console.log('location=', $location);
 		var util = new DomainNameUtil($location);
 		$scope.originUrl = location.href;
-		//alert(location.href);
-		//alert($scope.courseUrl);
 		$http.get(util.getBackendServiceUrl() +
 			'/course/proposal/' + $stateParams.courseId, {
 				headers: {

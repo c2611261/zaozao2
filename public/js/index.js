@@ -34,6 +34,10 @@ controller('IndexController', ['$scope', '$http', '$location',
 		}
 		courseTagService.getCourseTags().then(function(e) {
 			$scope.courseTags = e;
+			$scope.courseTags[0].ngClass='fa-cube';
+			$scope.courseTags[1].ngClass='fa-columns';
+			$scope.courseTags[2].ngClass='fa-eraser';
+			$scope.courseTags[3].ngClass='fa-jpy';
 		});
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query?number=3")
 			.success(function(e) {
