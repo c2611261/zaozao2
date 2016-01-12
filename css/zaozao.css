@@ -36,8 +36,12 @@ a.dark:hover {
     /*border: 1px solid #222;*/	
 }
 
-.yellow {
-	background-color: #FADA30;
+a.yellow{
+	color: #FADA30;
+}
+
+a:hover.yellow{
+    color: #FADA30;
 }
 
 .green {
@@ -52,6 +56,10 @@ a.dark:hover {
 .dark-brown {
 	background-color: #594A41;
     padding: 20px 0 50px 0;
+}
+
+.black {
+    background-color: #212322;
 }
 
 .center {
@@ -143,18 +151,43 @@ hr.star-primary:after {
 }
 
 .mask h4 {
-    padding: 10% 2% 0 2%;
+    padding: 5% 2% 20% 2%;
     margin: 0;
 }
 
 .mask p {
-    padding: 5% 2% 10% 2%;
+    padding: 20% 2% 0 2%;
     margin: 0;
 }
 
 .white {
     color: #fff;
     margin: 0;
+}
+
+
+/* button group */
+
+.btn-submit-white {
+    background-color: #FADA30;
+    color: #212322;
+}
+
+.btn-submit-white:hover {
+    background-color: #fff;
+    border: solid #FADA30 1px;
+    color: #FADA30;
+}
+
+.btn-submit-light-brown {
+    background-color: #FADA30;
+    color: #212322;
+}
+
+.btn-submit-light-brown:hover {
+    background-color: #C2B49A;
+    border: solid #fff 1px;
+    color: #fff;
 }
 
 /* yujiaokecheng */
@@ -192,7 +225,7 @@ hr.star-primary:after {
 }
 
 .browse-date {
-    margin: 10px 75% 10px 0;
+    margin: 10px 85% 10px 0;
     background-color: #FADA30;
     border-radius: 20px;
 }
@@ -225,23 +258,29 @@ hr.transparent {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #212322, rgba(0, 0, 0, 0));
 }
 
-/* home category */
-.gallery{
-    background: #fff;
-    margin-bottom: 6%;
-    width: 100%;
-    height: 100%;
+/* user-profile */
+.cover-green {
+    background-color: #3EBAAB;
     height: 200px;
-    white-space:nowrap;
-    overflow: scroll;
 }
 
-.gallery-cell{
-    white-space:nowrap;
-    width: 40%;
-    height: 200px;
-    margin-right: 10px;
-    background-color: #3EBAAB;
-    display: inline-block;
-    overflow: scroll;
+.avatar {
+    position: relative;
+    z-index: 2;
+    margin-top: -15%;
+    border-radius: 50%;
+    width: 30%;
+    margin-left: 35%;
+}
+
+.user-name {
+    padding: 0 50px 0 50px;
+    margin: 50px 0 50px 0;
+}
+
+.baby-info {
+    margin-top: 50px;
+    margin-bottom: 20%;
+    padding: 30px 100px 30px 100px;
+    border-radius: 10px;
 }
