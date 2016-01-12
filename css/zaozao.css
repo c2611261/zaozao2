@@ -36,6 +36,13 @@ a.dark:hover {
     /*border: 1px solid #222;*/	
 }
 
+.yellow-background {
+    background-color: #FADA30;
+    margin: 0 30% 0 30%;
+    border-radius: 5px;
+    padding: 5px 2px 5px 2px;
+}
+
 a.yellow{
 	color: #FADA30;
 }
@@ -139,9 +146,46 @@ hr.star-primary:after {
     margin-right: 5%;
 }
 
-.catalog {
+.catalog1 {
     padding-top: 5%;
     border-radius: 5px;
+    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg2.jpg);
+}
+
+.catalog2 {
+    padding-top: 5%;
+    border-radius: 5px;
+    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg1.jpg);
+}
+
+.catalog3 {
+    padding-top: 5%;
+    border-radius: 5px;
+    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg12.jpg);
+}
+
+.catalog4 {
+    padding-top: 5%;
+    border-radius: 5px;
+    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg5.jpg);
+}
+
+.catalog5 {
+    padding-top: 5%;
+    border-radius: 5px;
+    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg10.jpg);
+}
+
+.catalog6 {
+    padding-top: 5%;
+    border-radius: 5px;
+    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg12.jpg);
+}
+
+.catalog7 {
+    padding-top: 5%;
+    border-radius: 5px;
+    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg13.jpg);
 }
 
 .mask {
@@ -163,6 +207,17 @@ hr.star-primary:after {
 .white {
     color: #fff;
     margin: 0;
+}
+
+.title-left {
+    padding-left: 20px;
+    color: #3EBAAB;
+}
+
+.title-right {
+    padding-right: 20px;
+    text-align: right;
+    color: #3EBAAB;
 }
 
 
