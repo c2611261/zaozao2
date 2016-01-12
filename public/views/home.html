@@ -17,7 +17,7 @@
   <h3>最新文章</h3>
 </div>
 </div>
-<div class="row">
+<div class="row home_news">
   <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}">
     <div class="mask white">
     	<h4><a class="light" ui-sref='article_detail({courseId:course.id})' href="...">{{course.name}}</a></h4>
@@ -32,8 +32,8 @@
 	</div>
 </div>
 
-<div class="gallery js-flickity">
-	<div class="gallery-cell catalog center" ng-repeat="courseTag in courseTags" ng-model="courseTag">
+<div class="row gallery">
+	<div class="row gallery-cell catalog center" ng-repeat="courseTag in courseTags" ng-model="courseTag">
 
 	    <a ui-sref='course_tags({courseTagId:courseTag.id})' >
 			<span class="fa-stack fa-3x">
