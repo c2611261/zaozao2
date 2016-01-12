@@ -2,13 +2,13 @@ angular.module('courseListModule', ['ngRoute', 'courseTagServiceModule',
 	'infinite-scroll', 'mgcrea.pullToRefresh'
 ]).
 
-controller('CourseListController', ['$scope', '$http', '$location',
+controller('CourseListController', ['$rootScope', '$scope', '$http', '$location',
 	'CourseTagService', '$stateParams',
-	function($scope, $http, $location, courseTagSrv, $stateParams) {
+	function($rootScope, $scope, $http, $location, courseTagSrv, $stateParams) {
 		var util = new DomainNameUtil($location);
 		refresh();
 		// loadCourses();
-
+		$rootScope.title = "早早TV";
 		function refresh(){
 			$scope.courses = [];
 			$scope.loadBusy = false;

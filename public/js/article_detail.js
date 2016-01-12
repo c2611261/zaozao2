@@ -28,7 +28,7 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		});
 
 		$http.get(util.getBackendServiceUrl() +
-				'/course/proposal/query?number=3')
+				'/course/proposal/query?number=3&ignore_course_id='+$stateParams.courseId)
 			.success(function(e) {
 				console.log('get related courses ', e);
 				$scope.relatedCourses = e;

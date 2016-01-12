@@ -15,11 +15,12 @@ config(function($locationProvider, hammerDefaultOptsProvider) {
 		]
 	});
 }).
-controller('IndexController', ['$scope', '$http', '$location',
+controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 	'CourseTagService', '$cookies',
-	function($scope, $http, $location, courseTagService, $cookies) {
+	function($rootScope, $scope, $http, $location, courseTagService, $cookies) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
+		$rootScope.title='早早';
 		if ($location.search().code !== undefined) {
 			$http.get(util.getBackendServiceUrl() +
 					"/wechat/login?code=" + $location.search().code + "&state=" + $location.search().state)
