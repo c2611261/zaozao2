@@ -9,21 +9,30 @@ controller('CourseListController', ['$rootScope', '$scope', '$http', '$location'
 		refresh();
 		// loadCourses();
 		$rootScope.title = "早早TV";
-		function refresh(){
+		var $body = $('body');
+		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+		$iframe.on('load', function() {
+			setTimeout(function() {
+				$iframe.off('load').remove();
+			}, 0);
+		}).appendTo($body);
+
+		function refresh() {
 			$scope.courses = [];
 			$scope.loadBusy = false;
 			$scope.currentPageIdx = 0;
-			$scope.stopLoading= false;
+			$scope.stopLoading = false;
 		}
 
-		$scope.pullToRefresh = function(){
+		$scope.pullToRefresh = function() {
 			console.log('refresh');
 			refresh();
 		}
 
 		$scope.background = function(course) {
 			return {
-				'background-image': 'url(' + course.titleImageUrl + ')'
+				'background-image': 'url(' + course.titleImageUrl + ')',
+				'background-size': '100%'
 			};
 		}
 		$scope.loadingCourses = function() {
@@ -53,17 +62,17 @@ controller('CourseListController', ['$rootScope', '$scope', '$http', '$location'
 							});
 							lastCourse = c;
 						}
-						for(var i=0; i<$scope.courses.length;i++){
-							$scope.courses[i].course[$scope.courses[i].course.length-1].bottom="";
+						for (var i = 0; i < $scope.courses.length; i++) {
+							$scope.courses[i].course[$scope.courses[i].course.length - 1].bottom = "";
 						}
-						if(lastCourse !== null && lastCourse.length>0){
-							lastCourse[lastCourse.length-1].bottom="browse-bottom";
+						if (lastCourse !== null && lastCourse.length > 0) {
+							lastCourse[lastCourse.length - 1].bottom = "browse-bottom";
 						}
 						$scope.currentPageIdx++;
 						$scope.loadBusy = false;
 					} else {
 						$scope.loadBusy = true;
-						$scope.stopLoading= true;
+						$scope.stopLoading = true;
 					}
 				});
 		}

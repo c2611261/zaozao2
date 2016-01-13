@@ -1,7 +1,7 @@
 var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule', 'ngCookies']);
-angularjs.controller('ArticleDetailController', ['$scope',
+angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 	'$http', '$stateParams', '$state', '$location', 'CourseTagService', '$sce', '$cookies',
-	function($scope, $http, $stateParams, $state, $location, courseTagSrv, $sce, $cookies) {
+	function($rootScope, $scope, $http, $stateParams, $state, $location, courseTagSrv, $sce, $cookies) {
 		if ($stateParams.courseId === undefined) {
 			$state.go('home');
 		}
@@ -20,6 +20,16 @@ angularjs.controller('ArticleDetailController', ['$scope',
 		success(function(e) {
 			console.log('get course ', e);
 			$scope.course = e;
+			$rootScope.title = e.name;
+			
+			var $body = $('body');
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+
 			$scope.course.videoUrl = $sce.trustAsResourceUrl($scope.course.videoUrl);
 			document.getElementById('article_content').innerHTML = $scope.course.content;
 			configJSAPI();

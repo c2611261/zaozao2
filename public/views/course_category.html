@@ -1,33 +1,19 @@
 
-<div  infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" style="margin-right:-15px;margin-left:-15px">
+<div class="article_browser" infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" style="margin-right:-15px;margin-left:-15px">
 <ul pull-to-refresh="pullToRefresh()" style="padding-left:0">
-	<!-- <div class="row green center" ng-model="courseTag">
-		<span class="fa-stack fa-5x">
-			<i class="fa fa-circle fa-stack-2x fa-inverse"></i>
-			<i class="fa fa-cube fa-stack-1x" style="color: #3EBAAB"></i>
-		</span>
-		<hr class="star-light"></hr>
-		<h3 class="white">{{courseTag.name}}</h3>
-	</div> -->
-
+	
 	<div ng-repeat="course in courses" ng-model="course">
 		<!-- <div class="row browse-date center">
 			<p>{{course.date}} </p>
 		</div> -->
 		<div class="" ng-repeat="c in course.course">
-			<div class="col-xs-12 recent-article center">
+			<div class="col-xs-12 recent-article center" ng-style="background(c)">
 				<div class="mask white">
 					<p><a class="light" href="article_detail.html">{{c.name}}</a></p>
 					<h4 class="small">
           			<a class="light yellow" ng-repeat="tag in c.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a>
           			</h4>
 					
-					<!-- <h4><a ui-sref="article_detail({courseId:c.id})">{{c.name}}</a></h4>
-					<div ng-repeat="tag in c.tags">
-						<a ui-sref="course_tags({courseTagId:tag.id})">
-							<i class="fa fa-tag"></i>&nbsp;{{tag.name}}</div>
-						</a>
-					</div> -->
 				</div>
 			</div>
 	

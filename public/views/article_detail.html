@@ -32,9 +32,9 @@
         		<hr class="transparent">
 				<h4>相关文章</h4>
 			</div>
-			<div class="col-xs-12 recent-article center" ng-repeat="course in relatedCourses">
+			<div class="col-xs-12 recent-article center article_browser" ng-repeat="course in relatedCourses"  ui-sref='article_detail({courseId:course.id})'>
         		<div class="mask white">
-          		<h4><a class="light" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a></h4>
+          		<h4><a class="light">{{course.name}}</a></h4>
           		<p><a class="light" ng-repeat="tag in course.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}</a></p>
         		</div>
       		</div>

@@ -1,13 +1,13 @@
-<div class="container" infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
+<div class="article_browser" infinite-scroll="loadingCourses()" infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
 <ul pull-to-refresh="pullToRefresh()"  style="padding-left:0px">
 	<div ng-repeat="course in courses" ng-model="course" >
 		<!-- <div class="row browse-date center">
 	      <p>{{course.date}}</p>
 	    </div> -->
-		<div class="row" ng-class="c.bottom" ng-style="background(c)" ng-repeat="c in course.course" ng-model="c">
-			<div class="col-xs-12 recent-article center">
-		        <div class="mask white">
-		        	<p><a class="light" ui-sref='article_detail({courseId:c.id})'>最新文章1</a></p>
+		<div class="row" ng-class="c.bottom" ng-repeat="c in course.course" ng-model="c">
+			<div class="col-xs-12 recent-article center" ng-style="background(c)" >
+		        <div ui-sref='article_detail({courseId:c.id})' class="mask white">
+		        	<p class="light">{{c.name}}</p>
          			<h4 class="small"><a class="light yellow" ng-repeat="tag in c.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a></h4>
 		        </div>
 		    </div>

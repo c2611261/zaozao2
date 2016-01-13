@@ -18,7 +18,8 @@ controller('CourseTagController', ['$rootScope', '$scope', '$http', '$location',
 
 		$scope.background = function(course) {
 			return {
-				'background-image': 'url(' + course.titleImageUrl + ')'
+				'background-image': 'url(' + course.titleImageUrl + ')',
+				'background-size': '100%'
 			};
 		}
 
@@ -52,6 +53,13 @@ controller('CourseTagController', ['$rootScope', '$scope', '$http', '$location',
 								if (tags[i].id.toString() === $scope.tagId) {
 									$scope.courseTag = tags[i];
 									$rootScope.title = $scope.courseTag.name;
+									var $body = $('body');
+									var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+									$iframe.on('load', function() {
+										setTimeout(function() {
+											$iframe.off('load').remove();
+										}, 0);
+									}).appendTo($body);
 									break;
 								}
 							}
