@@ -66,16 +66,16 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		$('#myCarousel').carousel({
 			interval: 3000
 		});
-		// $scope.swipeLeft = function(e) {
-		// 	console.log('swipe left ');
-		// 	//$("#myCarousel").carousel('next');
+		$scope.swipeLeft = function(e) {
+			console.log('swipe left ');
+			$("#myCarousel").carousel('next');
 
-		// };
-		// $scope.swipeRight = function() {
-		// 	console.log('swipe right');
-		// 	//$("#myCarousel").carousel('prev');
+		};
+		$scope.swipeRight = function() {
+			console.log('swipe right');
+			$("#myCarousel").carousel('prev');
 
-		// }
+		}
 
 		// $('#myCarousel').on('slide.bs.carousel', function() {
 
