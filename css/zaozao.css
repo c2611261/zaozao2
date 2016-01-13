@@ -236,23 +236,27 @@ hr.star-primary:after {
 .btn-submit-white {
     background-color: #FADA30;
     color: #212322;
+    font-size: 12px;
 }
 
 .btn-submit-white:hover {
     background-color: #fff;
     border: solid #FADA30 1px;
     color: #FADA30;
+    font-size: 12px;
 }
 
 .btn-submit-light-brown {
     background-color: #FADA30;
     color: #212322;
+    font-size: 12px;
 }
 
 .btn-submit-light-brown:hover {
     background-color: #C2B49A;
     border: solid #fff 1px;
     color: #fff;
+    font-size: 12px;
 }
 
 /* yujiaokecheng */
@@ -328,6 +332,7 @@ hr.transparent {
 /* user-profile */
 .cover-green {
     background-color: #3EBAAB;
+    height: 150px;
 }
 .avatar {
     position: relative;
