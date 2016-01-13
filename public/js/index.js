@@ -33,10 +33,8 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		}
 		courseTagService.getCourseTags().then(function(e) {
 			$scope.courseTags = e;
-			$scope.courseTags[0].ngClass = 'fa-cube';
-			$scope.courseTags[1].ngClass = 'fa-columns';
-			$scope.courseTags[2].ngClass = 'fa-eraser';
-			$scope.courseTags[3].ngClass = 'fa-jpy';
+			//$scope.courseTags[0].bkImage = 'public/resources/courses/images/bg2.jpg';
+			
 		});
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query?number=3")
 			.success(function(e) {
@@ -47,6 +45,12 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 				}
 			}).error(function(e) {
 
+			});
+		$http.get(util.getBackendServiceUrl() + "/course/proposal/count")
+			.success(function(e){
+				$scope.totalCourseCount = e;
+			}).error(function(e){
+				$scope.totalCourseCount = 0;
 			});
 		$http.get(util.getBackendServiceUrl() + "/homeconfig")
 			.success(function(e) {

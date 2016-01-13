@@ -79,7 +79,7 @@ a:hover.yellow{
 }
 
 .recent-article {
-    background-image: url("/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/1-01.png");
+    background-image: url("/Users/yzzhao/IdeaProjects/zaozao2/img/1-01.png");
     border-radius: 5px;
     margin-bottom: 5px;
 }
@@ -152,45 +152,45 @@ hr.star-primary:after {
 }
 
 .catalog1 {
-    padding-top: 5%;
+    padding-top: 15%;
     border-radius: 5px;
-    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg2.jpg);
+    /*background-image: url(/Users/yzzhao/IdeaProjects/zaozao2/img/home_catalog/bg2.jpg);*/
 }
 
 .catalog2 {
     padding-top: 5%;
     border-radius: 5px;
-    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg1.jpg);
+    /*background-image: url(/Users/yzzhao/IdeaProjects/zaozao2/img/home_catalog/bg1.jpg);*/
 }
 
 .catalog3 {
     padding-top: 5%;
     border-radius: 5px;
-    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg12.jpg);
+    /*background-image: url(/Users/yzzhao/IdeaProjects/zaozao2/img/home_catalog/bg12.jpg);*/
 }
 
 .catalog4 {
     padding-top: 5%;
     border-radius: 5px;
-    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg5.jpg);
+    /*background-image: url(/Users/yzzhao/IdeaProjects/zaozao2/img/home_catalog/bg5.jpg);*/
 }
 
 .catalog5 {
     padding-top: 5%;
     border-radius: 5px;
-    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg10.jpg);
+    /*background-image: url(/Users/yzzhao/IdeaProjects/zaozao2/img/home_catalog/bg10.jpg);*/
 }
 
 .catalog6 {
     padding-top: 5%;
     border-radius: 5px;
-    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg12.jpg);
+    /*background-image: url(/Users/yzzhao/IdeaProjects/zaozao2/img/home_catalog/bg12.jpg);*/
 }
 
 .catalog7 {
     padding-top: 5%;
     border-radius: 5px;
-    background-image: url(/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/home_catalog/bg13.jpg);
+    /*background-image: url(/Users/yzzhao/IdeaProjects/zaozao2/img/home_catalog/bg13.jpg);*/
 }
 
 .mask {
@@ -356,6 +356,8 @@ hr.transparent {
     height: 200px;
     white-space:nowrap;
     overflow: scroll;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 .gallery-cell{
@@ -363,6 +365,11 @@ hr.transparent {
     width: 40%;
     height: 200px;
     margin-right: 20px;
-    background-color: #3EBAAB;
+    /*background-color: #3EBAAB;*/
     display: inline-block;
+}
+
+.home_news {
+    margin-left: -10px;
+    margin-right: -10px;
 }
