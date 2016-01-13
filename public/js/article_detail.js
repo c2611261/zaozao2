@@ -49,6 +49,13 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			$scope.courseTags = e;
 		});
 
+		$scope.background = function(course) {
+			return {
+				'background-image': 'url(' + course.titleImageUrl + ')',
+				'background-size': '100%'
+			};
+		}
+		
 		$scope.share = function() {
 			console.log('share');
 			$scope.showShare = true;
