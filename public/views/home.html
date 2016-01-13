@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" style="padding-top: 10px">
        <div class="col-xs-6">
         <p class="title-left"><i class="fa fa-desktop"></i>&nbsp;&nbsp;早早TV</p>
       </div>
@@ -39,31 +39,25 @@
   	<p class="title-right">{{courseTags.length}}&nbsp;<i class="fa fa-angle-right"></i></p>
   </div>
 </div>
+  <div class="row gallery">
 
-<div class="row gallery">
-	<div class="row gallery-cell catalog center" ng-repeat="courseTag in courseTags" ng-model="courseTag" back-image="{{courseTag.bkImage}}">
+  	<div class="gallery-cell" ng-repeat="courseTag in courseTags" ng-model="courseTag" >
+  		<img ng-src="{{courseTag.imageUrl}}" ui-sref='course_tags({courseTagId:courseTag.id})' style="width:100%"/>
+  			<p class="white small" style="position:absolute;width:100%;height:100%; top:70%; text-align: center;vertical-align: middle;">
+				    	{{courseTag.name}}
+			</p>
+  		
+  	</div>
+	<!-- <div class="row gallery">
+		<div class="row gallery-cell catalog center" ng-repeat="courseTag in courseTags" ng-model="courseTag" back-image="{{courseTag.imageUrl}}">
 
-	    <a ui-sref='course_tags({courseTagId:courseTag.id})' >
-		    <div class="catalog1">
-		    <img ng-src="{{courseTag.imageUrl}}" alt="" width="60px" height="auto">
-		    </div>
-		    <p class="white small">
-			    	{{courseTag.name}}
-		    </p>
-		</a>
-	<!-- style="width:100%;overflow:scroll;display:block;background-color:#3EBAAB"> -->
-		<!-- <ul style="white-space:nowrap;overflow:scroll">
-			<li ng-repeat="courseTag in courseTags" ng-model="courseTag" style="display:inline-block;width:30%;overflow:hidden">
-				<a ui-sref='course_tags({courseTagId:courseTag.id})' >
-					<span class="fa-stack fa-3x">
-				    <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
-				    <i class="fa fa-cube fa-stack-1x" style="color: #3EBAAB"></i>
-				</a>
-				  </span>
-				  <p>
-				  	<a ui-sref='course_tags({courseTagId:courseTag.id})' class="white">{{courseTag.name}}</a>
-				  </p>
-			</li>
-		</ul> -->
-	</div>
+		    <a ui-sref='course_tags({courseTagId:courseTag.id})' >
+			    
+			    <p class="white small">
+				    	{{courseTag.name}}
+			    </p>
+			</a>
+
+		</div>
+	</div> -->
 </div>

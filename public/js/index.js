@@ -93,7 +93,8 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		var url = attrs.backImage;
 		console.log('background image ', url);
 		element.css({
-			'background-image': 'url(' + url + ')'
+			'background-image': 'url(' + url + ')',
+			'background-size': '100%'
 		});
 	};
 }).config(function($stateProvider, $urlRouterProvider) {

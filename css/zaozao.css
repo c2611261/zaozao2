@@ -79,7 +79,7 @@ a:hover.yellow{
 }
 
 .recent-article {
-    background-image: url("/Users/yzzhao/IdeaProjects/zaozao2/img/1-01.png");
+    /*background-image: url("/Users/yzzhao/IdeaProjects/zaozao2/img/1-01.png");*/
     border-radius: 5px;
     margin-bottom: 5px;
 }
@@ -357,10 +357,11 @@ hr.transparent {
 /* home category */
 .gallery{
     background: #fff;
-    margin-bottom: 6%;
-    height: 200px;
+    padding-bottom: 20%;
+    /*height: 200px;*/
     white-space:nowrap;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     margin-left: -10px;
     margin-right: -10px;
 }
@@ -368,10 +369,11 @@ hr.transparent {
 .gallery-cell{
     white-space:nowrap;
     width: 40%;
-    height: 200px;
+    height: 100%;
     margin-right: 20px;
     /*background-color: #3EBAAB;*/
     display: inline-block;
+    position: relative;
 }
 
 .home_news {
