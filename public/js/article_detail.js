@@ -55,6 +55,12 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 				'background-size': '100%'
 			};
 		}
+		
+		$scope.goToCourseTag = function(tag, $event){
+			console.log('go to course tag');
+			$state.go('course_tags',{courseTagId:tag.id});
+			$event.stopPropagation();
+		}
 
 		$scope.share = function() {
 			console.log('share');
