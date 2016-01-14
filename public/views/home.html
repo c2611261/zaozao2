@@ -7,7 +7,7 @@
      
      </ol> 
     <div class="carousel-inner">
-      <div class="item" ng-repeat="config in homeConfig" ng-model="config" ng-class='config.active?"active":""'>
+      <div class="item" ng-repeat="config in homeConfig" ng-model="config" ng-class='config.active?"active":""' ui-sref="article_detail({courseId:config.courseId})">
         <img class="img-responsive" style="vertical-align:middle;display:table; text-align:center" ng-src="{{config.image}}" alt="" width="100%" />
       </div>
     </div>

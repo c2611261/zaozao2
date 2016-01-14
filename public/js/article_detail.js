@@ -21,7 +21,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			console.log('get course ', e);
 			$scope.course = e;
 			$rootScope.title = e.name;
-			
+
 			var $body = $('body');
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
 			$iframe.on('load', function() {
@@ -38,7 +38,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		});
 
 		$http.get(util.getBackendServiceUrl() +
-				'/course/proposal/query?number=3&ignore_course_id='+$stateParams.courseId)
+				'/course/proposal/query?number=3&ignore_course_id=' + $stateParams.courseId)
 			.success(function(e) {
 				console.log('get related courses ', e);
 				$scope.relatedCourses = e;
@@ -55,7 +55,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 				'background-size': '100%'
 			};
 		}
-		
+
 		$scope.share = function() {
 			console.log('share');
 			$scope.showShare = true;
@@ -119,5 +119,24 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 				});
 		}
+
+		function recordShareFavorite(activity) {
+			var req = {
+				method: 'POST',
+				url: $location.protocol() + '://' + $location.host() + ":" + $location.port() + '/education/zaozao/course/interactive',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+				data: $httpParamSerializer({
+					course_id: $scope.course.id,
+					flag: activity
+				})
+			};
+			$http(req).success(function(e) {
+				
+			});
+
+		}
+
 	}
 ]);
