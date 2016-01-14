@@ -22,7 +22,11 @@ login.service('CourseTagService', function($rootScope, $q, $http, $location, $ht
 					that.courseTags[i].id = e[i].id.toString();
 					that.courseTags[i].name = e[i].name;
 					console.log('locaiton:', $location.path());
-
+					if(i>3){
+						that.courseTags[i].enabled = false;
+					}else{
+						that.courseTags[i].enabled = true;
+					}
 				}
 				initTagBackground(that);
 				deferred.resolve(that.courseTags);

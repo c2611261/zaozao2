@@ -364,6 +364,9 @@ hr.transparent {
     overflow-y: hidden;
     margin-left: -10px;
     margin-right: -10px;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-scrolling: touch;
+    -moz-overflow-scrolling: touch;
 }
 
 .gallery-cell{
