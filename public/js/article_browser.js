@@ -3,8 +3,8 @@ angular.module('courseListModule', ['ngRoute', 'courseTagServiceModule',
 ]).
 
 controller('CourseListController', ['$rootScope', '$scope', '$http', '$location',
-	'CourseTagService', '$stateParams',
-	function($rootScope, $scope, $http, $location, courseTagSrv, $stateParams) {
+	'CourseTagService', '$stateParams', '$state',
+	function($rootScope, $scope, $http, $location, courseTagSrv, $stateParams, $state) {
 		var util = new DomainNameUtil($location);
 		refresh();
 		// loadCourses();
@@ -35,6 +35,13 @@ controller('CourseListController', ['$rootScope', '$scope', '$http', '$location'
 				'background-size': '100%'
 			};
 		}
+
+		$scope.goToCourseTag = function(tag, $event){
+			console.log('go to course tag');
+			$state.go('course_tags',{courseTagId:tag.id});
+			$event.stopPropagation();
+		}
+
 		$scope.loadingCourses = function() {
 			console.log('loading courses ', $scope.loadBusy);
 			if ($scope.loadBusy === true) {

@@ -9,7 +9,7 @@
 				<div class="mask white">
 					<p><a class="light">{{c.name}}</a></p>
 					<h4 class="small">
-          			<a class="light yellow" ng-repeat="tag in c.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a>
+          			<a class="light yellow" ng-repeat="tag in c.tags" ng-click="goToCourseTag(tag, $event)"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a>
           			</h4>
 					
 				</div>

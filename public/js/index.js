@@ -13,8 +13,8 @@ config(function($locationProvider, hammerDefaultOptsProvider) {
 	});
 }).
 controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
-	'CourseTagService', '$cookies',
-	function($rootScope, $scope, $http, $location, courseTagService, $cookies) {
+	'CourseTagService', '$cookies', '$state',
+	function($rootScope, $scope, $http, $location, courseTagService, $cookies, $state) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
 		$rootScope.title = '早早';
@@ -79,6 +79,11 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 			console.log('swipe right');
 			$("#myCarousel").carousel('prev');
 
+		}
+		$scope.goToCourseTag = function(tag, $event){
+			console.log('go to course tag');
+			$state.go('course_tags',{courseTagId:tag.id});
+			$event.stopPropagation();
 		}
 
 		// $('#myCarousel').on('slide.bs.carousel', function() {

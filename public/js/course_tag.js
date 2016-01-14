@@ -2,8 +2,9 @@ angular.module('courseTagModule', ['ngRoute', 'courseTagServiceModule', 'infinit
 config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode(true);
 }]).
-controller('CourseTagController', ['$rootScope', '$scope', '$http', '$location', 'CourseTagService', '$stateParams',
-	function($rootScope, $scope, $http, $location, courseTagSrv, $stateParams) {
+controller('CourseTagController', ['$rootScope', '$scope', 
+	'$http', '$location', 'CourseTagService', '$stateParams','$state',
+	function($rootScope, $scope, $http, $location, courseTagSrv, $stateParams, $state) {
 		console.log('course tag id ', $stateParams.courseTagId);
 		$scope.tagId = $stateParams.courseTagId;
 		var util = new DomainNameUtil($location);
@@ -30,6 +31,12 @@ controller('CourseTagController', ['$rootScope', '$scope', '$http', '$location',
 			}
 			$scope.loadBusy = true;
 			loadCourses();
+		}
+
+		$scope.goToCourseTag = function(tag, $event){
+			console.log('go to course tag');
+			$state.go('course_tags',{courseTagId:tag.id});
+			$event.stopPropagation();
 		}
 
 		function loadCourses(){

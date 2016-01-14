@@ -8,7 +8,7 @@
 			<div class="col-xs-12 recent-article center" ng-style="background(c)" >
 		        <div ui-sref='article_detail({courseId:c.id})' class="mask white">
 		        	<p class="light">{{c.name}}</p>
-         			<h4 class="small"><a class="light yellow" ng-repeat="tag in c.tags" ui-sref="course_tags({courseTagId:tag.id})"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a></h4>
+         			<h4 class="small"><a class="light yellow" ng-repeat="tag in c.tags" ng-click="goToCourseTag(tag, $event)"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a></h4>
 		        </div>
 		    </div>
 		</div>
