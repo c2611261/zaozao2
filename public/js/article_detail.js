@@ -1,7 +1,9 @@
 var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule', 'ngCookies']);
 angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
-	'$http', '$stateParams', '$state', '$location', 'CourseTagService', '$sce', '$cookies',
-	function($rootScope, $scope, $http, $stateParams, $state, $location, courseTagSrv, $sce, $cookies) {
+	'$http', '$stateParams', '$state', '$location', 
+	'CourseTagService', '$sce', '$cookies','$httpParamSerializer',
+	function($rootScope, $scope, $http, $stateParams, 
+		$state, $location, courseTagSrv, $sce, $cookies, $httpParamSerializer) {
 		if ($stateParams.courseId === undefined) {
 			$state.go('home');
 		}
@@ -55,16 +57,38 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 				'background-size': '100%'
 			};
 		}
-		
+
 		$scope.goToCourseTag = function(tag, $event){
 			console.log('go to course tag');
-			$state.go('course_tags',{courseTagId:tag.id});
+			$state.go('course_tags', {
+				courseTagId: tag.id
+			});
 			$event.stopPropagation();
 		}
 
 		$scope.share = function() {
 			console.log('share');
 			$scope.showShare = true;
+		}
+
+		$scope.favorite = function() {
+			console.log('favorite');
+			var req = {
+				method: 'POST',
+				url: util.getBackendServiceUrl() + '/course/interactive',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+					'access_token': $cookies.get('access_token')
+						//'Content-Type': 'multipart/form-data; charset=utf-8;'
+				},
+				data: $httpParamSerializer({
+					course_id: $scope.course.id,
+					flag: 'FAVORITE'
+				})
+			};
+			$http(req).success(function(e) {
+
+			});
 		}
 
 		$scope.hideShare = function() {
@@ -139,7 +163,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 				})
 			};
 			$http(req).success(function(e) {
-				
+
 			});
 
 		}
