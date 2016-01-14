@@ -48,7 +48,7 @@ controller('CourseListController', ['$rootScope', '$scope', '$http', '$location'
 		function loadCourses() {
 			console.log('load cournses ', $scope.currentPageIdx);
 			$http.get(util.getBackendServiceUrl() +
-					'/course/proposal/query_by_date?' + 'number=' + 10 + "&page_index=" + $scope.currentPageIdx)
+					'/course/proposal/query_by_date?' + 'number=' + 3 + "&page_index=" + $scope.currentPageIdx)
 				.success(function(e) {
 					console.log('get course ', e);
 					var num = Object.getOwnPropertyNames(e).length;

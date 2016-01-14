@@ -29,9 +29,13 @@ controller('CourseTagController', ['$rootScope', '$scope', '$http', '$location',
 				return;
 			}
 			$scope.loadBusy = true;
+			loadCourses();
+		}
 
-			$http.get(util.getBackendServiceUrl() + '/course/proposal/query_by_date?tag_id=' +
-					$scope.tagId + '&number=' + 10 + '&page_index=' + $scope.currentPageIdx)
+		function loadCourses(){
+			$http.get(util.getBackendServiceUrl() + 
+				'/course/proposal/query_by_date?tag_id=' +
+					$scope.tagId + '&number=' + 3 + '&page_index=' + $scope.currentPageIdx)
 				.success(function(e) {
 					console.log('get course ', e);
 					var num = Object.getOwnPropertyNames(e).length;
@@ -84,5 +88,10 @@ controller('CourseTagController', ['$rootScope', '$scope', '$http', '$location',
 
 				});
 		}
+		$scope.pullToRefresh = function() {
+			console.log('refresh');
+			refresh();
+		}
+
 	}
 ]);
