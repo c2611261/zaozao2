@@ -6,8 +6,8 @@
 		<!-- <div class="row browse-date center">
 			<p>{{course.date}} </p>
 		</div> -->
-		<div class="" ng-repeat="c in course.course">
-			<div class="col-xs-12 recent-article center" ng-style="background(c)">
+		<div class=""  ng-repeat="c in course.course">
+			<div class="col-xs-12 recent-article center" ng-class="c.bottom" ng-style="background(c)">
 				<div class="mask white">
 					<p><a class="light" href="article_detail.html">{{c.name}}</a></p>
 					<h4 class="small">
