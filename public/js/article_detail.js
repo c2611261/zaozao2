@@ -61,7 +61,8 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.goToCourseTag = function(tag, $event){
 			console.log('go to course tag');
 			$state.go('course_tags', {
-				courseTagId: tag.id
+				courseTagId: tag.id,
+				courseName: tag.name
 			});
 			$event.stopPropagation();
 		}

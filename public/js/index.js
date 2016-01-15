@@ -117,7 +117,7 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		templateUrl: 'public/views/home.html',
 		controller: 'IndexController'
 	}).state('course_tags', {
-		url: '/course_tag?courseTagId',
+		url: '/course_tag?courseTagId&courseName',
 		templateUrl: 'public/views/course_category.html',
 		controller: 'CourseTagController'
 	}).state('course_list', {

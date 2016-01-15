@@ -2,13 +2,21 @@ angular.module('courseTagModule', ['ngRoute', 'courseTagServiceModule', 'infinit
 config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode(true);
 }]).
-controller('CourseTagController', ['$rootScope', '$scope', 
-	'$http', '$location', 'CourseTagService', '$stateParams','$state',
+controller('CourseTagController', ['$rootScope', '$scope',
+	'$http', '$location', 'CourseTagService', '$stateParams', '$state',
 	function($rootScope, $scope, $http, $location, courseTagSrv, $stateParams, $state) {
 		console.log('course tag id ', $stateParams.courseTagId);
 		$scope.tagId = $stateParams.courseTagId;
 		var util = new DomainNameUtil($location);
-
+		$rootScope.title = $stateParams.courseName;
+		var $body = $('body');
+		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+		$iframe.on('load', function() {
+			setTimeout(function() {
+				$iframe.off('load').remove();
+			}, 0);
+		}).appendTo($body);
+		
 		refresh();
 
 		function refresh() {
@@ -33,15 +41,18 @@ controller('CourseTagController', ['$rootScope', '$scope',
 			loadCourses();
 		}
 
-		$scope.goToCourseTag = function(tag, $event){
+		$scope.goToCourseTag = function(tag, $event) {
 			console.log('go to course tag');
-			$state.go('course_tags',{courseTagId:tag.id});
+			$state.go('course_tags', {
+				courseTagId: tag.id,
+				courseName: tag.name
+			});
 			$event.stopPropagation();
 		}
 
-		function loadCourses(){
-			$http.get(util.getBackendServiceUrl() + 
-				'/course/proposal/query_by_date?tag_id=' +
+		function loadCourses() {
+			$http.get(util.getBackendServiceUrl() +
+					'/course/proposal/query_by_date?tag_id=' +
 					$scope.tagId + '&number=' + 3 + '&page_index=' + $scope.currentPageIdx)
 				.success(function(e) {
 					console.log('get course ', e);
@@ -59,23 +70,6 @@ controller('CourseTagController', ['$rootScope', '$scope',
 							tags = c[0].tags;
 							lastCourse = c;
 						}
-						if (tags !== null) {
-							for (var i = 0; i < tags.length; i++) {
-								if (tags[i].id.toString() === $scope.tagId) {
-									$scope.courseTag = tags[i];
-									$rootScope.title = $scope.courseTag.name;
-									var $body = $('body');
-									var $iframe = $('<iframe src="/favicon.ico"></iframe>');
-									$iframe.on('load', function() {
-										setTimeout(function() {
-											$iframe.off('load').remove();
-										}, 0);
-									}).appendTo($body);
-									break;
-								}
-							}
-						}
-
 						$scope.loadBusy = false;
 						$scope.currentPageIdx++;
 						for (var i = 0; i < $scope.courses.length; i++) {
