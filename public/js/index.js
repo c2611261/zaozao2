@@ -18,7 +18,14 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
 		$rootScope.title = '早早';
-
+		var $body = $('body');
+		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+		$iframe.on('load', function() {
+			setTimeout(function() {
+				$iframe.off('load').remove();
+			}, 0);
+		}).appendTo($body);
+		
 		if ($location.search().code !== undefined) {
 			$http.get(util.getBackendServiceUrl() +
 					"/wechat/login?code=" + $location.search().code + "&state=" + $location.search().state)
@@ -34,7 +41,7 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		courseTagService.getCourseTags().then(function(e) {
 			$scope.courseTags = e;
 			//$scope.courseTags[0].bkImage = 'public/resources/courses/images/bg2.jpg';
-			
+
 		});
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query?number=3")
 			.success(function(e) {
@@ -47,9 +54,9 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 
 			});
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/count")
-			.success(function(e){
+			.success(function(e) {
 				$scope.totalCourseCount = e;
-			}).error(function(e){
+			}).error(function(e) {
 				$scope.totalCourseCount = 0;
 			});
 		$http.get(util.getBackendServiceUrl() + "/homeconfig")
@@ -80,9 +87,11 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 			$("#myCarousel").carousel('prev');
 
 		}
-		$scope.goToCourseTag = function(tag, $event){
+		$scope.goToCourseTag = function(tag, $event) {
 			console.log('go to course tag');
-			$state.go('course_tags',{courseTagId:tag.id});
+			$state.go('course_tags', {
+				courseTagId: tag.id
+			});
 			$event.stopPropagation();
 		}
 
