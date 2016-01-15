@@ -24,8 +24,10 @@ login.service('CourseTagService', function($rootScope, $q, $http, $location, $ht
 					console.log('locaiton:', $location.path());
 					if(i>3){
 						that.courseTags[i].enabled = false;
+						that.courseTags[i].opacity = {opacity:0.5};
 					}else{
 						that.courseTags[i].enabled = true;
+						that.courseTags[i].opacity = {opacity:1};
 					}
 				}
 				initTagBackground(that);
