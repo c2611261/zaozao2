@@ -90,7 +90,8 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		$scope.goToCourseTag = function(tag, $event) {
 			console.log('go to course tag');
 			$state.go('course_tags', {
-				courseTagId: tag.id
+				courseTagId: tag.id,
+				courseName: tag.name
 			});
 			$event.stopPropagation();
 		}
