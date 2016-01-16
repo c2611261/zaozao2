@@ -119,7 +119,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 					wx.onMenuShareTimeline({
 						title: $scope.course.name,
 						link: $scope.courseUrl,
-						imgUrl: $scope.titleImageUrl,
+						imgUrl: $scope.course.titleImageUrl,
 						success: function() {
 							console.log('share success');
 						},
@@ -131,7 +131,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 						title: $scope.course.name, // 分享标题
 						desc: $scope.course.introduction, // 分享描述
 						link: $scope.courseUrl, // 分享链接
-						imgUrl: $scope.titleImageUrl, // 分享图标
+						imgUrl: $scope.course.titleImageUrl, // 分享图标
 						// 分享类型,music、video或link，不填默认为link
 						// 如果type是music或video，则要提供数据链接，默认为空
 						success: function(res) {
