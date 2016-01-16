@@ -77,22 +77,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 		$scope.favorite = function() {
 			console.log('favorite');
-			var req = {
-				method: 'POST',
-				url: util.getBackendServiceUrl() + '/course/interactive',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-					'access_token': $cookies.get('access_token')
-						//'Content-Type': 'multipart/form-data; charset=utf-8;'
-				},
-				data: $httpParamSerializer({
-					course_id: $scope.course.id,
-					flag: 'FAVORITE'
-				})
-			};
-			$http(req).success(function(e) {
-
-			});
+			recordShareFavorite('FAVORITE');
 		}
 
 		$scope.hideShare = function() {
@@ -125,6 +110,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 						imgUrl: $scope.course.titleImageUrl,
 						success: function() {
 							console.log('share success');
+							recordShareFavorite('SHARE');
 						},
 						cancel: function() {
 							console.log('cancel share');
@@ -145,6 +131,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
 							console.log('share success');
+							recordShareFavorite('SHARE');
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
@@ -162,9 +149,11 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		function recordShareFavorite(activity) {
 			var req = {
 				method: 'POST',
-				url: $location.protocol() + '://' + $location.host() + ":" + $location.port() + '/education/zaozao/course/interactive',
+				url: util.getBackendServiceUrl() + '/course/interactive',
 				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+					'access_token': $cookies.get('access_token')
+						//'Content-Type': 'multipart/form-data; charset=utf-8;'
 				},
 				data: $httpParamSerializer({
 					course_id: $scope.course.id,
