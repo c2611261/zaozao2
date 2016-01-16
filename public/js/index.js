@@ -52,9 +52,10 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 					console.log('locaiton:', $location.path());
 					if (i > 3) {
 						$scope.courseTags[i].enabled = false;
-						
+						$scope.courseTags[i].opacity = {opacity:0.5};
 					} else {
 						$scope.courseTags[i].enabled = true;
+						$scope.courseTags[i].opacity = {opacity:1};
 						
 					}
 				}
