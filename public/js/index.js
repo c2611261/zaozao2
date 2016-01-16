@@ -1,4 +1,4 @@
-angular.module('indexModule', ['ngRoute', 'courseTagServiceModule',
+angular.module('indexModule', ['ngRoute', 
 	'ui.router', 'courseTagModule', 'courseListModule', 'articleDetailModule',
 	'angular-gestures', 'ngAnimate', 'ngCookies'
 ]).
@@ -13,8 +13,8 @@ config(function($locationProvider, hammerDefaultOptsProvider) {
 	});
 }).
 controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
-	'CourseTagService', '$cookies', '$state',
-	function($rootScope, $scope, $http, $location, courseTagService, $cookies, $state) {
+	 '$cookies', '$state',
+	function($rootScope, $scope, $http, $location, $cookies, $state) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
 		$rootScope.title = '早早';
@@ -25,7 +25,7 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 				$iframe.off('load').remove();
 			}, 0);
 		}).appendTo($body);
-		
+
 		if ($location.search().code !== undefined) {
 			$http.get(util.getBackendServiceUrl() +
 					"/wechat/login?code=" + $location.search().code + "&state=" + $location.search().state)
@@ -38,11 +38,30 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 					console.log(e);
 				});
 		}
-		courseTagService.getCourseTags().then(function(e) {
-			$scope.courseTags = e;
-			//$scope.courseTags[0].bkImage = 'public/resources/courses/images/bg2.jpg';
 
-		});
+		$http.get(util.getBackendServiceUrl() + "/course_tags")
+			.success(function(e) {
+				console.log('get course tags:', e);
+				$scope.courseTags = [];
+				for (var i = 0; i < e.length; i++) {
+					$scope.courseTags[i] = {};
+					$scope.courseTags[i].imageUrl = (e[i].imageUrl);
+					$scope.courseTags[i].url = 'public/views/course_category.html#?tagId=' + e[i].id;
+					$scope.courseTags[i].id = e[i].id.toString();
+					$scope.courseTags[i].name = e[i].name;
+					console.log('locaiton:', $location.path());
+					if (i > 3) {
+						$scope.courseTags[i].enabled = false;
+						
+					} else {
+						$scope.courseTags[i].enabled = true;
+						
+					}
+				}
+			}).error(function(e) {
+				
+			});
+
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query?number=3")
 			.success(function(e) {
 				console.log('get course ', e);

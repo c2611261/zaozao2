@@ -44,7 +44,7 @@
   	<div class="gallery-cell" ng-repeat="courseTag in courseTags" ng-model="courseTag" >
   		<img ng-src="{{courseTag.imageUrl}}" ui-sref='course_tags({courseTagId:courseTag.id, courseName:courseTag.name})' ng-show="courseTag.enabled" style="width:100%;border-radius:10px"/>
         
-        <h4 class="white small" style="position:absolute;width:50%;height:18%; top:70%; text-align: center;vertical-align: middle;color:#333;background-color:#fada30;padding-top:4%;margin-left:23%;border-radius:3%" ng-style="courseTag.opacity">
+        <h4 class="white small" style="position:absolute;width:50%;height:18%; top:70%; text-align: center;vertical-align: middle;color:#333;background-color:#fada30;padding-top:4%;margin-left:23%;border-radius:3px;opacity: 0.5">
               {{courseTag.name}}
            </h4> 
 
