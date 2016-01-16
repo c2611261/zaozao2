@@ -10,9 +10,12 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.showShare = false;
 		$scope.shareImg = "img/share_400_400_2.png";
 		$scope.courseUrl = $location.absUrl();
+		if(location.href !== $scope.courseUrl){
+			location.href=$scope.courseUrl;
+		}
 		console.log('location=', $location);
 		var util = new DomainNameUtil($location);
-		$scope.originUrl = location.href;
+		$scope.originUrl = window.location.href;
 		$http.get(util.getBackendServiceUrl() +
 			'/course/proposal/' + $stateParams.courseId, {
 				headers: {
@@ -97,7 +100,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		}
 
 		function configJSAPI() {
-			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.originUrl)
+			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl)
 				.success(function(e) {
 					console.log(e);
 					var signature = e;
@@ -127,9 +130,14 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 							console.log('cancel share');
 						}
 					});
+					var shareDesc = '';
+					console.log('share desc:', $scope.course.introduction);
+					if($scope.course.introduction !== null && $scope.course.introduction !== 'undefined'){
+						shareDesc = $scope.course.introduction;
+					}
 					wx.onMenuShareAppMessage({
 						title: $scope.course.name, // 分享标题
-						desc: $scope.course.introduction, // 分享描述
+						desc: shareDesc, // 分享描述
 						link: $scope.courseUrl, // 分享链接
 						imgUrl: $scope.course.titleImageUrl, // 分享图标
 						// 分享类型,music、video或link，不填默认为link
