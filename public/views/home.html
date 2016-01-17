@@ -12,17 +12,17 @@
       </div>
     </div>
 </div>
-
-<div class="row" style="padding-top: 10px">
+<div class='article_browser'>
+<div class="row" style="padding-top: 10px;margin-right:-25px">
        <div class="col-xs-6">
         <p class="title-left"><i class="fa fa-desktop"></i>&nbsp;&nbsp;早早TV</p>
       </div>
-      <div class="col-xs-6" style="margin-right:-10px;padding-right:0px" ui-sref="course_list">
+      <div class="col-xs-6" style="margin-right:0px;padding-right:0px" ui-sref="course_list">
         <div class="col-xs-12 title-right">{{totalCourseCount}}&nbsp;<i class="fa fa-angle-right"></i></div>
       </div>
-    </div>
+</div>
 
-<div class="row home_news">
+<div class="home_news">
   <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}" ui-sref="article_detail({courseId:course.id})">
     <div class="mask white">
     	<p><a class="light" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a></p>
@@ -31,15 +31,15 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" style='margin-right:-25px'>
 	<div class="col-xs-6">
 		<p class="title-left"><i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;主题推荐</p>
 	</div>
-  <div class="col-xs-6" style="margin-right:-10px;padding-right:0px">
+  <div class="col-xs-6" style="margin-right:0px;padding-right:0px">
   	<p class="title-right">{{courseTags.length}}&nbsp;<i class="fa fa-angle-right"></i></p>
   </div>
 </div>
-  <div class="row gallery">
+<div class="row gallery">
 
   	<div class="gallery-cell" ng-repeat="courseTag in courseTags" ng-model="courseTag" >
   		<img ng-src="{{courseTag.imageUrl}}" ui-sref='course_tags({courseTagId:courseTag.id, courseName:courseTag.name})' ng-show="courseTag.enabled" style="width:100%;border-radius:10px"/>
@@ -65,4 +65,5 @@
 
 		</div>
 	</div> -->
+</div>
 </div>

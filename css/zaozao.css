@@ -385,7 +385,7 @@ hr.transparent {
     overflow-x: scroll;
     overflow-y: hidden;
     margin-left: -10px;
-    margin-right: -10px;
+    margin-right: -30px;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-scrolling: touch;
     -moz-overflow-scrolling: touch;
@@ -403,11 +403,13 @@ hr.transparent {
 
 .home_news {
     margin-left: -10px;
-    margin-right: -10px;
+    margin-right: -30px;
 }
 
 .article_browser{
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
     background-size: 100%;
 }
