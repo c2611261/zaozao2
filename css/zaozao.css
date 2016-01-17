@@ -36,6 +36,10 @@ a.dark:hover {
     /*border: 1px solid #222;*/	
 }
 
+.yellow {
+    color: #FADA30;
+}
+
 .yellow-background {
     background-color: #FADA30;
     margin: 0 30% 0 30%;
@@ -44,7 +48,7 @@ a.dark:hover {
 }
 
 .light-yellow-background {
-    background-color: #ECEAC6;
+    background-color: #FFEFAE;
     padding-top: 20px;
 }
 
@@ -59,6 +63,10 @@ a:hover.yellow{
 .green {
 	background-color: #3EBAAB;
     padding: 20px 0 50px 0;
+}
+
+.green-text {
+    color: #3EBAAB;
 }
 
 .light-brown {
@@ -273,7 +281,7 @@ hr.star-primary:after {
 }
 /* article_detial */
 .overplay {
-    position: fixed;
+  position: fixed;
   top: 0;
   right: 0;
   height: 100%;
@@ -330,9 +338,10 @@ hr.transparent {
 
 
 /* user-profile */
-.cover-green {
-    background-color: #3EBAAB;
-    height: 150px;
+
+.cover-background {
+    background-image: url("/img/...");
+    height: 100px;
 }
 .avatar {
     position: relative;
@@ -341,19 +350,32 @@ hr.transparent {
     border-radius: 50%;
     width: 30%;
     margin-left: 35%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .user-name {
     padding: 0 50px 0 50px;
-    margin: 50px 0 50px 0;
+    margin: 40px 0 30px 0;
 }
 
 .baby-info {
     margin-top: 50px;
     margin-bottom: 20%;
-    padding: 30px 100px 30px 100px;
-    border-radius: 10px;
+    padding: 30px 50px 30px 50px;
+    border-radius: 5px;
 }
+
+.outline {
+    border: solid 2px #333;
+
+}
+
+.one-edge-shadow {
+    -webkit-box-shadow: 0 20px 50px -6px rgba(0,0,0,0.1);
+       -moz-box-shadow: 0 20px 50px -6px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 50px -6px rgba(0,0,0,0.1);
+}
+
 /* home category */
 .gallery{
     background: #fff;
