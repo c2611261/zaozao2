@@ -99,7 +99,19 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 		}
 
+		document.getElementById('course_video').addEventListener('webkitendfullscreen', function (e) { 
+			  // handle end full screen 
+			  console.log('webkitendfullscreen');
+			  $scope.showVideo = false;
+			  $scope.$apply();
+		});
 
+		document.getElementById('course_video').addEventListener('webkitenterfullscreen', function (e) { 
+			  // handle end full screen 
+			  console.log('webkitenterfullscreen');
+			  $scope.showVideo = true;
+			  $scope.$apply();
+		});
 
 		// $scope.videoEnded = function(e) {
 		// 	console.log('video ended ');
@@ -249,7 +261,7 @@ angularjs.directive('videoLoader', function() {
 					}
 					scope.$apply();
 				});
-
+			
 		});
 	}
 });
