@@ -189,19 +189,21 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 angularjs.directive('videoLoader', function() {
 	return function(scope, element, attrs) {
 		scope.$watch(attrs.videoLoader, function() {
-
+			console.log('element:', element);
 			$("#course_video").bind('ended', function() {
 				console.log('video ended.');
+				element.removeAttr('controls');
+				scope.showPlayButton = true;
+				scope.$apply();
 				// $(this).unbind('ended');
 				// if (!this.hasPlayed) {
 				// 	return;
 				// }
-				scope.showPlayButton = true;
-				scope.$apply();
 			});
 			$("#course_video").bind('pause', function() {
 				console.log('video paused.');
 				scope.showPlayButton = true;
+				element.attr('controls',true);
 				scope.$apply();
 				// $(this).unbind('paused');
 				// if (!this.hasPlayed) {
@@ -211,6 +213,7 @@ angularjs.directive('videoLoader', function() {
 			$("#course_video").bind('play', function() {
 				console.log('video played.');
 				scope.showPlayButton = false;
+				element.attr('controls',true);
 				scope.$apply();
 				// $(this).unbind('played');
 				// if (!this.hasPlayed) {
