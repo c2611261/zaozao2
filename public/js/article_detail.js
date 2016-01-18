@@ -1,8 +1,8 @@
 var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule', 'ngCookies']);
 angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
-	'$http', '$stateParams', '$state', '$location', 
-	'CourseTagService', '$sce', '$cookies','$httpParamSerializer',
-	function($rootScope, $scope, $http, $stateParams, 
+	'$http', '$stateParams', '$state', '$location',
+	'CourseTagService', '$sce', '$cookies', '$httpParamSerializer',
+	function($rootScope, $scope, $http, $stateParams,
 		$state, $location, courseTagSrv, $sce, $cookies, $httpParamSerializer) {
 		if ($stateParams.courseId === undefined) {
 			$state.go('home');
@@ -10,8 +10,8 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.showShare = false;
 		$scope.shareImg = "img/share_400_400_2.png";
 		$scope.courseUrl = $location.absUrl();
-		if(location.href !== $scope.courseUrl){
-			location.href=$scope.courseUrl;
+		if (location.href !== $scope.courseUrl) {
+			location.href = $scope.courseUrl;
 		}
 		console.log('location=', $location);
 		var util = new DomainNameUtil($location);
@@ -61,7 +61,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			};
 		}
 
-		$scope.goToCourseTag = function(tag, $event){
+		$scope.goToCourseTag = function(tag, $event) {
 			console.log('go to course tag');
 			$state.go('course_tags', {
 				courseTagId: tag.id,
@@ -82,6 +82,23 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 		$scope.hideShare = function() {
 			$scope.showShare = false;
+		}
+
+		$scope.showPlayButton = true;
+		$scope.playVideo = function(e) {
+			console.log('course video,', $("#course_video"));
+			$("#course_video")[0].play();
+			
+		}
+
+		$scope.videoEnded = function(e) {
+			console.log('video ended ');
+			$scope.showPlayButton = true;
+		}
+
+		$scope.videoPaused = function(e) {
+			console.log('video paused ');
+			$scope.showPlayButton = true;
 		}
 
 		function configJSAPI() {
@@ -118,7 +135,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 					});
 					var shareDesc = '';
 					console.log('share desc:', $scope.course.introduction);
-					if($scope.course.introduction !== null && $scope.course.introduction !== 'undefined'){
+					if ($scope.course.introduction !== null && $scope.course.introduction !== 'undefined') {
 						shareDesc = $scope.course.introduction;
 					}
 					wx.onMenuShareAppMessage({
@@ -168,3 +185,40 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 	}
 ]);
+
+angularjs.directive('videoLoader', function() {
+	return function(scope, element, attrs) {
+		scope.$watch(attrs.videoLoader, function() {
+
+			$("#course_video").bind('ended', function() {
+				console.log('video ended.');
+				// $(this).unbind('ended');
+				// if (!this.hasPlayed) {
+				// 	return;
+				// }
+				scope.showPlayButton = true;
+				scope.$apply();
+			});
+			$("#course_video").bind('pause', function() {
+				console.log('video paused.');
+				scope.showPlayButton = true;
+				scope.$apply();
+				// $(this).unbind('paused');
+				// if (!this.hasPlayed) {
+				// 	return;
+				// }
+			});
+			$("#course_video").bind('play', function() {
+				console.log('video played.');
+				scope.showPlayButton = false;
+				scope.$apply();
+				// $(this).unbind('played');
+				// if (!this.hasPlayed) {
+				// 	return;
+				// }
+			});
+
+
+		});
+	}
+});

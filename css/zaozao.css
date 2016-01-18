@@ -407,9 +407,25 @@ hr.transparent {
 }
 
 .article_browser{
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    background-size: 100%;
+}
+
+.home_article_browser{
     padding-left: 15px;
     padding-right: 15px;
     margin-right: auto;
     margin-left: auto;
     background-size: 100%;
+}
+
+.video_play_controller{
+    position: absolute;
+    left:40%;
+    top: 40%;
+    font-size: 350%;
+    color:white;
 }
