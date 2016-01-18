@@ -213,7 +213,7 @@ angularjs.directive('videoLoader', function() {
 			});
 			$("#course_video").bind('pause', function() {
 				console.log('video paused.');
-				scope.showPlayButton = true;
+				scope.showPlayButton = false;
 				scope.showVideo = true;
 				// element.attr('controls',true);
 				scope.$apply();
@@ -236,7 +236,7 @@ angularjs.directive('videoLoader', function() {
 			$("#course_video").bind('webkitfullscreenchange mozfullscreenchange fullscreenchange',
 				function(event) {
 					console.log('full screen ', event);
-					alert('show video');
+					
 					var state = document.fullscreenElement ||
 						document.webkitFullscreenElement ||
 						document.mozFullScreenElement ||
