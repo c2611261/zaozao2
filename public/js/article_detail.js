@@ -43,7 +43,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 			$scope.course.videoUrl = $sce.trustAsResourceUrl($scope.course.videoUrl);
 			document.getElementById('article_content').innerHTML = $scope.course.content;
-			video.addSource('mp4',$scope.course.videoUrl);
+			// video.addSource('mp4',$scope.course.videoUrl);
 			configJSAPI();
 		}).error(function(e) {
 
