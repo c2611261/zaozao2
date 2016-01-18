@@ -103,6 +103,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			  // handle end full screen 
 			  console.log('webkitendfullscreen');
 			  $scope.showVideo = false;
+			  $scope.showPlayButton = true;
 			  $scope.$apply();
 		});
 
