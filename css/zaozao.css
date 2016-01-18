@@ -424,8 +424,8 @@ hr.transparent {
 
 .video_play_controller{
     position: absolute;
-    left:40%;
-    top: 40%;
-    font-size: 350%;
+    left:35%;
+    top: 32%;
+    font-size: 500%;
     color:white;
 }
