@@ -32,6 +32,7 @@
     "bootstrap-touch-carousel": "~0.8.0",
     "flickity": "~1.1.2",
     "ngInfiniteScroll": "~1.2.1",
-    "requirejs": "~2.1.22"
+    "requirejs": "~2.1.22",
+    "ngvideo": "~0.4.13"
   }
 }

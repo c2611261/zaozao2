@@ -1,9 +1,11 @@
-var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule', 'ngCookies']);
+var angularjs = angular.module('articleDetailModule', 
+	['courseTagServiceModule', 'ngCookies', 'ngVideo']);
 angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 	'$http', '$stateParams', '$state', '$location',
-	'CourseTagService', '$sce', '$cookies', '$httpParamSerializer',
+	'CourseTagService', '$sce', '$cookies', '$httpParamSerializer','video',
 	function($rootScope, $scope, $http, $stateParams,
-		$state, $location, courseTagSrv, $sce, $cookies, $httpParamSerializer) {
+		$state, $location, courseTagSrv, $sce, $cookies, $httpParamSerializer,
+		video) {
 		if ($stateParams.courseId === undefined) {
 			$state.go('home');
 		}
@@ -11,7 +13,11 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.shareImg = "img/share_400_400_2.png";
 		$scope.courseUrl = $location.absUrl();
 		if (location.href !== $scope.courseUrl) {
-			location.href = $scope.courseUrl;
+			if (location.href.indexOf('isappinstall') == -1) {
+				location.href = $scope.courseUrl;
+			} else {
+				$scope.courseUrl = encodeURI(location.href);
+			}
 		}
 		console.log('location=', $location);
 		var util = new DomainNameUtil($location);
@@ -37,6 +43,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 			$scope.course.videoUrl = $sce.trustAsResourceUrl($scope.course.videoUrl);
 			document.getElementById('article_content').innerHTML = $scope.course.content;
+			video.addSource('mp4',$scope.course.videoUrl);
 			configJSAPI();
 		}).error(function(e) {
 
@@ -85,24 +92,27 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		}
 
 		$scope.showPlayButton = true;
+		$scope.showVideo = false;
 		$scope.playVideo = function(e) {
 			console.log('course video,', $("#course_video"));
 			$("#course_video")[0].play();
-			
+
 		}
 
-		$scope.videoEnded = function(e) {
-			console.log('video ended ');
-			$scope.showPlayButton = true;
-		}
 
-		$scope.videoPaused = function(e) {
-			console.log('video paused ');
-			$scope.showPlayButton = true;
-		}
+
+		// $scope.videoEnded = function(e) {
+		// 	console.log('video ended ');
+		// 	$scope.showPlayButton = true;
+		// }
+
+		// $scope.videoPaused = function(e) {
+		// 	console.log('video paused ');
+		// 	$scope.showPlayButton = true;
+		// }
 
 		function configJSAPI() {
-			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl)
+			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl.replace(/&/g, '%26'))
 				.success(function(e) {
 					console.log(e);
 					var signature = e;
@@ -194,6 +204,7 @@ angularjs.directive('videoLoader', function() {
 				console.log('video ended.');
 				// element.removeAttr('controls');
 				scope.showPlayButton = true;
+				scope.showVideo = false;
 				scope.$apply();
 				// $(this).unbind('ended');
 				// if (!this.hasPlayed) {
@@ -203,6 +214,7 @@ angularjs.directive('videoLoader', function() {
 			$("#course_video").bind('pause', function() {
 				console.log('video paused.');
 				scope.showPlayButton = true;
+				scope.showVideo = true;
 				// element.attr('controls',true);
 				scope.$apply();
 				// $(this).unbind('paused');
@@ -213,6 +225,7 @@ angularjs.directive('videoLoader', function() {
 			$("#course_video").bind('play', function() {
 				console.log('video played.');
 				scope.showPlayButton = false;
+				scope.showVideo = true;
 				// element.attr('controls',true);
 				scope.$apply();
 				// $(this).unbind('played');
@@ -220,7 +233,22 @@ angularjs.directive('videoLoader', function() {
 				// 	return;
 				// }
 			});
+			$("#course_video").bind('webkitfullscreenchange mozfullscreenchange fullscreenchange',
+				function(event) {
+					console.log('full screen ', event);
+					alert('show video');
+					var state = document.fullscreenElement ||
+						document.webkitFullscreenElement ||
+						document.mozFullScreenElement ||
+						document.msFullscreenElement;
+					if(state !== undefined){
+						scope.showVideo = true;
+					}else{
+						scope.showVideo = false;
 
+					}
+					scope.$apply();
+				});
 
 		});
 	}
