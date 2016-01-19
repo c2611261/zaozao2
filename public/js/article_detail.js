@@ -125,6 +125,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		// }
 
 		function configJSAPI() {
+			
 			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl.replace(/&/g, '%26'))
 				.success(function(e) {
 					console.log(e);
@@ -147,7 +148,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 					wx.onMenuShareTimeline({
 						title: $scope.course.name,
 						link: $scope.courseUrl,
-						imgUrl: $scope.course.titleImageUrl,
+						imgUrl: encodeURI($scope.course.titleImageUrl),
 						success: function() {
 							console.log('share success');
 							recordShareFavorite('SHARE');
@@ -165,7 +166,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 						title: $scope.course.name, // 分享标题
 						desc: shareDesc, // 分享描述
 						link: $scope.courseUrl, // 分享链接
-						imgUrl: $scope.course.titleImageUrl, // 分享图标
+						imgUrl: encodeURI($scope.course.titleImageUrl), // 分享图标
 						// 分享类型,music、video或link，不填默认为link
 						// 如果type是music或video，则要提供数据链接，默认为空
 						success: function(res) {
