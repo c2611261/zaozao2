@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="indexModule">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title></title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/zaozao.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    
+</head>
+<body>
+
+    <button id='check' onclick='check()'> check </button>
+    <button id='pay' onclick='pay()'> pay </button>
+
+    <script type="text/javascript">
+        function check() {
+            alert(encodeURI(location.href));
+            $.ajax({
+                    type: 'GET',
+                    url: 'http://www.imzao.com/education/zaozao/wechat/jsapi?url=' + encodeURI(location.href)
+                })
+                .success(function(e) {
+                    console.log(e);
+                    var signature = e;
+                    wx.config({
+                        debug: true,
+                        appId: e.appid,
+                        timestamp: e.timestamp,
+                        nonceStr: e.noncestr,
+                        signature: e.signature,
+                        jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'chooseWXPay']
+                    });
+                });
+
+        }
+
+        function pay() {
+            $.ajax({
+                type: 'POST',
+                url: 'http://www.imzao.com/education/zaozao/wechat/pay/test',
+
+                dataType: 'json',
+                data: {
+                    'product_desc': 'desc',
+                    'product_detail': 'detail',
+                    'price': '100',
+                    'openid': 'oylrrviRhbTDqnuHkStG8m-S5IIA'
+                },
+                success: function(data) {
+                    console.log('response:', data);
+                    wx.chooseWXPay({
+                        timestamp: 0,
+                        nonceStr: 'zaozao',
+                        package: data.prepay_id,
+                        signType: 'MD5',
+                        paySign: data.sign,
+                        success: function(res){
+                            console.log('response from wx pay ', res);
+			    alert('success:', res);	
+                        },
+                        error: function(res){
+                            console.log('error ', res);
+				alert('error:', res);
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
