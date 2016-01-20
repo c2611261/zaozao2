@@ -116,6 +116,12 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 			$event.stopPropagation();
 		}
 
+		$scope.goToCourseDetail = function(course){
+			$state.go('article_detail',{
+				courseId:course.id
+			},{reload:true});
+		}
+
 		// $('#myCarousel').on('slide.bs.carousel', function() {
 
 		// });

@@ -23,9 +23,9 @@
 </div>
 
 <div class="home_news">
-  <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}" ui-sref="article_detail({courseId:course.id})">
+  <div class="col-xs-12 recent-article center" ng-repeat="course in courses" back-image="{{course.imageUrl}}" ng-click="goToCourseDetail(course)">
     <div class="mask white">
-    	<p><a class="light" ui-sref='article_detail({courseId:course.id})'>{{course.name}}</a></p>
+    	<p><a class="light">{{course.name}}</a></p>
           <h4 class="small"><a class="light yellow" ng-repeat="tag in course.tags" ng-click="goToCourseTag(tag, $event)"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a></h4>
     </div>
   </div>
