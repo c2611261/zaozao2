@@ -13,13 +13,13 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.shareImg = "img/share_400_400_2.png";
 		$scope.courseUrl = $location.absUrl();
 		$route.reload();
-		// if (location.href !== $scope.courseUrl) {
-		// 	if (location.href.indexOf('isappinstall') == -1) {
-		// 		location.href = $scope.courseUrl;
-		// 	} else {
-		// 		$scope.courseUrl = encodeURI(location.href);
-		// 	}
-		// }
+		if (location.href !== $scope.courseUrl) {
+			if (location.href.indexOf('isappinstall') == -1) {
+				location.href = $scope.courseUrl;
+			} else {
+				$scope.courseUrl = encodeURI(location.href);
+			}
+		}
 		console.log('location=', window.location.href);
 		var util = new DomainNameUtil($location);
 		$scope.originUrl = window.location.href;
