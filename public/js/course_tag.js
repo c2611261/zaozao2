@@ -52,39 +52,30 @@ controller('CourseTagController', ['$rootScope', '$scope',
 
 		function loadCourses() {
 			$http.get(util.getBackendServiceUrl() +
-					'/course/proposal/query_by_date?tag_id=' +
+					'/course/proposal/query?tag_id=' +
 					$scope.tagId + '&number=' + 3 + '&page_index=' + $scope.currentPageIdx)
 				.success(function(e) {
 					console.log('get course ', e);
 					var num = Object.getOwnPropertyNames(e).length;
 					var lastCourse = null;
-					if (num > 0) {
-
+					if (num > 1) {
 						var tags = null;
-						for (var course in e) {
-							var c = e[course];
-							$scope.courses.push({
-								date: course,
-								course: c
-							});
-							tags = c[0].tags;
-							lastCourse = c;
+						for (var i=0; i<e.length; i++) {
+							$scope.courses.push(e[i]);
 						}
 						$scope.loadBusy = false;
 						$scope.currentPageIdx++;
-						for (var i = 0; i < $scope.courses.length; i++) {
-							var l = $scope.courses[i].course.length;
-							$scope.courses[i].course[l - 1].bottom = "";
-						}
-						if (lastCourse !== null && lastCourse.length > 0) {
-							lastCourse[lastCourse.length - 1].bottom = "browse-bottom";
-						}
+						
 					} else {
 						$scope.loadBusy = true;
 					}
-
-					console.log('couses:', $scope.courses);
-					console.log('course tag:', $scope.courseTag);
+					if($scope.courses.length > 0){
+						for (var i = 0; i < $scope.courses.length-1; i++) {
+							$scope.courses[i].bottom = "";
+						}
+						$scope.courses[$scope.courses.length-1].bottom="browse-bottom";
+					}
+					//console.log('couses:', $scope.courses);
 				}).error(function(e) {
 
 				});

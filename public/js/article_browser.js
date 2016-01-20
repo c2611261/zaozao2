@@ -17,7 +17,7 @@ controller('CourseListController', ['$rootScope', '$scope', '$http', '$location'
 			}, 0);
 		}).appendTo($body);
 
-		function refresh() {
+		function refresh() { 
 			$scope.courses = [];
 			$scope.loadBusy = false;
 			$scope.currentPageIdx = 0;
@@ -53,34 +53,32 @@ controller('CourseListController', ['$rootScope', '$scope', '$http', '$location'
 		}
 
 		function loadCourses() {
-			console.log('load cournses ', $scope.currentPageIdx);
+			console.log('load course ', $scope.currentPageIdx);
 			$http.get(util.getBackendServiceUrl() +
-					'/course/proposal/query_by_date?' + 'number=' + 3 + "&page_index=" + $scope.currentPageIdx)
+					'/course/proposal/query?' + 'number=' + 3 + "&page_index=" + $scope.currentPageIdx)
 				.success(function(e) {
 					console.log('get course ', e);
 					var num = Object.getOwnPropertyNames(e).length;
-					if (num > 0) {
-						var lastCourse = null;
-						for (var course in e) {
-							var c = e[course];
-							$scope.courses.push({
-								date: course,
-								course: c
-							});
-							lastCourse = c;
+					console.log('get course count:', num);
+					if (num > 1) {
+						for (var i=0; i<e.length; i++) {
+							$scope.courses.push(e[i]);
 						}
-						for (var i = 0; i < $scope.courses.length; i++) {
-							$scope.courses[i].course[$scope.courses[i].course.length - 1].bottom = "";
-						}
-						if (lastCourse !== null && lastCourse.length > 0) {
-							lastCourse[lastCourse.length - 1].bottom = "browse-bottom";
-						}
+						
 						$scope.currentPageIdx++;
 						$scope.loadBusy = false;
 					} else {
 						$scope.loadBusy = true;
 						$scope.stopLoading = true;
 					}
+					if($scope.courses.length > 0){
+						for (var i = 0; i < $scope.courses.length-1; i++) {
+							$scope.courses[i].bottom = "";
+						}
+						$scope.courses[$scope.courses.length-1].bottom="browse-bottom";
+					}
+					//console.log('total course ', $scope.courses);
+					console.log('total number of courses ', $scope.courses.length);
 				});
 		}
 	}
