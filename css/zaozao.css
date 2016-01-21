@@ -340,7 +340,7 @@ hr.transparent {
 /* user-profile */
 
 .cover-background {
-    background-image: url("/img/...");
+    background-image: url("/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/Blurred_backgrounds_by Dreamstale_(6).jpg");
     height: 100px;
 }
 .avatar {
@@ -358,11 +358,36 @@ hr.transparent {
     margin: 40px 0 30px 0;
 }
 
-.baby-info {
+/*.baby-info {
     margin-top: 50px;
     margin-bottom: 20%;
     padding: 30px 50px 30px 50px;
     border-radius: 5px;
+}*/
+
+.baby-info {
+    padding: 5px;
+}
+
+.baby-info .light-brown {
+    border-radius: 5px;
+    padding: 10px 10px 20px 10px;
+}
+
+.baby-info .green {
+    border-radius: 5px;
+    padding: 15px 10px 20px 10px;
+}
+
+.baby-info .yellow-background {
+    padding: 30px 10px 40px 10px;
+    margin: 0px;
+}
+
+.baby-info .one-edge-shadow {
+    -webkit-box-shadow: 0 20px 50px -6px rgba(0,0,0,0.2);
+       -moz-box-shadow: 0 20px 50px -6px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px -6px rgba(0,0,0,0.2);
 }
 
 .outline {

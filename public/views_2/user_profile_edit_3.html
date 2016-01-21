@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>信息修改</title>
+  <title>我的信息</title>
 
   <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
   <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -48,29 +48,39 @@
     </div>
   </div>
 
-  <div class="col-xs-12 light-brown baby-info">
-    <div class="center">
-      <p>宝宝信息</p>
+  <div class="col-xs-12 center" style="margin-top: 20px">
+    <p>宝宝信息</p>
+  </div>
+
+  <div class="col-xs-6 baby-info">
+    <div class="center green one-edge-shadow" style="margin-bottom: 10px">
+      <p class="white" style="margin-bottom: 10px">宝宝姓名</p>
+      <div class="col-md-4">
+        <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+      </div>
     </div>
-    <hr>
-    <div class="col-xs-12">
-    <form class="form-horizontal">
-      <fieldset>
-
-<!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="textinput">宝宝姓名</label>  
-          <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-          </div>
-        </div>
-
-<!-- Select Basic -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="selectbasic">出生年</label>
-            <div class="col-md-4">
-            <select id="selectbasic" name="selectbasic" class="form-control">
+    <div class="center green one-edge-shadow">
+      <p class="white"style="margin-bottom: 10px">宝宝性别</p>
+      <div class="radio">
+            <label for="radios-0">
+            <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+            男
+            </label>
+            </div>
+            <div class="radio">
+            <label for="radios-1">
+            <input type="radio" name="radios" id="radios-1" value="2">
+            女
+            </label>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6 baby-info">
+    <div class="center green one-edge-shadow">
+      <p class="white"style="margin-bottom: 10px">出生日期</p>
+      <div class="col-xs-2">年</div>
+      <div class="col-xs-8">
+      <select id="selectbasic" name="selectbasic" class="form-control">
               <option value="1">2010</option>
               <option value="2">2011</option>
               <option value="">2012</option>
@@ -78,15 +88,11 @@
               <option value="">2014</option>
               <option value="">2015</option>
               <option value="">2016</option>
-            </select>
-            </div>
-        </div>
-
-<!-- Select Basic -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="selectbasic">月</label>
-            <div class="col-md-4">
-            <select id="selectbasic" name="selectbasic" class="form-control">
+      </select>
+      </div>
+      <div class="col-xs-2">月</div>
+      <div class="col-xs-8">
+      <select id="selectbasic" name="selectbasic" class="form-control">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="">3</option>
@@ -99,15 +105,11 @@
               <option value="">10</option>
               <option value="">11</option>
               <option value="">12</option>
-            </select>
-            </div>
-        </div>
-
-<!-- Select Basic -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="selectbasic">日</label>
-          <div class="col-md-4">
-            <select id="selectbasic" name="selectbasic" class="form-control">
+      </select>
+      </div>
+      <div class="col-xs-2">日</div>
+      <div class="col-xs-8">
+      <select id="selectbasic" name="selectbasic" class="form-control">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="">3</option>
@@ -140,37 +142,20 @@
             <option value="">30</option>
             <option value="">31</option>
             </select>
-          </div>
         </div>
-
-<!-- Multiple Radios -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="radios">宝宝性别</label>
-          <div class="col-md-4">
-            <div class="radio">
-            <label for="radios-0">
-            <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-            男
-            </label>
-            </div>
-            <div class="radio">
-            <label for="radios-1">
-            <input type="radio" name="radios" id="radios-1" value="2">
-            女
-            </label>
-            </div>
-          </div>
-        </div>
-
-      </fieldset>
-    </form>
     </div>
-    <div class="center">
-      <a href="#" class="btn btn-submit-light-brown" role="button">确认</a>
+  </div>
+  
+  <div class="col-xs-6 baby-info">
+    <div class="center yellow-background">
+      <a style="color: #333;"href="">确定</a>
     </div>
   </div>
 
+
+  </div>
 </div>
+
 
 <div class="container navbar-header navbar-fixed-bottom">
   <div class="col-xs-6 center"><a class="light" href="..."><p class="bot-nav"><i class="fa fa-home"></i></p><p class="small bot-nav">首页</p></a></div>
