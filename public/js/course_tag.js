@@ -1,6 +1,6 @@
 angular.module('courseTagModule', ['ngRoute', 'courseTagServiceModule', 'infinite-scroll', 'mgcrea.pullToRefresh']).
 config(['$locationProvider', function($locationProvider) {
-	$locationProvider.html5Mode(true);
+	//$locationProvider.html5Mode(true);
 }]).
 controller('CourseTagController', ['$rootScope', '$scope',
 	'$http', '$location', 'CourseTagService', '$stateParams', '$state',

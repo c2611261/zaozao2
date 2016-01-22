@@ -12,14 +12,6 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.showShare = false;
 		$scope.shareImg = "img/share_400_400_2.png";
 		$scope.courseUrl = $location.absUrl();
-		// $route.reload();
-		// if (location.href !== $scope.courseUrl) {
-		// 	if (location.href.indexOf('isappinstall') == -1) {
-		// 		location.href = $scope.courseUrl;
-		// 	} else {
-		// 		$scope.courseUrl = encodeURI(location.href);
-		// 	}
-		// }
 		console.log('location=', window.location.href);
 		var util = new DomainNameUtil($location);
 		$scope.originUrl = window.location.href;
@@ -126,8 +118,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		// }
 
 		function configJSAPI() {
-			
-			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl.replace(/&/g, '%26'))
+			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl.split('#')[0].replace('&', '%26'))
 				.success(function(e) {
 					console.log(e);
 					var signature = e;
