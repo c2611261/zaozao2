@@ -25,18 +25,8 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 				$iframe.off('load').remove();
 			}, 0);
 		}).appendTo($body);
-
-		if ($location.search().code !== undefined) {
-			$http.get(util.getBackendServiceUrl() +
-					"/wechat/login?code=" + $location.search().code + "&state=" + $location.search().state)
-				.success(function(e) {
-					console.log('get token:', e);
-					if (e !== '') {
-						$cookies.put('access_token', e);
-					}
-				}).error(function(e) {
-					console.log(e);
-				});
+		if($location.search().token !== undefined){
+			$cookies.put('access_token', $location.search().token);
 		}
 
 		$http.get(util.getBackendServiceUrl() + "/course_tags")
@@ -63,7 +53,7 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 				
 			});
 
-		$http.get(util.getBackendServiceUrl() + "/course/proposal/query?number=3")
+		$http.get(util.getBackendServiceUrl() + "/course/proposal/query_home_courses")
 			.success(function(e) {
 				console.log('get course ', e);
 				$scope.courses = e;
