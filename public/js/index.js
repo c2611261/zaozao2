@@ -3,7 +3,7 @@ angular.module('indexModule', ['ngRoute',
 	'angular-gestures', 'ngAnimate', 'ngCookies'
 ]).
 config(function($locationProvider, hammerDefaultOptsProvider) {
-	$locationProvider.html5Mode(true);
+	//$locationProvider.html5Mode(true);
 	hammerDefaultOptsProvider.set({
 		recognizers: [
 			[Hammer.Swipe, {
