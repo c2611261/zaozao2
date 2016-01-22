@@ -32,7 +32,8 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		}
 		console.log('token=', token);
 		if(token !== null){
-			$cookies.put('access_token', $location.search().token);
+			console.log('set token on cookie');
+			$cookies.put('access_token', token);
 		}
 
 		$http.get(util.getBackendServiceUrl() + "/course_tags")

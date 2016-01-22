@@ -15,6 +15,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		console.log('location=', window.location.href);
 		var util = new DomainNameUtil($location);
 		$scope.originUrl = window.location.href;
+		console.log('get access token:', $cookies.get('access_token'));
 		$http.get(util.getBackendServiceUrl() +
 			'/course/proposal/' + $stateParams.courseId, {
 				headers: {
