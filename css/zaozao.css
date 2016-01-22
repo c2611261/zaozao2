@@ -1,3 +1,7 @@
+a:hover {
+    text-decoration: none;
+}
+
 a.light{
     color: #fff;
 }
@@ -35,6 +39,15 @@ a.dark:hover {
 .col-lg-3 {
     /*border: 1px solid #222;*/	
 }
+
+.vertical-middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+} 
+
 
 .yellow {
     color: #FADA30;
@@ -340,7 +353,7 @@ hr.transparent {
 /* user-profile */
 
 .cover-background {
-    background-image: url("/Users/zenchen/Documents/works/zaozao/website/zaozao2/img/Blurred_backgrounds_by Dreamstale_(6).jpg");
+    background-color: #FADA30;
     height: 100px;
 }
 .avatar {
@@ -355,7 +368,7 @@ hr.transparent {
 
 .user-name {
     padding: 0 50px 0 50px;
-    margin: 40px 0 30px 0;
+    margin: 20px 0 30px 0;
 }
 
 /*.baby-info {
@@ -380,7 +393,7 @@ hr.transparent {
 }
 
 .baby-info .yellow-background {
-    padding: 30px 10px 40px 10px;
+    padding: 10px;
     margin: 0px;
 }
 

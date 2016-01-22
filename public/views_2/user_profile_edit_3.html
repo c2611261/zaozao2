@@ -38,13 +38,19 @@
  </head>
 
 <body>
-<div class="container">
+<div class="container browse-bottom">
   <div class="col-xs-12 one-edge-shadow">
     <div class="row cover-background">     
     </div>
-    <img src="http://tympanus.net/Freebies/Cardio/img/team/team3.jpg" alt="" class="avatar">
+    <img src="http://tympanus.net/Freebies/Cardio/img/team/team1.jpg" alt="" class="avatar">
+    <span class="fa-stack fa-lg" style="margin: 10px 0 0 -30px; z-index: 2">
+      <a href="#">
+      <i class="fa fa-circle fa-stack-2x green-text"></i>
+      <i class="fa fa-camera fa-stack-1x fa-inverse"></i>
+      </a>
+    </span>
     <div class="user-name center">
-      <p>用户名和头像都是不能修改的，和微信号绑定</p>
+      <input id="textinput" name="textinput" type="text" placeholder="用户名和头像都可以修改（初始头像和用户名与微信绑定）" class="form-control input-md">
     </div>
   </div>
 
@@ -55,8 +61,10 @@
   <div class="col-xs-6 baby-info">
     <div class="center green one-edge-shadow" style="margin-bottom: 10px">
       <p class="white" style="margin-bottom: 10px">宝宝姓名</p>
-      <div class="col-md-4">
-        <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+      <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <input id="textinput" name="textinput" type="text" placeholder="王二狗" class="form-control input-md">
+      </div>
       </div>
     </div>
     <div class="center green one-edge-shadow">
@@ -77,8 +85,11 @@
   </div>
   <div class="col-xs-6 baby-info">
     <div class="center green one-edge-shadow">
+      
       <p class="white"style="margin-bottom: 10px">出生日期</p>
-      <div class="col-xs-2">年</div>
+
+      <div class="row" style="margin-bottom: 10px;">
+      <div class="col-xs-2" style="margin-top: 10px;">年</div>
       <div class="col-xs-8">
       <select id="selectbasic" name="selectbasic" class="form-control">
               <option value="1">2010</option>
@@ -90,7 +101,9 @@
               <option value="">2016</option>
       </select>
       </div>
-      <div class="col-xs-2">月</div>
+    </div>
+    <div class="row" style="margin-bottom: 10px">
+      <div class="col-xs-2" style="margin-top: 10px;">月</div>
       <div class="col-xs-8">
       <select id="selectbasic" name="selectbasic" class="form-control">
               <option value="1">1</option>
@@ -107,7 +120,9 @@
               <option value="">12</option>
       </select>
       </div>
-      <div class="col-xs-2">日</div>
+    </div>
+    <div class="row" style="margin-bottom: 10px">
+      <div class="col-xs-2" style="margin-top: 10px;">日</div>
       <div class="col-xs-8">
       <select id="selectbasic" name="selectbasic" class="form-control">
             <option value="1">1</option>
@@ -143,13 +158,16 @@
             <option value="">31</option>
             </select>
         </div>
+        </div>
     </div>
   </div>
   
   <div class="col-xs-6 baby-info">
+    <a style="color: #333;"href="">
     <div class="center yellow-background">
-      <a style="color: #333;"href="">确定</a>
+      确定
     </div>
+    </a>
   </div>
 
 
