@@ -118,6 +118,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		// }
 
 		function configJSAPI() {
+			console.log('js api config:', $scope.courseUrl);
 			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $scope.courseUrl.split('#')[0].replace('&', '%26'))
 				.success(function(e) {
 					console.log(e);

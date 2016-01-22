@@ -25,7 +25,13 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 				$iframe.off('load').remove();
 			}, 0);
 		}).appendTo($body);
-		if($location.search().token !== undefined){
+		var token = null;
+		if($location.absUrl().indexOf('token=') > -1){
+			token = $location.absUrl().split('token=')[1];
+			token = token.split('#')[0];
+		}
+		console.log('token=', token);
+		if(token !== null){
 			$cookies.put('access_token', $location.search().token);
 		}
 
