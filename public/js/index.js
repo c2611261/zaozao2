@@ -25,13 +25,9 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 				$iframe.off('load').remove();
 			}, 0);
 		}).appendTo($body);
-		var token = null;
-		if($location.absUrl().indexOf('token=') > -1){
-			token = $location.absUrl().split('token=')[1];
-			token = token.split('#')[0];
-		}
-		console.log('token=', token);
-		if(token !== null){
+		var token = $location.search().token;
+		console.log('locaiton token:',$location.search().token);
+		if(token !== undefined){
 			console.log('set token on cookie');
 			$cookies.put('access_token', token);
 		}
