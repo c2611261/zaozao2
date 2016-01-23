@@ -329,6 +329,16 @@ hr.star-primary:after {
     margin-bottom: 5px;
 }
 
+.modal-footer {
+    text-align: center;
+}
+
+.modal-sm {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 40%;
+}
+
 /* article-detail */
 .article-body {
     padding: 0 8% 0 8%;
@@ -467,3 +477,5 @@ hr.transparent {
     font-size: 500%;
     color:white;
 }
+
+
