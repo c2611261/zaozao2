@@ -25,7 +25,6 @@ angularjs.controller('UserProfileController', ['$rootScope', '$scope',
 		}).error(function(e) {
 
 		});
-
 	}
 ]);
 

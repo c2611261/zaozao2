@@ -1,0 +1,17 @@
+<div class="article_browser" infinite-scroll="loadingCourses()" 
+infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
+<ul pull-to-refresh="pullToRefresh()"  style="padding-left:0px">
+	<div ng-repeat="course in courses" ng-model="course" ng-class="course.bottom">
+
+			<div class="col-xs-12 recent-article center" ng-style="background(course)" >
+				<i class="fa fa-times white" style="float: right; margin-top: 10px; margin-right: 10px" ng-click="removeFavorite(course)"></i>
+		        <div ui-sref='article_detail({courseId:course.id})' class="mask white">
+		        	<p class="light">{{course.name}}</p>
+         			<h4 class="small"><a class="light yellow" ng-repeat="tag in course.tags" ng-click="goToCourseTag(tag, $event)"><i class="fa fa-tag"></i>&nbsp;{{tag.name}}&nbsp;&nbsp;&nbsp;</a></h4>
+		        </div>
+		    </div> 
+		<div style='clear: both;'></div>
+	</div>
+	
+</ul>
+</div>

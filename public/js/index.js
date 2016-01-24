@@ -1,6 +1,6 @@
 angular.module('indexModule', ['ngRoute',
 	'ui.router', 'courseTagModule', 'courseListModule', 'articleDetailModule',
-	'angular-gestures', 'ngAnimate', 'ngCookies', 'userProfileModule'
+	'angular-gestures', 'ngAnimate', 'ngCookies', 'userProfileModule','favoriteModule'
 ]).
 config(function($locationProvider, hammerDefaultOptsProvider) {
 	//$locationProvider.html5Mode(true);
@@ -166,6 +166,10 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		url: '/user_profile_edit',
 		templateUrl: 'public/views/user_profile_edit.html',
 		controller: 'UserProfileEditController'
+	}).state('favorite', {
+		url: '/favorite',
+		templateUrl: 'public/views/favorite.html',
+		controller: 'FavoriteController'
 	});
 	$urlRouterProvider.otherwise('/');
 });
