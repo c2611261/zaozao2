@@ -1,6 +1,6 @@
 angular.module('indexModule', ['ngRoute',
 	'ui.router', 'courseTagModule', 'courseListModule', 'articleDetailModule',
-	'angular-gestures', 'ngAnimate', 'ngCookies', 'userProfileModule','favoriteModule'
+	'angular-gestures', 'ngAnimate', 'ngCookies', 'userProfileModule', 'favoriteModule'
 ]).
 config(function($locationProvider, hammerDefaultOptsProvider) {
 	//$locationProvider.html5Mode(true);
@@ -16,7 +16,7 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 	'$cookies', '$state',
 	function($rootScope, $scope, $http, $location, $cookies, $state) {
 		var util = new DomainNameUtil($location);
-		
+
 		$rootScope.title = '早早';
 		var $body = $('body');
 		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
@@ -30,11 +30,11 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		if (token !== undefined) {
 			console.log('set token on cookie');
 			$cookies.put('access_token', token);
-		}else{
+		} else {
 			//console.log('not login');
 			//console.log('remove access token from cookies');
 			//$cookies.put('access_token', undefined);
-		} 
+		}
 
 		$http.get(util.getBackendServiceUrl() + "/course_tags")
 			.success(function(e) {
@@ -172,4 +172,17 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		controller: 'FavoriteController'
 	});
 	$urlRouterProvider.otherwise('/');
-});
+}).run(['$rootScope', '$location', '$state', '$cookies',
+	function($rootScope, $location, $state, $cookies) {
+		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+			console.log('state changed to ' + toState.name + 'to params', toParams, ', from state ' + fromState.name + ", from params ", fromParams);
+			if (toState.name !== 'user_profile') {
+				return;
+			}
+			if ($cookies.get('access_token') === undefined) {
+				window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfe34c2ab5b5c5813&redirect_uri=http%3a%2f%2fwww.imzao.com%2feducation%2fzaozao%2fwechat%2flogin&response_type=code&scope=snsapi_userinfo&state=WECHAT_SERVICE#wechat_redirect';
+				return;
+			}
+		});
+	}
+]);;
