@@ -18,6 +18,10 @@ angularjs.controller('UserProfileController', ['$rootScope', '$scope',
 				console.log('the user doesnot have child');
 				$state.go('user_profile_edit');
 			}
+			var child = $scope.userInfo.child;
+			var birthdate = new Date(child.childBirthdate);
+			$scope.birthdate = birthdate.getFullYear()+'.'+(birthdate.getMonth()+1)+"."+birthdate.getDate();
+			$scope.genderText = child.gender === 'MALE'?'男孩':'女孩';
 		}).error(function(e) {
 
 		});
