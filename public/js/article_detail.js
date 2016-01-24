@@ -1,8 +1,7 @@
-var angularjs = angular.module('articleDetailModule', 
-	['courseTagServiceModule', 'ngCookies', 'ngVideo']);
+var angularjs = angular.module('articleDetailModule', ['courseTagServiceModule', 'ngCookies', 'ngVideo']);
 angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 	'$http', '$stateParams', '$state', '$location',
-	'CourseTagService', '$sce', '$cookies', '$httpParamSerializer','video','$route',
+	'CourseTagService', '$sce', '$cookies', '$httpParamSerializer', 'video', '$route',
 	function($rootScope, $scope, $http, $stateParams,
 		$state, $location, courseTagSrv, $sce, $cookies, $httpParamSerializer,
 		video, $route) {
@@ -10,7 +9,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			$state.go('home');
 		}
 		var token = $location.search().token;
-		if(token !== undefined){
+		if (token !== undefined) {
 			console.log('set token on cookie');
 			$cookies.put('access_token', token);
 		}
@@ -44,11 +43,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			$scope.course.videoUrl = $sce.trustAsResourceUrl($scope.course.videoUrl);
 			document.getElementById('article_content').innerHTML = $scope.course.content;
 			// video.addSource('mp4',$scope.course.videoUrl);
-			if($scope.course.favorited === true){
-				$scope.favoriteCls = 'fontawesome-heart';
-			}else{
-				$scope.favoriteCls = 'fontawesome-heart-empty';
-			}
+			setFavoriteDom();
 			configJSAPI();
 		}).error(function(e) {
 
@@ -85,32 +80,38 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.share = function() {
 			console.log('share');
 			$scope.showShare = true;
-			recordShareFavorite('SHARE');
+			// var ret = recordShareFavorite('SHARE');
+			// ret.success(function(e){
+
+			// });
 		}
 
 		$scope.favorite = function() {
 			console.log('favorite');
-			if($cookies.get('access_token') === undefined){
+			if ($cookies.get('access_token') === undefined) {
 				var redirect = encodeURI($scope.courseUrl).replace('#', '%23');
-				console.log('redirect=',encodeURI($scope.courseUrl).replace('#', '%23'));
-				window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfe34c2ab5b5c5813&redirect_uri=http%3a%2f%2fwww.imzao.com%2feducation%2fzaozao%2fwechat%2flogin&response_type=code&scope=snsapi_userinfo&state=WECHAT_SERVICE-'+ redirect +'#wechat_redirect';
+				console.log('redirect=', encodeURI($scope.courseUrl).replace('#', '%23'));
+				window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfe34c2ab5b5c5813&redirect_uri=http%3a%2f%2fwww.imzao.com%2feducation%2fzaozao%2fwechat%2flogin&response_type=code&scope=snsapi_userinfo&state=WECHAT_SERVICE-' + redirect + '#wechat_redirect';
 				return;
 			}
 			var promise = recordShareFavorite('FAVORITE');
-			promise.success(function(e){
-				console.log('favorite success ',e);
-				if($scope.course.favorited === false){
-					console.log('add favorite');
-					$scope.course.favorited = true;
-					$scope.favoriteCls = 'fontawesome-heart';
-				}else{
-					console.log('remove favorite');
-					$scope.course.favorited = false;
-					$scope.favoriteCls = 'fontawesome-heart-empty';
-				}
-			}).error(function(e){
+			promise.success(function(e) {
+				console.log('favorite success ', e);
+				$scope.course.favorited = !$scope.course.favorited;
+				setFavoriteDom();
+			}).error(function(e) {
 				console.log('share failed');
 			});
+		}
+
+		function setFavoriteDom() {
+			if ($scope.course.favorited === true) {
+				$scope.favoriteCls = 'fontawesome-heart';
+				$scope.favoriteText = '已收藏';
+			} else {
+				$scope.favoriteCls = 'fontawesome-heart-empty';
+				$scope.favoriteText = '收藏';
+			}
 		}
 
 		$scope.hideShare = function() {
@@ -125,19 +126,19 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 		}
 
-		document.getElementById('course_video').addEventListener('webkitendfullscreen', function (e) { 
-			  // handle end full screen 
-			  console.log('webkitendfullscreen');
-			  $scope.showVideo = false;
-			  $scope.showPlayButton = true;
-			  $scope.$apply();
+		document.getElementById('course_video').addEventListener('webkitendfullscreen', function(e) {
+			// handle end full screen 
+			console.log('webkitendfullscreen');
+			$scope.showVideo = false;
+			$scope.showPlayButton = true;
+			$scope.$apply();
 		});
 
-		document.getElementById('course_video').addEventListener('webkitenterfullscreen', function (e) { 
-			  // handle end full screen 
-			  console.log('webkitenterfullscreen');
-			  $scope.showVideo = true;
-			  $scope.$apply();
+		document.getElementById('course_video').addEventListener('webkitenterfullscreen', function(e) {
+			// handle end full screen 
+			console.log('webkitenterfullscreen');
+			$scope.showVideo = true;
+			$scope.$apply();
 		});
 
 		// $scope.videoEnded = function(e) {
@@ -177,10 +178,12 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 						imgUrl: encodeURI($scope.course.titleImageUrl),
 						success: function() {
 							console.log('share success');
+							scope.showShare = false;
 							recordShareFavorite('SHARE');
 						},
 						cancel: function() {
 							console.log('cancel share');
+							scope.showShare = false;
 						}
 					});
 					var shareDesc = '';
@@ -199,10 +202,12 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 							// 用户确认分享后执行的回调函数
 							console.log('share success');
 							recordShareFavorite('SHARE');
+							scope.showShare = false;
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
 							console.log('cancel share');
+							scope.showShare = false;
 						},
 						fail: function(res) {
 
@@ -214,8 +219,8 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		}
 
 		function recordShareFavorite(activity) {
-			var link=util.getBackendServiceUrl() + '/course/interactive';
-			if('FAVORITE' === activity){
+			var link = util.getBackendServiceUrl() + '/course/interactive';
+			if ('FAVORITE' === activity) {
 				link = util.getBackendServiceUrl() + '/favorite';
 			}
 			var req = {
@@ -277,20 +282,20 @@ angularjs.directive('videoLoader', function() {
 			$("#course_video").bind('webkitfullscreenchange mozfullscreenchange fullscreenchange',
 				function(event) {
 					console.log('full screen ', event);
-					
+
 					var state = document.fullscreenElement ||
 						document.webkitFullscreenElement ||
 						document.mozFullScreenElement ||
 						document.msFullscreenElement;
-					if(state !== undefined){
+					if (state !== undefined) {
 						scope.showVideo = true;
-					}else{
+					} else {
 						scope.showVideo = false;
 
 					}
 					scope.$apply();
 				});
-			
+
 		});
 	}
 });
