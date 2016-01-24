@@ -2,10 +2,10 @@
   <div class="col-xs-12 one-edge-shadow">
     <div class="row cover-background">     
     </div>
-    <img src="http://tympanus.net/Freebies/Cardio/img/team/team1.jpg" alt="" class="avatar">
+    <img ng-src="{{userInfo.headimgurl}}"  alt="" class="avatar" style="width=100%">
     <a href="/Users/zchen2/Documents/works/zaozao/website/zaozao2/public/views_2/user_profile_edit_3.html"><i class="fa fa-pencil-square-o fa-2x green-text" style="margin-left: 10px"></i></a>
     <div class="user-name center">
-      <p>用户名和头像都可以修改（初始头像和用户名与微信绑定）</p>
+      <p>{{userInfo.nickname}}</p>
     </div>
     <div class="user-name center">
       <!--<h4 class="small yellow">22</h4>-->

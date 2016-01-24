@@ -1,0 +1,89 @@
+<div class="container browse-bottom">
+  <form name="childdata">
+    <div class="col-xs-12 one-edge-shadow">
+      <div class="row cover-background">     
+      </div>
+      <img ng-src="{{userInfo.headimgurl}}" alt="" class="avatar">
+      <span class="fa-stack fa-lg" style="margin: 10px 0 0 -30px; z-index: 2">
+        <a href="#">
+        <i class="fa fa-circle fa-stack-2x green-text"></i>
+        <i class="fa fa-camera fa-stack-1x fa-inverse"></i>
+        </a>
+      </span>
+      <div class="user-name center">
+        <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md center" ng-model="userInfo.nickname">
+      </div>
+    </div>
+
+    <div class="col-xs-12 center" style="margin-top: 20px">
+      <p>宝宝信息</p>
+    </div>
+
+    <div class="col-xs-6 baby-info">
+      <div class="center green one-edge-shadow" style="margin-bottom: 10px">
+        <p class="white" style="margin-bottom: 10px">宝宝姓名</p>
+        <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <input id="textinput" name="textinput" type="text" placeholder="宝宝姓名" class="form-control input-md" ng-model="userInfo.child.childName" required>
+        </div>
+        </div>
+      </div>
+      <div class="center green one-edge-shadow">
+        <p class="white"style="margin-bottom: 10px">宝宝性别</p>
+        <div class="radio">
+              <label for="radios-0">
+              <input type="radio" name="radios" id="radios-0" ng-model="userInfo.child.gender" value="MALE">
+              男
+              </label>
+              </div>
+              <div class="radio">
+              <label for="radios-1">
+              <input type="radio" name="radios" id="radios-1" ng-model="userInfo.child.gender" value="FEMALE">
+              女
+              </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-xs-6 baby-info">
+      <div class="center green one-edge-shadow">
+        
+        <p class="white"style="margin-bottom: 10px">出生日期</p>
+
+        <div class="row" style="margin-bottom: 10px;">
+        <div class="col-xs-2" style="margin-top: 10px;">年</div>
+        <div class="col-xs-8">
+        <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthYear" ng-options="y for y in year" ng-change="changeYearMonth(childBirthYear, childBirthMonth)" required>
+                
+        </select>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 10px">
+        <div class="col-xs-2" style="margin-top: 10px;">月</div>
+        <div class="col-xs-8">
+        <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthMonth" ng-options="m for m in month" ng-change="changeYearMonth(childBirthYear, childBirthMonth)" required>
+                
+        </select>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 10px">
+        <div class="col-xs-2" style="margin-top: 10px;">日</div>
+        <div class="col-xs-8">
+          <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthDay" ng-options="d for d in day" required>
+          </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xs-6 baby-info">
+      <a style="color: #333;"href="">
+      <button class="center yellow-background" style="width:100%" ng-disabled="childdata.$invalid" ng-click="submit()">
+        确定
+      </button>
+      </a>
+    </div>
+  </form>
+
+  </div>

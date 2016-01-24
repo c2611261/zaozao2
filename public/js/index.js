@@ -16,7 +16,7 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 	'$cookies', '$state',
 	function($rootScope, $scope, $http, $location, $cookies, $state) {
 		var util = new DomainNameUtil($location);
-		console.log('params=', $location.search().code);
+		
 		$rootScope.title = '早早';
 		var $body = $('body');
 		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
@@ -159,9 +159,13 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		templateUrl: 'public/views/article_detail.html',
 		controller: 'ArticleDetailController'
 	}).state('user_profile', {
-		url: '/user_profile?userId',
+		url: '/user_profile',
 		templateUrl: 'public/views/user_profile.html',
 		controller: 'UserProfileController'
+	}).state('user_profile_edit', {
+		url: '/user_profile_edit',
+		templateUrl: 'public/views/user_profile_edit.html',
+		controller: 'UserProfileEditController'
 	});
 	$urlRouterProvider.otherwise('/');
 });
