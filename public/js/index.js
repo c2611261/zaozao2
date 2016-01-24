@@ -1,6 +1,6 @@
-angular.module('indexModule', ['ngRoute', 
+angular.module('indexModule', ['ngRoute',
 	'ui.router', 'courseTagModule', 'courseListModule', 'articleDetailModule',
-	'angular-gestures', 'ngAnimate', 'ngCookies'
+	'angular-gestures', 'ngAnimate', 'ngCookies', 'userProfileModule'
 ]).
 config(function($locationProvider, hammerDefaultOptsProvider) {
 	//$locationProvider.html5Mode(true);
@@ -13,7 +13,7 @@ config(function($locationProvider, hammerDefaultOptsProvider) {
 	});
 }).
 controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
-	 '$cookies', '$state',
+	'$cookies', '$state',
 	function($rootScope, $scope, $http, $location, $cookies, $state) {
 		var util = new DomainNameUtil($location);
 		console.log('params=', $location.search().code);
@@ -26,15 +26,15 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 			}, 0);
 		}).appendTo($body);
 		var token = $location.search().token;
-		console.log('locaiton token:',$location.search().token);
-		if(token !== undefined){
+		console.log('locaiton token:', $location.search().token);
+		if (token !== undefined) {
 			console.log('set token on cookie');
 			$cookies.put('access_token', token);
 		}else{
 			//console.log('not login');
 			//console.log('remove access token from cookies');
 			//$cookies.put('access_token', undefined);
-		}
+		} 
 
 		$http.get(util.getBackendServiceUrl() + "/course_tags")
 			.success(function(e) {
@@ -49,15 +49,19 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 					console.log('locaiton:', $location.path());
 					if (i > 3) {
 						$scope.courseTags[i].enabled = false;
-						$scope.courseTags[i].opacity = {opacity:0.5};
+						$scope.courseTags[i].opacity = {
+							opacity: 0.5
+						};
 					} else {
 						$scope.courseTags[i].enabled = true;
-						$scope.courseTags[i].opacity = {opacity:1};
-						
+						$scope.courseTags[i].opacity = {
+							opacity: 1
+						};
+
 					}
 				}
 			}).error(function(e) {
-				
+
 			});
 
 		$http.get(util.getBackendServiceUrl() + "/course/proposal/query_home_courses")
@@ -113,10 +117,12 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 			$event.stopPropagation();
 		}
 
-		$scope.goToCourseDetail = function(course){
-			$state.go('article_detail',{
-				courseId:course.id
-			},{reload:true});
+		$scope.goToCourseDetail = function(course) {
+			$state.go('article_detail', {
+				courseId: course.id
+			}, {
+				reload: true
+			});
 		}
 
 		// $('#myCarousel').on('slide.bs.carousel', function() {
@@ -152,6 +158,10 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		url: '/article_detail?courseId',
 		templateUrl: 'public/views/article_detail.html',
 		controller: 'ArticleDetailController'
+	}).state('user_profile', {
+		url: '/user_profile?userId',
+		templateUrl: 'public/views/user_profile.html',
+		controller: 'UserProfileController'
 	});
 	$urlRouterProvider.otherwise('/');
 });
