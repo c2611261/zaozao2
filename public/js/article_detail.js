@@ -87,13 +87,18 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			console.log('favorite');
 			var promise = recordShareFavorite('FAVORITE');
 			promise.success(function(e){
-				if(e === true){
+				console.log('favorite success ',e);
+				if($scope.course.favorited === false){
+					console.log('add favorite');
+					$scope.course.favorited = true;
 					$scope.favoriteCls = 'fontawesome-heart';
 				}else{
+					console.log('remove favorite');
+					$scope.course.favorited = false;
 					$scope.favoriteCls = 'fontawesome-heart-empty';
 				}
 			}).error(function(e){
-				$scope.favoriteCls = 'fontawesome-heart-empty';
+				console.log('share failed');
 			});
 		}
 
