@@ -30,6 +30,10 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 		if(token !== undefined){
 			console.log('set token on cookie');
 			$cookies.put('access_token', token);
+		}else{
+			console.log('not login');
+			console.log('remove access token from cookies');
+			$cookies.put('access_token', undefined);
 		}
 
 		$http.get(util.getBackendServiceUrl() + "/course_tags")

@@ -9,10 +9,15 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		if ($stateParams.courseId === undefined) {
 			$state.go('home');
 		}
+		var token = $location.search().token;
+		if(token !== undefined){
+			console.log('set token on cookie');
+			$cookies.put('access_token', token);
+		}
 		$scope.showShare = false;
 		$scope.shareImg = "img/share_400_400_2.png";
 		$scope.courseUrl = $location.absUrl();
-		console.log('location=', window.location.href);
+		console.log('location=', $scope.courseUrl);
 		var util = new DomainNameUtil($location);
 		$scope.originUrl = window.location.href;
 		console.log('get access token:', $cookies.get('access_token'));
@@ -85,6 +90,12 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 		$scope.favorite = function() {
 			console.log('favorite');
+			if($cookies.get('access_token') === undefined){
+				var redirect = encodeURI($scope.courseUrl).replace('#', '%23');
+				console.log('redirect=',encodeURI($scope.courseUrl).replace('#', '%23'));
+				window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfe34c2ab5b5c5813&redirect_uri=http%3a%2f%2fwww.imzao.com%2feducation%2fzaozao%2fwechat%2flogin&response_type=code&scope=snsapi_userinfo&state=WECHAT_SERVICE-'+ redirect +'#wechat_redirect';
+				return;
+			}
 			var promise = recordShareFavorite('FAVORITE');
 			promise.success(function(e){
 				console.log('favorite success ',e);
