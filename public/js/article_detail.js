@@ -16,6 +16,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		var util = new DomainNameUtil($location);
 		$scope.originUrl = window.location.href;
 		console.log('get access token:', $cookies.get('access_token'));
+		$scope.favoriteCls = 'fontawesome-heart-empty';
 		$http.get(util.getBackendServiceUrl() +
 			'/course/proposal/' + $stateParams.courseId, {
 				headers: {
@@ -38,6 +39,11 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 			$scope.course.videoUrl = $sce.trustAsResourceUrl($scope.course.videoUrl);
 			document.getElementById('article_content').innerHTML = $scope.course.content;
 			// video.addSource('mp4',$scope.course.videoUrl);
+			if($scope.course.favorited === true){
+				$scope.favoriteCls = 'fontawesome-heart';
+			}else{
+				$scope.favoriteCls = 'fontawesome-heart-empty';
+			}
 			configJSAPI();
 		}).error(function(e) {
 
@@ -74,11 +80,21 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.share = function() {
 			console.log('share');
 			$scope.showShare = true;
+			recordShareFavorite('SHARE');
 		}
 
 		$scope.favorite = function() {
 			console.log('favorite');
-			recordShareFavorite('FAVORITE');
+			var promise = recordShareFavorite('FAVORITE');
+			promise.success(function(e){
+				if(e === true){
+					$scope.favoriteCls = 'fontawesome-heart';
+				}else{
+					$scope.favoriteCls = 'fontawesome-heart-empty';
+				}
+			}).error(function(e){
+				$scope.favoriteCls = 'fontawesome-heart-empty';
+			});
 		}
 
 		$scope.hideShare = function() {
@@ -182,9 +198,13 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		}
 
 		function recordShareFavorite(activity) {
+			var link=util.getBackendServiceUrl() + '/course/interactive';
+			if('FAVORITE' === activity){
+				link = util.getBackendServiceUrl() + '/favorite';
+			}
 			var req = {
 				method: 'POST',
-				url: util.getBackendServiceUrl() + '/course/interactive',
+				url: link,
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
 					'access_token': $cookies.get('access_token')
@@ -195,10 +215,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 					flag: activity
 				})
 			};
-			$http(req).success(function(e) {
-
-			});
-
+			return $http(req);
 		}
 
 	}
