@@ -129,12 +129,19 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 					console.log(e);
 					var signature = e;
 					wx.config({
-						debug: true,
+						debug: false,
 						appId: e.appid,
 						timestamp: e.timestamp,
 						nonceStr: e.noncestr,
 						signature: e.signature,
 						jsApiList: ['checkJsApi', 'chooseImage']
+					});
+					wx.ready(function() {
+						console.log('wx ready');
+
+					});
+					wx.error(function(res) {
+						console.log('wx error');
 					});
 				});
 
