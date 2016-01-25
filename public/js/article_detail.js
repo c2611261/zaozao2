@@ -21,8 +21,7 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 		$scope.originUrl = window.location.href;
 		console.log('get access token:', $cookies.get('access_token'));
 		$scope.favoriteCls = 'fontawesome-heart-empty';
-		$scope.course.favorited = false;
-		setFavoriteDom();
+		$scope.favoriteText = '收藏';
 		$http.get(util.getBackendServiceUrl() +
 			'/course/proposal/' + $stateParams.courseId, {
 				headers: {
