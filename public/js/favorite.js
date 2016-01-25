@@ -1,10 +1,10 @@
 angular.module('favoriteModule', ['ngRoute',
-	'infinite-scroll', 'mgcrea.pullToRefresh', 'shareFavoriteServiceModule'
+	'infinite-scroll', 'mgcrea.pullToRefresh', 'shareFavoriteServiceModule', 'ngDialog'
 ]).
 
 controller('FavoriteController', ['$rootScope', '$scope', '$http', '$location',
-	'$stateParams', '$state', '$cookies', 'ShareFavoriteService',
-	function($rootScope, $scope, $http, $location, $stateParams, $state, $cookies, favoriteSrv) {
+	'$stateParams', '$state', '$cookies', 'ShareFavoriteService', 'ngDialog',
+	function($rootScope, $scope, $http, $location, $stateParams, $state, $cookies, favoriteSrv, ngDialog) {
 		var util = new DomainNameUtil($location);
 		refresh();
 		$rootScope.title = "早早TV";
@@ -83,18 +83,37 @@ controller('FavoriteController', ['$rootScope', '$scope', '$http', '$location',
 
 		$scope.removeFavorite = function(course) {
 			console.log('remove favorite ', course);
-			var ret = favoriteSrv.recordShareFavorite('FAVORITE', course.id);
-			ret.success(function(e) {
-				console.log('remove favorite');
-				var i = 0
-				for (; i < $scope.courses.length; i++) {
-					if (course.id === $scope.courses[i].id) {
-						break;
-					}
+			ngDialog.open({
+				template: '/public/views/confirm_delete.html',
+				name: '',
+				showClose: false,
+				closeByEscape: true,
+				className: 'ngdialog-theme-default',
+				controller: ['$scope', function($scope) {
+					
+					$scope.checkInput = function(adminPwd) {
+						return true;
+					};
+				}]
+			}).closePromise.then(function(data) {
+				console.log('confirm return '+data.value);
+				if (data.value !== true) {
+					return;
 				}
-				$scope.courses.splice(i, 1);
-				updateCourseBottomStyle();
+				var ret = favoriteSrv.recordShareFavorite('FAVORITE', course.id);
+				ret.success(function(e) {
+					console.log('remove favorite');
+					var i = 0
+					for (; i < $scope.courses.length; i++) {
+						if (course.id === $scope.courses[i].id) {
+							break;
+						}
+					}
+					$scope.courses.splice(i, 1);
+					updateCourseBottomStyle();
+				});
 			});
+
 		}
 
 		function updateCourseBottomStyle() {
