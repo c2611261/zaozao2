@@ -440,8 +440,8 @@ hr.transparent {
     white-space:nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
-    margin-left: -10px;
-    margin-right: -30px;
+    /*margin-left: -10px;
+    margin-right: -30px;*/
     -webkit-overflow-scrolling: touch;
     -ms-overflow-scrolling: touch;
     -moz-overflow-scrolling: touch;
@@ -471,8 +471,8 @@ hr.transparent {
 }
 
 .home_article_browser{
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-right: auto;
     margin-left: auto;
     background-size: 100%;
@@ -487,6 +487,6 @@ hr.transparent {
 }
 
 .bottom-nav{
-    height: 12%;
+    height: 10%;
 }
 
