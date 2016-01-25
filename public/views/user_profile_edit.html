@@ -4,11 +4,11 @@
       <div class="row cover-background">     
       </div>
       <img ng-src="{{userInfo.headimgurl}}" alt="" class="avatar">
-      <span class="fa-stack fa-lg" style="margin: 10px 0 0 -30px; z-index: 2">
-        <a href="#">
+      <span class="fa-stack fa-lg" style="margin: 10px 0 0 -30px; z-index: 2" ng-click="chooseImage()">
+        
         <i class="fa fa-circle fa-stack-2x green-text"></i>
         <i class="fa fa-camera fa-stack-1x fa-inverse"></i>
-        </a>
+        
       </span>
       <div class="user-name center">
         <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md center" ng-model="userInfo.nickname">

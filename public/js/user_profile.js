@@ -17,12 +17,12 @@ angularjs.controller('UserProfileController', ['$rootScope', '$scope',
 			if ($scope.userInfo.child === null) {
 				console.log('the user doesnot have child');
 				$state.go('user_profile_edit');
-			}else{
+			} else {
 				var child = $scope.userInfo.child;
-				console.log('user child:',child);
+				console.log('user child:', child);
 				var birthdate = new Date(child.childBirthdate);
-				$scope.birthdate = birthdate.getFullYear()+'.'+(birthdate.getMonth()+1)+"."+birthdate.getDate();
-				$scope.genderText = child.gender === 'MALE'?'男孩':'女孩';
+				$scope.birthdate = birthdate.getFullYear() + '.' + (birthdate.getMonth() + 1) + "." + birthdate.getDate();
+				$scope.genderText = child.gender === 'MALE' ? '男孩' : '女孩';
 			}
 		}).error(function(e) {
 
@@ -38,8 +38,8 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 		video, $route) {
 		$scope.userInfo = {};
 		setupDateElements();
-
 		var util = new DomainNameUtil($location);
+		configJSAPI(util);
 		$http.get(util.getBackendServiceUrl() + '/user', {
 			headers: {
 				'access_token': $cookies.get('access_token')
@@ -48,12 +48,12 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 			console.log('get user ', e);
 			$scope.userInfo = e;
 			if ($scope.userInfo.child === null) {
-				
+
 			} else {
 				var d = new Date($scope.userInfo.child.childBirthdate);
 				console.log('child birthdate:', d.getMonth());
 				$scope.childBirthYear = d.getFullYear();
-				$scope.childBirthMonth = d.getMonth()+1;
+				$scope.childBirthMonth = d.getMonth() + 1;
 				$scope.childBirthDay = d.getDate();
 				$scope.changeYearMonth($scope.childBirthYear, $scope.childBirthMonth);
 			}
@@ -61,12 +61,26 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 
 		});
 
+		$scope.chooseImage = function(){
+			console.log('choose image');
+			wx.chooseImage({
+			    count: 1, // 默认9
+			    sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+			    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+			    success: function (res) {
+			    	console.log('select image success ', res);
+			        $scope.imageIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+			    	console.log('select image id ', imageIds);
+			    }
+			});
+		}
+
 		$scope.submit = function() {
 			editUserProfile();
 		}
 
 		function editUserProfile() {
-			var birthdate = $scope.childBirthYear+'/'+($scope.childBirthMonth )+ '/'+$scope.childBirthDay;
+			var birthdate = $scope.childBirthYear + '/' + ($scope.childBirthMonth) + '/' + $scope.childBirthDay;
 			$http({
 				method: 'POST',
 				url: util.getBackendServiceUrl() + '/userprofile',
@@ -86,9 +100,6 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 			});
 		}
 
-		function editUserProfileAndImage() {
-
-		}
 
 		$scope.changeYearMonth = function(y, m) {
 			console.log('month changed to ', m);
@@ -109,6 +120,24 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 			}
 			$scope.month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 			$scope.day = [];
+		}
+
+		function configJSAPI(util) {
+
+			$http.get(util.getBackendServiceUrl() + '/wechat/jsapi?url=' + $location.absUrl().split('#')[0])
+				.success(function(e) {
+					console.log(e);
+					var signature = e;
+					wx.config({
+						debug: true,
+						appId: e.appid,
+						timestamp: e.timestamp,
+						nonceStr: e.noncestr,
+						signature: e.signature,
+						jsApiList: ['checkJsApi', 'chooseImage']
+					});
+				});
+
 		}
 
 	}
