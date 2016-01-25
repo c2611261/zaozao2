@@ -76,7 +76,11 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 		}
 
 		$scope.submit = function() {
-			editUserProfile();
+			if($scope.imageIds !== undefined && $scope.imageIds !== null){
+				uploadImage();
+			} else {
+				editUserProfile();
+			}
 		}
 
 		function editUserProfile() {
@@ -99,7 +103,17 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 				$state.go('user_profile');
 			});
 		}
+		function uploadImage(){
+			wx.uploadImage({
+			    localId: $scope.imageIds.toString(), // 需要上传的图片的本地ID，由chooseImage接口获得
+			    isShowProgressTips: 1, // 默认为1，显示进度提示
+			    success: function (res) {
+				console.log('upload image server id:', res);
+				$scope.serverId = res.serverId;
+			    }
+			});
 
+		}
 
 		$scope.changeYearMonth = function(y, m) {
 			console.log('month changed to ', m);
@@ -134,7 +148,7 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 						timestamp: e.timestamp,
 						nonceStr: e.noncestr,
 						signature: e.signature,
-						jsApiList: ['checkJsApi', 'chooseImage']
+						jsApiList: ['checkJsApi', 'chooseImage', 'uploadImage']
 					});
 					wx.ready(function() {
 						console.log('wx ready');
