@@ -79,12 +79,13 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 			if($scope.imageIds !== undefined && $scope.imageIds !== null){
 				uploadImage();
 			} else {
-				editUserProfile();
+				editUserProfile(null);
 			}
 		}
 
-		function editUserProfile() {
+		function editUserProfile(mediaId) {
 			var birthdate = $scope.childBirthYear + '/' + ($scope.childBirthMonth) + '/' + $scope.childBirthDay;
+
 			$http({
 				method: 'POST',
 				url: util.getBackendServiceUrl() + '/userprofile',
@@ -97,7 +98,8 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 					user_name: $scope.userInfo.nickname,
 					gender: $scope.userInfo.child.gender,
 					child_name: $scope.userInfo.child.childName,
-					child_birthdate: birthdate
+					child_birthdate: birthdate,
+					media_id: mediaId
 				})
 			}).success(function(e) {
 				$state.go('user_profile');
@@ -108,8 +110,8 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 			    localId: $scope.imageIds.toString(), // 需要上传的图片的本地ID，由chooseImage接口获得
 			    isShowProgressTips: 1, // 默认为1，显示进度提示
 			    success: function (res) {
-				console.log('upload image server id:', res);
-				$scope.serverId = res.serverId;
+					console.log('upload image server id:', res);
+					editUserProfile(res.serverId);
 			    }
 			});
 
