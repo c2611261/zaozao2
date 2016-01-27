@@ -89,20 +89,37 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 		$scope.favorite = function() {
 			console.log('favorite');
-			if ($cookies.get('access_token') === undefined) {
-				var redirect = encodeURI($scope.courseUrl).replace('#', '%23');
-				console.log('redirect=', encodeURI($scope.courseUrl).replace('#', '%23'));
-				window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfe34c2ab5b5c5813&redirect_uri=http%3a%2f%2fwww.imzao.com%2feducation%2fzaozao%2fwechat%2flogin&response_type=code&scope=snsapi_userinfo&state=WECHAT_SERVICE-' + redirect + '#wechat_redirect';
-				return;
-			}
-			var promise = recordShareFavorite('FAVORITE');
-			promise.success(function(e) {
-				console.log('favorite success ', e);
-				$scope.course.favorited = !$scope.course.favorited;
-				setFavoriteDom();
-			}).error(function(e) {
-				console.log('share failed');
-			});
+			$http({
+                                method: 'POST',
+                                url: 'http://www.imzao.com/payment/education/zaozao/wechat/pay/test',
+                                headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                                        'access_token': $cookies.get('access_token')
+                                },
+                                data: $httpParamSerializer({
+                                        product_desc: 'product_desc',
+                                        product_detail:'product_detail',
+                                        price: 1,
+                                        'openid': 'oylrrviRhbTDqnuHkStG8m-S5IIA'
+                                })
+                        }).success(function(e) {
+                                console.log('res:',e);
+                                var timestamp = (new Date()).valueOf()+"";
+                                wx.chooseWXPay({
+    timestamp: e.timestamp+'', // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+    nonceStr: e.nonce_str, // 支付签名随机串，不长于 32 位
+    package: "prepay_id="+e.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+    signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+    paySign: e.sign, // 支付签名
+    success: function (res) {
+        // 支付成功后的回调函数
+        console.log('pay res:', res);
+    },
+    fail: function(res){
+        alert(JSON.stringify(res));
+    }
+});
+                        });
 		}
 
 		function setFavoriteDom() {
@@ -158,13 +175,14 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 				.success(function(e) {
 					console.log(e);
 					var signature = e;
+					$scope.timestamp=e.timestamp;
 					wx.config({
-						debug: false,
+						debug: true,
 						appId: e.appid,
 						timestamp: e.timestamp,
 						nonceStr: e.noncestr,
 						signature: e.signature,
-						jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage']
+						jsApiList: ['checkJsApi', 'chooseWXPay']
 					});
 					wx.ready(function() {
 						console.log('wx ready');
