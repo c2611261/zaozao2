@@ -490,3 +490,6 @@ hr.transparent {
     height: 7%;
 }
 
+.ngdialog-content{
+    width :60% !important;
+}
