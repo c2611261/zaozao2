@@ -56,12 +56,18 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 				$scope.childBirthMonth = d.getMonth() + 1;
 				$scope.childBirthDay = d.getDate();
 				$scope.changeYearMonth($scope.childBirthYear, $scope.childBirthMonth);
+				$scope.privilege = e.privilege;
+				// $scope.privilege.userName = e.privilege.userName === 1?true:false;
 			}
 		}).error(function(e) {
 
 		});
 
 		$scope.chooseImage = function(){
+			if($scope.privilege.userImage === 0){
+			console.log('choose image not allow');
+				return;
+			}
 			console.log('choose image');
 			wx.chooseImage({
 			    count: 1, // 默认9

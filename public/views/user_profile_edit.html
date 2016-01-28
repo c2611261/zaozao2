@@ -11,7 +11,7 @@
         
       </span>
       <div class="user-name center">
-        <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md center" ng-model="userInfo.nickname">
+        <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md center" ng-model="userInfo.nickname" ng-readonly="!privilege.userName">
       </div>
     </div>
 
@@ -24,7 +24,7 @@
         <p class="white" style="margin-bottom: 10px">宝宝姓名</p>
         <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
-          <input id="textinput" name="textinput" type="text" placeholder="宝宝姓名" class="form-control input-md" ng-model="userInfo.child.childName" required>
+          <input id="textinput" name="textinput" type="text" placeholder="宝宝姓名" class="form-control input-md" ng-model="userInfo.child.childName" ng-readonly="!privilege.childName" required>
         </div>
         </div>
       </div>
@@ -32,13 +32,13 @@
         <p class="white"style="margin-bottom: 10px">宝宝性别</p>
         <div class="radio">
               <label for="radios-0">
-              <input type="radio" name="radios" id="radios-0" ng-model="userInfo.child.gender" value="MALE">
+              <input type="radio" name="radios" id="radios-0" ng-model="userInfo.child.gender" value="MALE" ng-disabled="!privilege.childGender">
               男
               </label>
               </div>
               <div class="radio">
               <label for="radios-1">
-              <input type="radio" name="radios" id="radios-1" ng-model="userInfo.child.gender" value="FEMALE">
+              <input type="radio" name="radios" id="radios-1" ng-model="userInfo.child.gender" value="FEMALE" ng-disabled="!privilege.childGender">
               女
               </label>
         </div>
@@ -54,7 +54,7 @@
         <div class="row" style="margin-bottom: 10px;">
         <div class="col-xs-2" style="margin-top: 10px;">年</div>
         <div class="col-xs-8">
-        <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthYear" ng-options="y for y in year" ng-change="changeYearMonth(childBirthYear, childBirthMonth)" required>
+        <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthYear" ng-options="y for y in year" ng-change="changeYearMonth(childBirthYear, childBirthMonth)" ng-disabled="!privilege.childBirthdate" required>
                 
         </select>
         </div>
@@ -62,7 +62,7 @@
       <div class="row" style="margin-bottom: 10px">
         <div class="col-xs-2" style="margin-top: 10px;">月</div>
         <div class="col-xs-8">
-        <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthMonth" ng-options="m for m in month" ng-change="changeYearMonth(childBirthYear, childBirthMonth)" required>
+        <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthMonth" ng-options="m for m in month" ng-change="changeYearMonth(childBirthYear, childBirthMonth)" ng-disabled="!privilege.childBirthdate" required>
                 
         </select>
         </div>
@@ -70,7 +70,7 @@
       <div class="row" style="margin-bottom: 10px">
         <div class="col-xs-2" style="margin-top: 10px;">日</div>
         <div class="col-xs-8">
-          <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthDay" ng-options="d for d in day" required>
+          <select id="selectbasic" name="selectbasic" class="form-control" ng-model="childBirthDay" ng-options="d for d in day" ng-disabled="!privilege.childBirthdate" required>
           </select>
           </div>
         </div>
