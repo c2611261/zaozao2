@@ -494,3 +494,10 @@ hr.transparent {
 .ngdialog-content{
     width :60% !important;
 }
+
+.favorite-list{
+    height:400px;
+    background-image: url(http://imzao.com/img/no_liked_video.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

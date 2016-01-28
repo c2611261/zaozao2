@@ -1,6 +1,7 @@
 <div class="article_browser" infinite-scroll="loadingCourses()" 
 infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
 <ul pull-to-refresh="pullToRefresh()"  style="padding-left:0px">
+    <div class="favorite-list">
 	<div ng-repeat="course in courses" ng-model="course" ng-class="course.bottom">
 
 			<div class="col-xs-12 recent-article center" ng-style="background(course)" >
@@ -12,6 +13,6 @@ infinite-scroll-disabled="loadBusy" infinite-scroll-distance="0" >
 		    </div> 
 		<div style='clear: both;'></div>
 	</div>
-	
+    </div>	
 </ul>
 </div>
