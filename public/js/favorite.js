@@ -7,7 +7,7 @@ controller('FavoriteController', ['$rootScope', '$scope', '$http', '$location',
 	function($rootScope, $scope, $http, $location, $stateParams, $state, $cookies, favoriteSrv, ngDialog) {
 		var util = new DomainNameUtil($location);
 		refresh();
-		$rootScope.title = "早早TV";
+		$rootScope.title = "我的收藏";
 		var $body = $('body');
 		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
 		$iframe.on('load', function() {

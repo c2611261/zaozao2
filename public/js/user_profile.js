@@ -5,7 +5,14 @@ angularjs.controller('UserProfileController', ['$rootScope', '$scope',
 	function($rootScope, $scope, $http, $stateParams,
 		$state, $location, $sce, $cookies, $httpParamSerializer,
 		video, $route) {
-
+		$rootScope.title = '我';
+		var $body = $('body');
+		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+		$iframe.on('load', function() {
+			setTimeout(function() {
+				$iframe.off('load').remove();
+			}, 0);
+		}).appendTo($body);
 		var util = new DomainNameUtil($location);
 		$http.get(util.getBackendServiceUrl() + '/user', {
 			headers: {
@@ -36,6 +43,14 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 	function($rootScope, $scope, $http, $stateParams,
 		$state, $location, $sce, $cookies, $httpParamSerializer,
 		video, $route) {
+		$rootScope.title = '我';
+		var $body = $('body');
+		var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+		$iframe.on('load', function() {
+			setTimeout(function() {
+				$iframe.off('load').remove();
+			}, 0);
+		}).appendTo($body);
 		$scope.userInfo = {};
 		setupDateElements();
 		var util = new DomainNameUtil($location);
