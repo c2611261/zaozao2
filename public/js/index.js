@@ -47,7 +47,7 @@ controller('IndexController', ['$rootScope', '$scope', '$http', '$location',
 					$scope.courseTags[i].id = e[i].id.toString();
 					$scope.courseTags[i].name = e[i].name;
 					console.log('locaiton:', $location.path());
-					if (i > 3) {
+					if (i > 4) {
 						$scope.courseTags[i].enabled = false;
 						$scope.courseTags[i].opacity = {
 							opacity: 0.5
