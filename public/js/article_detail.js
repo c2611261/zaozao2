@@ -221,9 +221,6 @@ angularjs.controller('ArticleDetailController', ['$rootScope', '$scope',
 
 		function recordShareFavorite(activity) {
 			var link = util.getBackendServiceUrl() + '/course/interactive';
-			if ('FAVORITE' === activity) {
-				link = util.getBackendServiceUrl() + '/favorite';
-			}
 			var req = {
 				method: 'POST',
 				url: link,
