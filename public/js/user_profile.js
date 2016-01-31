@@ -55,6 +55,7 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 		setupDateElements();
 		var util = new DomainNameUtil($location);
 		configJSAPI(util);
+		$scope.bloodTypeList = ['A型','B型','AB型','O型','其他','不清楚'];
 		$http.get(util.getBackendServiceUrl() + '/user', {
 			headers: {
 				'access_token': $cookies.get('access_token')
@@ -120,7 +121,8 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 					gender: $scope.userInfo.child.gender,
 					child_name: $scope.userInfo.child.childName,
 					child_birthdate: birthdate,
-					media_id: mediaId
+					media_id: mediaId,
+					blood_type: $scope.userInfo.child.bloodType
 				})
 			}).success(function(e) {
 				$state.go('user_profile');

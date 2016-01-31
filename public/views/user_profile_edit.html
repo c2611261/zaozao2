@@ -28,8 +28,8 @@
         </div>
         </div>
       </div>
-      <div class="center green one-edge-shadow">
-        <p class="white"style="margin-bottom: 10px">宝宝性别</p>
+      <div class="center green one-edge-shadow" style="margin-bottom: 10px">
+        <p class="white" >宝宝性别</p>
         <div class="radio">
               <label for="radios-0">
               <input type="radio" name="radios" id="radios-0" ng-model="userInfo.child.gender" value="MALE" ng-disabled="!privilege.childGender">
@@ -43,6 +43,17 @@
               </label>
         </div>
       </div>
+
+      <div class="center green one-edge-shadow">
+      <div class="row" style="margin-bottom: 10px;">
+        <p class="white"style="margin-bottom: 10px">宝宝血型</p>     
+        <div class="col-xs-10 col-xs-offset-1">
+          <select id="selectbloodtype" class="form-control" ng-options='blood for blood in bloodTypeList' ng-model="userInfo.child.bloodType" ng-disabled="!privilege.bloodType">
+          </select>
+        </select>
+        </div>
+      </div>
+    </div>
     </div>
 
 
