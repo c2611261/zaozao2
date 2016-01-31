@@ -35,6 +35,15 @@ controller('FavoriteController', ['$rootScope', '$scope', '$http', '$location',
 			};
 		}
 
+		$scope.emptyBackground = function(){
+			if($scope.courses.length === 0){
+				console.log('get background image');
+				return { 'background-image' : 'url(http://imzao.com/img/no_liked_video.png)'};
+			} else {
+				return '';
+			}
+		}
+
 		$scope.goToCourseTag = function(tag, $event) {
 			console.log('go to course tag');
 			$state.go('course_tags', {

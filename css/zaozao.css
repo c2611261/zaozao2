@@ -496,8 +496,9 @@ hr.transparent {
 }
 
 .favorite-list{
-    height:400px;
-    background-image: url(http://imzao.com/img/no_liked_video.png);
-    background-size: 100%;
+    height:100%;
+    background-size: 60%;
     background-repeat: no-repeat;
+    background-color: #545454;
+    background-position: center;
 }
