@@ -44,6 +44,12 @@ controller('FavoriteController', ['$rootScope', '$scope', '$http', '$location',
 			}
 		}
 
+		$scope.clickEmptyFavorite = function(){
+			if($scope.courses.length === 0){
+				$state.go('course_list');
+			}
+		}
+
 		$scope.goToCourseTag = function(tag, $event) {
 			console.log('go to course tag');
 			$state.go('course_tags', {
