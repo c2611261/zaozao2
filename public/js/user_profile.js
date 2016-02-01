@@ -63,6 +63,7 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 		}).success(function(e) {
 			console.log('get user ', e);
 			$scope.userInfo = e;
+			$scope.privilege = e.privilege;
 			if ($scope.userInfo.child === null) {
 
 			} else {
@@ -72,7 +73,6 @@ angularjs.controller('UserProfileEditController', ['$rootScope', '$scope',
 				$scope.childBirthMonth = d.getMonth() + 1;
 				$scope.childBirthDay = d.getDate();
 				$scope.changeYearMonth($scope.childBirthYear, $scope.childBirthMonth);
-				$scope.privilege = e.privilege;
 				// $scope.privilege.userName = e.privilege.userName === 1?true:false;
 			}
 		}).error(function(e) {
