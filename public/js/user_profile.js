@@ -23,7 +23,7 @@ angularjs.controller('UserProfileController', ['$rootScope', '$scope',
 			$scope.userInfo = e;
 			if ($scope.userInfo.child === null) {
 				console.log('the user doesnot have child');
-				$state.go('user_profile_edit');
+				//$state.go('user_profile_edit');
 			} else {
 				var child = $scope.userInfo.child;
 				console.log('user child:', child);
