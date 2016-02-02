@@ -93,6 +93,11 @@ controller('FavoriteController', ['$rootScope', '$scope', '$http', '$location',
 					updateCourseBottomStyle();
 					//console.log('total course ', $scope.courses);
 					console.log('total number of courses ', $scope.courses.length);
+					if($scope.courses.length < 3){
+						$scope.emptyStyle = "overplay";
+					} else {
+						$scope.emptyStyle = "";
+					}
 				});
 		}
 
